@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2022-12-21T05:49:14+01:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Basics of DAX TREATAS Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" rel="alternate" type="text/html" title="Basics of DAX TREATAS Function" /><published>2022-10-21T00:00:00+01:00</published><updated>2022-10-21T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"><![CDATA[<p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. Using the TREATAS function we can create a virtual relationship between two tables  and can also used  to simplify filtering expression. In the first section of this tutorial I will use the TREATAS function to create a virtual relationship between two tables and then used it in the last section to simplify a filtering expression.</p>
+
+<h4 id="virtual-relationship">Virtual Relationship</h4>
+<p>The Best practice to move a filter from one table to another is to create a physical relationship between the two tables.
+What if the relationship doesn’t exist, is there a way to create virtual relationship between these two tables to mimic a physical
+relationship so that the user thinks the is relationship in place, even if there is none?. Using DAX functions we can create virtual relationship between tables that mimic the physical relationship and in this tutorial I will show how to create a virtual relationship using the TREATAS function. In order to show how we can create a virtual relationship between the Reseller and Sales tables, I have deleted the relationship between these two tables which can be seen from the data model below</p>
+
+<p><br /><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas1.jpg" /></p>
+
+<p><br /><br /></p>
+
+<p>Without any physical established relationship between the Reseller and Sales tables, let look at the amount of sales by country using <a href="https://daxstudio.org" target="_blank"> DAX Studio</a></p>
+
+<pre><code class="language-{DAX}">EVALUATE
+	SUMMARIZECOLUMNS(
+              Reseller[Country],
+             "Sales Amount",[Sales Amt]
+	)
+</code></pre>
+
+<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas2.jpg" /></p>
+
+<p>From the preceding figure we see that the result for sales amount is the same for all the countries involved because there no relationship between the two tables.</p>
+
+<p><a href="https://learn.microsoft.com/en-us/dax/treatas-function"> TREATAS</a> Applies the result of a table expression as filters to columns from an unrelated table and is define as</p>
+
+<pre><code class="language-{dax}">TREATAS(table_expression, &lt;column&gt;[, &lt;column&gt;[, &lt;column&gt;[,…]]]} )
+</code></pre>
+
+<p>With this definition let now create a virtual relationship between the two tables to filter the amount of sales by Country using  the TREATAS function. <br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas3.jpg" /></p>
+
+<p>We connected the two tables using the ResellerKey, and the preceding figure shows that the amount of sales is filtered by Country, even though there is no physical relationship between the two tables.</p>
+
+<p>Let now create a relationship between the Reseller and Sales tables using ResellerKey in power BI as  below</p>
+
+<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas4.jpg" /></p>
+
+<p>With an established relationship between the tables let check if we will get the same result
+for the amount of sales filtered by country as that of the virtual relationship</p>
+
+<p>Result of the Data model with physical relationship.<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas05.jpg" />
+<br /></p>
+
+<p>Result of the Data model with virtual relationship.<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas6.jpg" /></p>
+
+<h2 id="filtering-values-using-treatas">Filtering Values Using TREATAS</h2>
+<p>In this section of the tutorial we will be filtering values using the TREATAS function</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. Using the TREATAS function we can create a virtual relationship between two tables and can also used to simplify filtering expression. In the first section of this tutorial I will use the TREATAS function to create a virtual relationship between two tables and then used it in the last section to simplify a filtering expression.]]></summary></entry><entry><title type="html">Excel</title><link href="http://localhost:4000/arizeblog/excel/2022/10/20/ForEach.html" rel="alternate" type="text/html" title="Excel" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/excel/2022/10/20/ForEach</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2022/10/20/ForEach.html"><![CDATA[<p>One of the finest techniques to check the generalization power of a machine learning model is to use <strong><em>Cross-validation techniques</em></strong>. <strong>Cross-validation</strong> refers to a set of methods for measuring the performance of a given predictive model. It can be computationally expensive, because they involve fitting the same model multiple times using different subsets of the training data. Cross-validation techniques generally involves the following process:</p>
+
+<ol>
+  <li>Divide the available data set into two sets namely training and testing (validation) data set.</li>
+</ol>]]></content><author><name>Arize Emmanuel</name></author><category term="Excel" /><summary type="html"><![CDATA[One of the finest techniques to check the generalization power of a machine learning model is to use Cross-validation techniques. Cross-validation refers to a set of methods for measuring the performance of a given predictive model. It can be computationally expensive, because they involve fitting the same model multiple times using different subsets of the training data. Cross-validation techniques generally involves the following process:]]></summary></entry><entry><title type="html">VBA</title><link href="http://localhost:4000/arizeblog/vba/2022/10/20/ForEach.html" rel="alternate" type="text/html" title="VBA" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/vba/2022/10/20/ForEach</id><content type="html" xml:base="http://localhost:4000/arizeblog/vba/2022/10/20/ForEach.html"><![CDATA[<p>One of the finest techniques to check the generalization power of a machine learning model is to use <strong><em>Cross-validation techniques</em></strong>. <strong>Cross-validation</strong> refers to a set of methods for measuring the performance of a given predictive model. It can be computationally expensive, because they involve fitting the same model multiple times using different subsets of the training data. Cross-validation techniques generally involves the following process:</p>
+
+<ol>
+  <li>Divide the available data set into two sets namely training and testing (validation) data set.</li>
+</ol>]]></content><author><name>Arize Emmanuel</name></author><category term="VBA" /><summary type="html"><![CDATA[One of the finest techniques to check the generalization power of a machine learning model is to use Cross-validation techniques. Cross-validation refers to a set of methods for measuring the performance of a given predictive model. It can be computationally expensive, because they involve fitting the same model multiple times using different subsets of the training data. Cross-validation techniques generally involves the following process:]]></summary></entry><entry><title type="html">Measures</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html" rel="alternate" type="text/html" title="Measures" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html"><![CDATA[<p>This tutorial uses the Contoso Sales Sample for Power BI Desktop file, which includes online sales data
+from the fictitious company, Contoso.</p>
+
+<p>the boyyyyyyy</p>]]></content><author><name>Arize Emmanuel</name></author><category term="Power-BI" /><summary type="html"><![CDATA[This tutorial uses the Contoso Sales Sample for Power BI Desktop file, which includes online sales data from the fictitious company, Contoso.]]></summary></entry><entry><title type="html">Data Manipulation in R</title><link href="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" rel="alternate" type="text/html" title="Data Manipulation in R" /><published>2022-05-06T00:00:00+01:00</published><updated>2022-05-06T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html"><![CDATA[<p>This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves</p>
+
+<ul>
+  <li>
+    <p>computing summary statistics.</p>
+  </li>
+  <li>
+    <p>rows filtering (filter()) and  ordering (arrange()).</p>
+  </li>
+  <li>
+    <p>renaming (rename()) and selecting certain columns (select()</p>
+  </li>
+</ul>
+
+<p><b>and adding columns</b></p>
+
+<ul>
+  <li>
+    <p>mutate(): compute and add new variables into a data table. It preserves existing variables and adds new columns at the end of your dataset and</p>
+  </li>
+  <li>
+    <p>transmute(): compute new columns and only keep the new columns,</p>
+  </li>
+</ul>
+
+<p>setwd(“wdirectory”) Changes the current working directory to wdirectory.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setwd('C:/Users/USER/Desktop/JUPYTER_NOTEBOOK/A_MYTUTORIALS/MYR')
+</code></pre></div></div>
+
+<p>Load the needed packages</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>library(devtools)
+library(tidyverse)
+library(nycflights13)
+library(readxl)
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Loading required package: usethis
+
+Warning message in (function (kind = NULL, normal.kind = NULL, sample.kind = NULL) :
+"non-uniform 'Rounding' sampler used"
+-- [1mAttaching packages[22m ------------------------------------------------------------------------------- tidyverse 1.3.1 --
+
+[32mv[39m [34mggplot2[39m 3.3.3     [32mv[39m [34mpurrr  [39m 0.3.4
+[32mv[39m [34mtibble [39m 3.1.1     [32mv[39m [34mdplyr  [39m 1.0.5
+[32mv[39m [34mtidyr  [39m 1.1.3     [32mv[39m [34mstringr[39m 1.4.0
+[32mv[39m [34mreadr  [39m 1.4.0     [32mv[39m [34mforcats[39m 0.5.1
+
+Warning message in (function (kind = NULL, normal.kind = NULL, sample.kind = NULL) :
+"non-uniform 'Rounding' sampler used"
+-- [1mConflicts[22m ---------------------------------------------------------------------------------- tidyverse_conflicts() --
+[31mx[39m [34mdplyr[39m::[32mfilter()[39m masks [34mstats[39m::filter()
+[31mx[39m [34mdplyr[39m::[32mlag()[39m    masks [34mstats[39m::lag()
+</code></pre></div></div>
+
+<h1 id="datatset">Datatset</h1>
+<p>We will use titanic dataset. This dataset has 1309 observations with 14 variables. To explore the basic data manipulation verbs of dplyr,
+ we start by converting the data into a tibble data frame for easier data manipulation</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my_data&lt;-as_tibble(read_xls('data/titanic.xls'))
+names(my_data)
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message in read_fun(path = enc2native(normalizePath(path)), sheet_i = sheet, :
+"Coercing text to numeric in M1306 / R1306C13: '328'"
+</code></pre></div></div>
+
+<h1 id="variable-selection">Variable Selection</h1>
+
+<p>we can select or subset variables by names or position.</p>
+
+<p>Under variable selection we will learn how to use</p>
+
+<ul>
+  <li>
+    <p>select(): allow us to extract variables or variables as a data table and can  also be used to remove variables from the data frame.</p>
+  </li>
+  <li>
+    <p>select_if(): Select variabless based on a particular condition.</p>
+  </li>
+  <li>
+    <p>Variabl Selection by position</p>
+  </li>
+</ul>
+
+<p>select from the my_data variable positioned from 1 to 4 inclusive</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(my_data %&gt;% select(1:4))
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 6 × 4</caption>
+<thead>
+	<tr><th scope="col">pclass</th><th scope="col">survived</th><th scope="col">name</th><th scope="col">sex</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>1</td><td>Allen, Miss. Elisabeth Walton                  </td><td>female</td></tr>
+	<tr><td>1</td><td>1</td><td>Allison, Master. Hudson Trevor                 </td><td>male  </td></tr>
+	<tr><td>1</td><td>0</td><td>Allison, Miss. Helen Loraine                   </td><td>female</td></tr>
+	<tr><td>1</td><td>0</td><td>Allison, Mr. Hudson Joshua Creighton           </td><td>male  </td></tr>
+	<tr><td>1</td><td>0</td><td>Allison, Mrs. Hudson J C (Bessie Waldo Daniels)</td><td>female</td></tr>
+	<tr><td>1</td><td>1</td><td>Anderson, Mr. Harry                            </td><td>male  </td></tr>
+</tbody>
+</table>
+
+<p>select variables positioned at 1, 4,6,7</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+head(my_data %&gt;% select(1,4,6,7))
+
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 6 × 4</caption>
+<thead>
+	<tr><th scope="col">pclass</th><th scope="col">sex</th><th scope="col">sibsp</th><th scope="col">parch</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>female</td><td>0</td><td>0</td></tr>
+	<tr><td>1</td><td>male  </td><td>1</td><td>2</td></tr>
+	<tr><td>1</td><td>female</td><td>1</td><td>2</td></tr>
+	<tr><td>1</td><td>male  </td><td>1</td><td>2</td></tr>
+	<tr><td>1</td><td>female</td><td>1</td><td>2</td></tr>
+	<tr><td>1</td><td>male  </td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+
+<h1 id="select-varaibles-by-name">Select varaibles by name</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(select(my_data,pclass,name:age),3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 4</caption>
+<thead>
+	<tr><th scope="col">pclass</th><th scope="col">name</th><th scope="col">sex</th><th scope="col">age</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>Allen, Miss. Elisabeth Walton </td><td>female</td><td>29.0000</td></tr>
+	<tr><td>1</td><td>Allison, Master. Hudson Trevor</td><td>male  </td><td> 0.9167</td></tr>
+	<tr><td>1</td><td>Allison, Miss. Helen Loraine  </td><td>female</td><td> 2.0000</td></tr>
+</tbody>
+</table>
+
+<p>Select all variables except variables from survived to cabin</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(select(my_data,-(survived:cabin)),3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 5</caption>
+<thead>
+	<tr><th scope="col">pclass</th><th scope="col">embarked</th><th scope="col">boat</th><th scope="col">body</th><th scope="col">home.dest</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>S</td><td>2 </td><td>NA</td><td>St Louis, MO                   </td></tr>
+	<tr><td>1</td><td>S</td><td>11</td><td>NA</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+	<tr><td>1</td><td>S</td><td>NA</td><td>NA</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+</tbody>
+</table>
+
+<p>select variables whose name starts with bo</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(my_data %&gt;% select(starts_with('bo')),3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 2</caption>
+<thead>
+	<tr><th scope="col">boat</th><th scope="col">body</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>2 </td><td>NA</td></tr>
+	<tr><td>11</td><td>NA</td></tr>
+	<tr><td>NA</td><td>NA</td></tr>
+</tbody>
+</table>
+
+<p>select variables whose name ends with t</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(my_data %&gt;% select(ends_with('t')),3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 3</caption>
+<thead>
+	<tr><th scope="col">ticket</th><th scope="col">boat</th><th scope="col">home.dest</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>24160 </td><td>2 </td><td>St Louis, MO                   </td></tr>
+	<tr><td>113781</td><td>11</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+	<tr><td>113781</td><td>NA</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+</tbody>
+</table>
+
+<p>Select variables whose names contains “me”</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(my_data %&gt;% select(contains('me')),4)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 4 × 2</caption>
+<thead>
+	<tr><th scope="col">name</th><th scope="col">home.dest</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Allen, Miss. Elisabeth Walton       </td><td>St Louis, MO                   </td></tr>
+	<tr><td>Allison, Master. Hudson Trevor      </td><td>Montreal, PQ / Chesterville, ON</td></tr>
+	<tr><td>Allison, Miss. Helen Loraine        </td><td>Montreal, PQ / Chesterville, ON</td></tr>
+	<tr><td>Allison, Mr. Hudson Joshua Creighton</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+</tbody>
+</table>
+
+<h1 id="variable-selection-based-on-a-condtion">Variable selection based on a condtion</h1>
+
+<p>select only character variables</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(my_data %&gt;% select_if(is.character),4)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 4 × 7</caption>
+<thead>
+	<tr><th scope="col">name</th><th scope="col">sex</th><th scope="col">ticket</th><th scope="col">cabin</th><th scope="col">embarked</th><th scope="col">boat</th><th scope="col">home.dest</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Allen, Miss. Elisabeth Walton       </td><td>female</td><td>24160 </td><td>B5     </td><td>S</td><td>2 </td><td>St Louis, MO                   </td></tr>
+	<tr><td>Allison, Master. Hudson Trevor      </td><td>male  </td><td>113781</td><td>C22 C26</td><td>S</td><td>11</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+	<tr><td>Allison, Miss. Helen Loraine        </td><td>female</td><td>113781</td><td>C22 C26</td><td>S</td><td>NA</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+	<tr><td>Allison, Mr. Hudson Joshua Creighton</td><td>male  </td><td>113781</td><td>C22 C26</td><td>S</td><td>NA</td><td>Montreal, PQ / Chesterville, ON</td></tr>
+</tbody>
+</table>
+
+<p>selecting only numerical variables</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(select_if(my_data,is.numeric),4)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 4 × 7</caption>
+<thead>
+	<tr><th scope="col">pclass</th><th scope="col">survived</th><th scope="col">age</th><th scope="col">sibsp</th><th scope="col">parch</th><th scope="col">fare</th><th scope="col">body</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>1</td><td>29.0000</td><td>0</td><td>0</td><td>211.3375</td><td> NA</td></tr>
+	<tr><td>1</td><td>1</td><td> 0.9167</td><td>1</td><td>2</td><td>151.5500</td><td> NA</td></tr>
+	<tr><td>1</td><td>0</td><td> 2.0000</td><td>1</td><td>2</td><td>151.5500</td><td> NA</td></tr>
+	<tr><td>1</td><td>0</td><td>30.0000</td><td>1</td><td>2</td><td>151.5500</td><td>135</td></tr>
+</tbody>
+</table>
+
+<h1 id="removing-columns">Removing columns</h1>
+
+<p>For simplicity we will work with only few variables</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub_data&lt;-my_data %&gt;% select(sex,pclass,age,'survived',cabin,'name','sex','age','sibsp')
+</code></pre></div></div>
+
+<p>remove variables named pclass,age and sex</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(sub_data%&gt;% select(-sex,-pclass,-age),3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 4</caption>
+<thead>
+	<tr><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>B5     </td><td>Allen, Miss. Elisabeth Walton </td><td>0</td></tr>
+	<tr><td>1</td><td>C22 C26</td><td>Allison, Master. Hudson Trevor</td><td>1</td></tr>
+	<tr><td>0</td><td>C22 C26</td><td>Allison, Miss. Helen Loraine  </td><td>1</td></tr>
+</tbody>
+</table>
+
+<h1 id="rows-filtering-filter">Rows filtering (filter())</h1>
+
+<p>This section describes how to subset or extract samples or rows from the dataset based on certain criteria</p>
+
+<p>extract male (sex==’male’) passengers who survived (survived==1)  and has sibsp==1 (Number of Siblings/Spouses Aboard)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(sub_data %&gt;% filter(sex=='male' &amp; sibsp==1 &amp; survived==1),2)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 2 × 7</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">pclass</th><th scope="col">age</th><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>male</td><td>1</td><td> 0.9167</td><td>1</td><td>C22 C26</td><td>Allison, Master. Hudson Trevor</td><td>1</td></tr>
+	<tr><td>male</td><td>1</td><td>37.0000</td><td>1</td><td>D35    </td><td>Beckwith, Mr. Richard Leonard </td><td>1</td></tr>
+</tbody>
+</table>
+
+<p>OR</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(sub_data %&gt;% filter(sex=='male', sibsp==1,survived==1),2)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 2 × 7</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">pclass</th><th scope="col">age</th><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>male</td><td>1</td><td> 0.9167</td><td>1</td><td>C22 C26</td><td>Allison, Master. Hudson Trevor</td><td>1</td></tr>
+	<tr><td>male</td><td>1</td><td>37.0000</td><td>1</td><td>D35    </td><td>Beckwith, Mr. Richard Leonard </td><td>1</td></tr>
+</tbody>
+</table>
+
+<p>extract rows where  passengers are male(sex==’male’) or survived (survived==1)  or has sibsp==1 or 2 (Number of Siblings/Spouses Aboard)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(sub_data %&gt;% filter(sex=='male' | sibsp==1 |sibsp==2| survived==1),3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 7</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">pclass</th><th scope="col">age</th><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>female</td><td>1</td><td>29.0000</td><td>1</td><td>B5     </td><td>Allen, Miss. Elisabeth Walton </td><td>0</td></tr>
+	<tr><td>male  </td><td>1</td><td> 0.9167</td><td>1</td><td>C22 C26</td><td>Allison, Master. Hudson Trevor</td><td>1</td></tr>
+	<tr><td>female</td><td>1</td><td> 2.0000</td><td>0</td><td>C22 C26</td><td>Allison, Miss. Helen Loraine  </td><td>1</td></tr>
+</tbody>
+</table>
+
+<p>select variables sibsp,sex,age and from these variables extract rows where age&lt;10</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(sub_data %&gt;% select(sex,sibsp,age) %&gt;%filter(age&lt;10),3)
+
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 3</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">sibsp</th><th scope="col">age</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>male  </td><td>1</td><td>0.9167</td></tr>
+	<tr><td>female</td><td>1</td><td>2.0000</td></tr>
+	<tr><td>male  </td><td>0</td><td>4.0000</td></tr>
+</tbody>
+</table>
+
+<h1 id="selecting-random-rows-or-samples-from-a-dataset">Selecting random rows or samples from a dataset</h1>
+
+<p>selecting 10 random samples without replacement from the data</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(sub_data %&gt;% sample_n(10,replace = FALSE),2)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 2 × 7</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">pclass</th><th scope="col">age</th><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>male  </td><td>3</td><td>20</td><td>0</td><td>NA  </td><td>Vendel, Mr. Olof Edvin                      </td><td>0</td></tr>
+	<tr><td>female</td><td>1</td><td>35</td><td>1</td><td>C123</td><td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td><td>1</td></tr>
+</tbody>
+</table>
+
+<p>Select 1% random samples without replacement from the data</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub_data %&gt;% sample_frac(0.01,replace = FALSE)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 13 × 7</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">pclass</th><th scope="col">age</th><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>male  </td><td>1</td><td>34</td><td>1</td><td>NA </td><td>Seward, Mr. Frederic Kimber                 </td><td>0</td></tr>
+	<tr><td>male  </td><td>3</td><td>44</td><td>0</td><td>NA </td><td>Cribb, Mr. John Hatfield                    </td><td>0</td></tr>
+	<tr><td>male  </td><td>3</td><td>23</td><td>1</td><td>NA </td><td>Asplund, Mr. Johan Charles                  </td><td>0</td></tr>
+	<tr><td>male  </td><td>3</td><td>26</td><td>0</td><td>NA </td><td>Bostandyeff, Mr. Guentcho                   </td><td>0</td></tr>
+	<tr><td>male  </td><td>2</td><td>27</td><td>0</td><td>NA </td><td>Pulbaum, Mr. Franz                          </td><td>0</td></tr>
+	<tr><td>male  </td><td>3</td><td>17</td><td>0</td><td>NA </td><td>Elias, Mr. Joseph Jr                        </td><td>1</td></tr>
+	<tr><td>male  </td><td>1</td><td>41</td><td>0</td><td>D21</td><td>Kenyon, Mr. Frederick R                     </td><td>1</td></tr>
+	<tr><td>male  </td><td>3</td><td>31</td><td>1</td><td>NA </td><td>Stranden, Mr. Juho                          </td><td>0</td></tr>
+	<tr><td>female</td><td>2</td><td>25</td><td>1</td><td>NA </td><td>Shelley, Mrs. William (Imanita Parrish Hall)</td><td>0</td></tr>
+	<tr><td>male  </td><td>3</td><td>NA</td><td>0</td><td>NA </td><td>Petroff, Mr. Pastcho ("Pentcho")            </td><td>0</td></tr>
+	<tr><td>male  </td><td>3</td><td>NA</td><td>1</td><td>NA </td><td>O'Keefe, Mr. Patrick                        </td><td>0</td></tr>
+	<tr><td>male  </td><td>2</td><td> 2</td><td>1</td><td>NA </td><td>Wells, Master. Ralph Lester                 </td><td>1</td></tr>
+	<tr><td>male  </td><td>3</td><td>13</td><td>0</td><td>NA </td><td>Asplund, Master. Filip Oscar                </td><td>4</td></tr>
+</tbody>
+</table>
+
+<h1 id="missing-values">Missing values</h1>
+
+<p>Number of missing values in the age variable</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub_data %&gt;% summarise(num_na=sum(is.na(age)))
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 1 × 1</caption>
+<thead>
+	<tr><th scope="col">num_na</th></tr>
+	<tr><th scope="col">&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>263</td></tr>
+</tbody>
+</table>
+
+<p>number of missing values in each variable</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sub_data %&gt;% purrr::map_df(~sum(is.na(.)))
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 1 × 7</caption>
+<thead>
+	<tr><th scope="col">sex</th><th scope="col">pclass</th><th scope="col">age</th><th scope="col">survived</th><th scope="col">cabin</th><th scope="col">name</th><th scope="col">sibsp</th></tr>
+	<tr><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0</td><td>0</td><td>263</td><td>0</td><td>1014</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+nrow(sub_data)
+</code></pre></div></div>
+
+<p>1309</p>
+
+<p>drop samples of the variables age and cabin with nas</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+no_nas&lt;-sub_data %&gt;% filter_at(vars(age,cabin),all_vars(!is.na(.)))
+nrow(no_nas)
+</code></pre></div></div>
+
+<p>272</p>
+
+<h1 id="adding-new-variables">Adding New Variables</h1>
+
+<p>Under this section we will use the housing dataset</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>housing&lt;-readr::read_csv('data/housing.csv',guess_max = 20)
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[36m--[39m [1m[1mColumn specification[1m[22m [36m------------------------------------------------------------------------------------------------[39m
+cols(
+  longitude = [32mcol_double()[39m,
+  latitude = [32mcol_double()[39m,
+  housing_median_age = [32mcol_double()[39m,
+  total_rooms = [32mcol_double()[39m,
+  total_bedrooms = [32mcol_double()[39m,
+  population = [32mcol_double()[39m,
+  households = [32mcol_double()[39m,
+  median_income = [32mcol_double()[39m,
+  median_house_value = [32mcol_double()[39m,
+  ocean_proximity = [31mcol_character()[39m
+)
+</code></pre></div></div>
+
+<p>Under this section we will select only few variables needed to created new variables</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>housing&lt;-housing %&gt;% select(total_rooms,households,total_bedrooms,total_rooms,
+        population,households,ocean_proximity,median_income)
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h1 id="mutate">mutate()</h1>
+<p>mutate() adds new variables at the end of your dataset</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(housing 
+      
+      %&gt;% mutate( rooms_per_household= total_rooms/households,
+                  bedrooms_per_room=total_bedrooms/total_rooms,
+                  population_per_household=population/households
+                  ) 
+                  %&gt;% select(-c(total_rooms,households,population,total_bedrooms,median_income))
+                  ,3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 4</caption>
+<thead>
+	<tr><th scope="col">ocean_proximity</th><th scope="col">rooms_per_household</th><th scope="col">bedrooms_per_room</th><th scope="col">population_per_household</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>NEAR BAY</td><td>6.984127</td><td>0.1465909</td><td>2.555556</td></tr>
+	<tr><td>NEAR BAY</td><td>6.238137</td><td>0.1557966</td><td>2.109842</td></tr>
+	<tr><td>NEAR BAY</td><td>8.288136</td><td>0.1295160</td><td>2.802260</td></tr>
+</tbody>
+</table>
+
+<p>transmute() only keep the new variables created</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>head(housing %&gt;% 
+            transmute(
+                  rooms_per_household= total_rooms/households,
+                  bedrooms_per_room=total_bedrooms/total_rooms,
+                  population_per_household=population/households
+                   ),
+                   3)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 3 × 3</caption>
+<thead>
+	<tr><th scope="col">rooms_per_household</th><th scope="col">bedrooms_per_room</th><th scope="col">population_per_household</th></tr>
+	<tr><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>6.984127</td><td>0.1465909</td><td>2.555556</td></tr>
+	<tr><td>6.238137</td><td>0.1557966</td><td>2.109842</td></tr>
+	<tr><td>8.288136</td><td>0.1295160</td><td>2.802260</td></tr>
+</tbody>
+</table>
+
+<h1 id="summary-statistics">Summary Statistics</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getmode &lt;- function(n) {
+   uniqn &lt;- unique(n)
+   uniqn[which.max(tabulate(match(n, uniqn)))]
+}
+housing %&gt;% summarise(count=n(),mean_income=mean(median_income,na.rm=TRUE),
+                      mode_income=getmode(median_income))
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope="col">count</th><th scope="col">mean_income</th><th scope="col">mode_income</th></tr>
+	<tr><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>20640</td><td>3.870671</td><td>3.125</td></tr>
+</tbody>
+</table>
+
+<p>Group by one variable</p>
+
+<ul>
+  <li>Note : you can groupe by multiple variables</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>housing %&gt;%group_by(ocean_proximity) %&gt;% summarise(mean_income=mean(median_income,na.rm=TRUE),
+                                                   mean_housholde=mean(households))
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 5 × 3</caption>
+<thead>
+	<tr><th scope="col">ocean_proximity</th><th scope="col">mean_income</th><th scope="col">mean_housholde</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>&lt;1H OCEAN </td><td>4.230682</td><td>517.7450</td></tr>
+	<tr><td>INLAND    </td><td>3.208996</td><td>477.4476</td></tr>
+	<tr><td>ISLAND    </td><td>2.744420</td><td>276.6000</td></tr>
+	<tr><td>NEAR BAY  </td><td>4.172885</td><td>488.6162</td></tr>
+	<tr><td>NEAR OCEAN</td><td>4.005785</td><td>501.2445</td></tr>
+</tbody>
+</table>
+
+<p>summary statistics on numerical variables group by ocean proximity</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>housing%&gt;% select(-population)%&gt;%group_by(ocean_proximity) %&gt;%
+summarise_if(is.numeric, mean, na.rm = TRUE)
+</code></pre></div></div>
+
+<table class="dataframe">
+<caption>A tibble: 5 × 5</caption>
+<thead>
+	<tr><th scope="col">ocean_proximity</th><th scope="col">total_rooms</th><th scope="col">households</th><th scope="col">total_bedrooms</th><th scope="col">median_income</th></tr>
+	<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>&lt;1H OCEAN </td><td>2628.344</td><td>517.7450</td><td>546.5392</td><td>4.230682</td></tr>
+	<tr><td>INLAND    </td><td>2717.743</td><td>477.4476</td><td>533.8816</td><td>3.208996</td></tr>
+	<tr><td>ISLAND    </td><td>1574.600</td><td>276.6000</td><td>420.4000</td><td>2.744420</td></tr>
+	<tr><td>NEAR BAY  </td><td>2493.590</td><td>488.6162</td><td>514.1828</td><td>4.172885</td></tr>
+	<tr><td>NEAR OCEAN</td><td>2583.701</td><td>501.2445</td><td>538.6157</td><td>4.005785</td></tr>
+</tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-R" /><summary type="html"><![CDATA[This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves]]></summary></entry><entry><title type="html">Introduction to LSTMs</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" rel="alternate" type="text/html" title="Introduction to LSTMs" /><published>2021-05-07T00:00:00+01:00</published><updated>2021-05-07T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"><![CDATA[<hr />
+<p>In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.</p>
+
+<blockquote>
+  <p>Note: In order to understand this post, you must have basic knowledge of recurrent neural networks and Keras. You can refer to <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a> to understand these concepts:</p>
+</blockquote>
+
+<p>Modeling sequential data using coventional <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a>, sometimes encounter sequences in which the gap between the relevant information and the point where it’s needed is very large, with these kind of huge gaps, RNNs are unable connectinformation to where it’s needed. During the backpropagation phase of RNNs, in which error signals (gradients) are backpropagated through time, the recurrent hidden layers (weight matrix associated with the layers) are subject to repeated multiplications. These multiplications are determined by the number of timesteps (length of the sequence), and this might result in numerical instability for lengthy sequence. For lengthy sequence, small weights tend to lead to a situation known as <b>vanishing gradients</b> where error signals propagating backwards get so small that learning either becomes very slow or stops working altogether (error signals fowing backwards in time tend to vanish). Conversely larger weights tend to lead to a situation where error signals are so large that they can cause learning to diverge, a situation known as <b>exploding gradients</b>.</p>
+
+<p>To read more on exploding and vanishing gradients have a look at this papers
+<br />
+<a href="https://arxiv.org/pdf/1211.5063v1.pdf" target="_blank">Understanding the exploding gradient problem</a><br />
+<a href="https://www.semanticscholar.org/paper/Learning-long-term-dependencies-with-gradient-is-Bengio-Simard/d0be39ee052d246ae99c082a565aba25b811be2d" target="_blank">Learning long-term dependencies with gradient descent is difficult</a><br /></p>
+
+<p><a href="https://www.bioinf.jku.at/publications/older/2304.pdf" target="_blank">THE VANISHING GRADIENT PROBLEM DURING LEARNING RECURRENT NEURAL NETS AND PROBLEM SOLUTIONS</a><br /></p>
+
+<p>The vanishing and exploding gradients problem associated with conventional RNNs , limit their abilities when modeling sequences with long range contextual dependencies and to address these issues, more complex RNNs architectures known as Gated Neural Networks (GNNs) have been designed to mitigate these problems by introducing <strong><em>“Gating Mechanism”</em></strong>  to control the flow of information in and out of the units that comprise the network layers. There are several GNNs but in this tutorial we will learn about a notable example known Long short-term memory (LSTM) networks (<a href="http://www.bioinf.jku.at/publications/older/2604.pdf" target="_blank">Hochreiter and Schmidhuber, 1997</a>)</p>
+
+<h1 id="long-short-term-memory-networks-lstms">Long Short-Term Memory NETWORKS (LSTMs)</h1>
+
+<p>LSTM are design to remember information for long periods of time and this is acheived through the use of a <b>memory cell state denoted by \(C_{t}\) </b> which is controled by the gating mechanism. At each time step, the controllable gating mechanisms decide which parts of the inputs will be written to the memory cell state, and which parts of memory cell state will be overwritten (forgotten), regulating information flowing in and out of the memory cell state and this make LSTMs divide the context management problem into two sub-problems: removing information no longer needed from the context and adding information likely to be needed for later decision making to the context. <a href="#lstm">Figure 1</a>  is a A schematic diagram of LSTMs.</p>
+
+<p><img img="" id="lstm" class="w3-center" src="/arizeblog/assets/images/deep/keras/LSTM.png" /><span id="Fig">Figure 1</span>
+<a href="https://www.researchgate.net/figure/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell_fig5_329362532" target="_blank">source <a></a></a></p>
+
+<p>From <a href="#lstm">Figure 1,</a> the first step of the LSTM model is to decide  how to
+ to reset the content of the memory cell and this is controlled by the <b>forget gate </b> denoted as \(f_t\) and defined as</p>
+
+\[f_{t}=\sigma(x_{t}U^{f} +h_{t-1}W^{f} )\]
+
+<p>where \(W^{f}\) denotes the hidden to hidden weights with  the superscript \(f\) as a symbol indicating the forget gate, \(U^{f}\) denoting input to hidden weights. The forget gate computes the weighted sum of the previous hidden state \(h_{t−1}\) and the current input \(x_{t}\) of time step t (time steps correspond to word positions in a sentence) then passes it through a sigmoid activation function which output a vector with values between 0 and 1.  <strong><em>The forgate gate is then multiplied by the previous memory cell \(C_{t-1}\) to decide how much of the previous memory cell content to retain when computing the current memory cell state \(C_{t}\). With a forgate gate value of 0, content of the previous memory cell will be completely discarded and with a value of 1, content of the previous memory cell will be  used when computing the current memory cell</em></strong>. 
+Let defined this multiplcation as</p>
+
+\[k_{t}=C_{t-1} \odot f_{t}\]
+
+<blockquote>
+  <p>NOTE \(\odot\) the Hadamard product (also known as the element-wise product)</p>
+</blockquote>
+
+<p>The next step is to compute the actual information (create a contextual vector or Candidate Memory Cell \(C^{t}\) needed to extract from the previous hidden state and current inputs and is defined by</p>
+
+\[\tilde{C_{t}} = tanh(U^{g}x_{t} + W^{g}h_{t−1} )\]
+
+<p><b>NB:</b>
+This is a contextual vector \(\tilde{C_{t}}\) containing all possible values that needs to be
+added to the cell state.</p>
+
+<p>The model then decide how information stored in the Candidate Memory Cell is selected and this is regulated by the <b> add or input gate</b>. The input gate is defined as</p>
+
+\[i_{t} = \sigma(U^{i}x_{t} +W^{i}h_{t−1})\]
+
+<p>The <b>input gate</b> then select information needed to be added to the current memory cell state via Candidate Memory Cell and is defined as</p>
+
+\[j_{t} = \tilde{C_{t}}\odot i_{t}\]
+
+<p>we now defined the current memory cell state \(C_{t}\) as</p>
+
+\[C_{t}=k_{t}+j_{t}=C_{t-1} \odot f_{t}  + \tilde{C_{t}}\odot i_{t}\]
+
+<p><b>NB :</b> This is the Cell state that stores information and is responsible for remembering information for long period of time</p>
+
+<p>Not all information stored in the current memory cell state is required for the current hidden state, so the <b>output gate</b> then decides information required for the current hidden state and is defined as</p>
+
+\[o_{t} = \sigma(U^{o}x_{t} +W^{o}h_{t−1})\]
+
+<p>The current hidden state $h_{t}$ is then defined as</p>
+
+\[h_{t}=o_{t} \odot tanh(C_{t})\]
+
+<h1 id="let-now-implement-the-model-using-keras">Let now implement the model using keras</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers.experimental.preprocessing</span> <span class="kn">import</span> <span class="n">TextVectorization</span>
+</code></pre></div></div>
+
+<p>Loading data</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batch_size</span><span class="o">=</span><span class="mi">124</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">train_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/stackoverflow/train'</span><span class="p">,</span>
+                                                 <span class="n">subset</span><span class="o">=</span><span class="s">'training'</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                       <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+                                                 <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">val_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/stackoverflow/train'</span><span class="p">,</span>
+                                                 <span class="n">subset</span><span class="o">=</span><span class="s">'validation'</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+                                                 <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">test_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/stackoverflow/test'</span><span class="p">,</span>
+                                             <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Found 8000 files belonging to 4 classes.
+Using 6000 files for training.
+Found 8000 files belonging to 4 classes.
+Using 2000 files for validation.
+Found 8000 files belonging to 4 classes.
+</code></pre></div></div>
+
+<p>From the above result, there are 8000 examples of which 75% representing 6000 is used as the training set and 25% (2000) as a validation set. The data has a label categorize into 4 classes</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="n">class_names</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'index'</span> <span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s">"corresponds to "</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index 0 corresponds to  csharp
+index 1 corresponds to  java
+index 2 corresponds to  javascript
+index 3 corresponds to  python
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="n">y</span><span class="p">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">],</span><span class="s">'--'</span><span class="p">,</span><span class="n">train_data</span><span class="p">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">i</span><span class="p">],)</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b'"blank boolean expression for a string in do-while loop public class studentgrades {..    string studentid;.    integer numericgrade;..    scanner input = new scanner(system.in);..public void loadstudentgrades(){.    do{.        system.out.println(""please enter a student id, or enter \'end\' to exit: "");.        studentid = input.next();.        system.out.println(""please enter numeric grade for the id above: "");.        numericgrade = input.nextint();.        map.put(studentid, numericgrade);.        }.    while (studentid !string.equals(""end"")); //this is throwing an error. how is it possible to get this to work?.    }.}...i\'m working on this class and am finding it difficult to get the while part of my do-while loop to work the way i was expecting it to. i want to say while studentid is not equal to ""end"" to go through the loop."\n'
+
+ 1 -- csharp
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="n">val_data</span><span class="o">=</span><span class="n">val_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">lower_data</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">lower</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">lower_data</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="n">lower_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">regex_replace</span><span class="p">(</span><span class="n">lower_data</span><span class="p">,</span><span class="s">"&lt;b /&gt;"</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
+   
+<span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">encoder</span><span class="o">=</span><span class="n">TextVectorization</span><span class="p">(</span><span class="n">max_tokens</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s">'int'</span><span class="p">,</span><span class="n">standardize</span><span class="o">=</span><span class="n">process_data</span><span class="p">,</span>
+                          <span class="n">output_sequence_length</span><span class="o">=</span><span class="n">sequence_length</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encoder</span><span class="p">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LSTM</span><span class="p">(</span><span class="n">K</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_encoder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LSTM</span><span class="p">,</span><span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">input_encoder</span><span class="o">=</span><span class="n">input_encoder</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embed</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">input_length</span><span class="o">=</span><span class="n">sequence_length</span><span class="p">,</span>
+                                      <span class="n">output_dim</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lstm_layer</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="n">recurrent_dropout</span><span class="o">=</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">flat</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">input_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embed</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">lstm_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+        
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="o">=</span><span class="n">LSTM</span><span class="p">(</span><span class="n">input_encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'rmsprop'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'sparse_categorical_crossentropy'</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'acc'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span><span class="n">validation_data</span><span class="o">=</span><span class="n">val_data</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/20
+49/49 [==============================] - 16s 231ms/step - loss: 1.3839 - acc: 0.2566 - val_loss: 1.3815 - val_acc: 0.2735
+Epoch 2/20
+49/49 [==============================] - 8s 162ms/step - loss: 1.3604 - acc: 0.3101 - val_loss: 1.2764 - val_acc: 0.4270
+Epoch 3/20
+49/49 [==============================] - 8s 157ms/step - loss: 1.2614 - acc: 0.4029 - val_loss: 1.1663 - val_acc: 0.4500
+Epoch 4/20
+49/49 [==============================] - 9s 182ms/step - loss: 1.1564 - acc: 0.4484 - val_loss: 1.1934 - val_acc: 0.4285
+Epoch 5/20
+49/49 [==============================] - 8s 155ms/step - loss: 1.1034 - acc: 0.4842 - val_loss: 1.0685 - val_acc: 0.4845
+Epoch 6/20
+49/49 [==============================] - 8s 161ms/step - loss: 1.0649 - acc: 0.4994 - val_loss: 1.0873 - val_acc: 0.4920
+Epoch 7/20
+49/49 [==============================] - 8s 163ms/step - loss: 1.0293 - acc: 0.5187 - val_loss: 1.0622 - val_acc: 0.5055
+Epoch 8/20
+49/49 [==============================] - 8s 169ms/step - loss: 1.0013 - acc: 0.5511 - val_loss: 1.0052 - val_acc: 0.5310
+Epoch 9/20
+49/49 [==============================] - 8s 160ms/step - loss: 0.9938 - acc: 0.5615 - val_loss: 1.0364 - val_acc: 0.5315
+Epoch 10/20
+49/49 [==============================] - 8s 157ms/step - loss: 0.9676 - acc: 0.5777 - val_loss: 1.0216 - val_acc: 0.5515
+Epoch 11/20
+49/49 [==============================] - 8s 159ms/step - loss: 0.9291 - acc: 0.5861 - val_loss: 1.0288 - val_acc: 0.5535
+Epoch 12/20
+49/49 [==============================] - 8s 159ms/step - loss: 0.8900 - acc: 0.6114 - val_loss: 1.0212 - val_acc: 0.5575
+Epoch 13/20
+49/49 [==============================] - 8s 163ms/step - loss: 0.8357 - acc: 0.6408 - val_loss: 1.1499 - val_acc: 0.5635
+Epoch 14/20
+49/49 [==============================] - 8s 159ms/step - loss: 0.8424 - acc: 0.6491 - val_loss: 1.0042 - val_acc: 0.5900
+Epoch 15/20
+49/49 [==============================] - 9s 174ms/step - loss: 0.7966 - acc: 0.6664 - val_loss: 0.8653 - val_acc: 0.6285
+Epoch 16/20
+49/49 [==============================] - 9s 176ms/step - loss: 0.7437 - acc: 0.6879 - val_loss: 0.9403 - val_acc: 0.6265
+Epoch 17/20
+49/49 [==============================] - 8s 171ms/step - loss: 0.7550 - acc: 0.6924 - val_loss: 0.9791 - val_acc: 0.6265
+Epoch 18/20
+49/49 [==============================] - 9s 183ms/step - loss: 0.7420 - acc: 0.7027 - val_loss: 0.9143 - val_acc: 0.6355
+Epoch 19/20
+49/49 [==============================] - 9s 176ms/step - loss: 0.7129 - acc: 0.7033 - val_loss: 0.9438 - val_acc: 0.6395
+Epoch 20/20
+49/49 [==============================] - 9s 185ms/step - loss: 0.7122 - acc: 0.7035 - val_loss: 1.0339 - val_acc: 0.6300
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x2cfc07b22e8&gt;
+</code></pre></div></div>
+
+<p>let evaluate our model on the test set</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>65/65 [==============================] - 13s 172ms/step - loss: 1.0457 - acc: 0.6405
+
+
+
+
+
+[1.0457446575164795, 0.640500009059906]
+</code></pre></div></div>
+
+<p>Let use the model to predict the sample below from the test set.</p>
+
+<p>according the text data the label for the samples are as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>sample</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sample 1</td>
+      <td>python</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>sample 2</td>
+      <td>javascript</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>sample 3</td>
+      <td>java</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>sample 4</td>
+      <td>python</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample</span><span class="o">=</span><span class="p">[</span><span class="s">"variables keep changing back to their original value inside a while loop i am doing the mitx 6.00.01x course and i am on the second problem set on the 3rd problem and i am stuck. .my code:  ..    balance = 320000.    annualinterestrate = 0.2.    monthlyinterestrate = (annualinterestrate) / 12.0.    monthlyfixedpayment = 0.    empbalance = balance.    lowerbound = round((balance)/12,2).    upperbound = (balance*(1+monthlyinterestrate)**12)/12.    monthlyfixedpayment = round( ( (lowerbound+upperbound)/2) ,2).    while tempbalance != 0: .        monthlyfixedpayment = round( ( (lowerbound+upperbound)/2) ,2)  .        for m in range(12) :.            tempbalance -= monthlyfixedpayment .            tempbalance += (monthlyinterestrate)*(tempbalance).            tempbalance = round(tempbalance,2) .        if tempbalance &amp;gt; 0:.            lowerbound = round(monthlyfixedpayment,2).            tempbalance = balance.        elif tempbalance &amp;lt; 0: .            upperbound = round(monthlyfixedpayment,2).            tempbalance = balance..    print('lowest payment: ' + str(round(monthlyfixedpayment,2)))...my code uses bisection search to generate the monthlyfixedpayment but after i get to the lines at the end that changes the upperbound or lowerbound values and then start the loop again, the lowerbound and upperbound values reset to their values to the ones outside the loop. does anyone knows how to prevent this?"</span><span class="p">,</span>
+        <span class="s">"how pass window handler from one page to another? (blank) i have a very strange problem , please donâ€™t ask me why do i need thisâ€¦.i have a page1. page1 has a link which opens new window (page2) using  window.open function..chatwindow is a handler of child window with returns from window.open function..now i'm moving from page1 to page3 (by link &amp;lt;a href=""...."" target=""_self""&amp;gt;some text&amp;lt;/a&amp;gt;). and i need to check on the page3 if page2 is close or open..how to pass handler chatwindow from page1 to page3?..thank you in advance!"</span><span class="p">,</span>
+        <span class="s">"what is the difference between text and string? in going through the blankfx tutorial i've run into the text, and it's being used where i would have thought a string would be used. is the only difference between..string foo = new string(""bat"");...and..text bar = new text(""bat"");...that bar cannot be edited, or are there other differences that i haven't been able to find in my research?"</span><span class="p">,</span>
+        <span class="s">"idiomatic blank iterating and adding to a dict i'm running through a string, creating all substrings of size 10, and adding them to a dict. this is my code,..sequence_map = {}.for i in range(len(s)):.    sub = s[i:i+10].    if sub in sequence_map:.       sequence_map[sub] += 1.    else:.       sequence_map[sub] = 1...is there a way to do this more blankically?..also how do i do the reverse blankically, as in interating through the dict and composing a list where value is equal to something?..[k for k, v in sequence_map.items()]"</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">lstm_model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample</span><span class="p">)).</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">result</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([2, 2, 1, 3], dtype=int64)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pred</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'csharp'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'java'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'javascript'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'python'</span><span class="p">)</span>
+<span class="n">pred</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javascript
+javascript
+java
+python
+</code></pre></div></div>
+
+<p>Reference</p>
+
+<p><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf">Deep Learning Architectures
+for Sequence Processing</a><br /></p>
+
+<p><a href="https://www.deeplearningbook.org/contents/rnn.html">
+Ian Goodfellow, Yoshua Bengio and Aaron Courville (2016). Deep Learning. MIT Press,pp.389-413
+</a></p>
+
+<p><a href="https://link.springer.com/article/10.1007/BF00114844">Elman, J. L. (1991). Distributed representations, simple recurrent networks, and grammatical structure. Machine learning, 7(2), 195-225.</a><br /></p>
+
+<p><a href="https://arxiv.org/pdf/1412.7753.pdf">Mikolov, T., Joulin, A., Chopra, S., Mathieu, M., &amp; Ranzato, M. A. (2014). Learning longer memory in recurrent neural networks. arXiv preprint arXiv:1412.7753.</a><br /></p>
+
+<p><a href="https://www.morganclaypool.com/doi/abs/10.2200/S00762ED1V01Y201703HLT037">
+Neural Network Methods for Natural Language Processing Synthesis Lectures on Human Language Technologies</a><br /></p>
+
+<p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a><br /></p>
+
+<p><a href=""></a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.]]></summary></entry><entry><title type="html">Introduction to Recurrent Neural Networks (RNNs)</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html" rel="alternate" type="text/html" title="Introduction to Recurrent Neural Networks (RNNs)" /><published>2021-05-06T00:00:00+01:00</published><updated>2021-05-06T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html"><![CDATA[<p>A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.</p>
+
+<p><b style="text-decoration:underline;font-size: 20px;text-transform: uppercase;">Recurrent neural networks or RNNs</b> are networks containing recurrent connections within their network connections and are often used for processing sequential data.</p>
+
+<p>An assumption of feedforward networks is that the inputs are independent (one input has no dependency on another) of one another, however in sequential data such as textual data (we will limit ourselves to textual data since it is the most widespread forms of sequence data), this assumption is not true, since in a sentence the occurrence of a word influences or is influenced by the occurrences of other words in the sentence.</p>
+
+<p>When processing data, RNNs assumes that an incoming data take the form of a sequence of vectors or tensors, which can be sequences of word or sequences of characters as in textual data, sequence of observations over a period of time as in time series etc.  As RNNs process the data, RNNs have recurrent connections that allows a memory to persist in the network’s internal state keeping track of information observed so far and informing the decisions to be made by the network at later points in time and also share parameters across different parts of the network making it possible to extend and apply the network to inputs of variable lengths and generalize across them. This makes RNNs useful for Timeseries forecasting and natural language processing (NLP) systems such as document classification, sentiment analysis, automatic translation, generating text for applications such as chatbots. Since the same parameters are used for all time steps, the parameterization cost of an RNN does not grow as the number of time steps increases.</p>
+
+<p>From the book <a href="https://www.deeplearningbook.org/contents/rnn.html" target="_blank">Deep Learning: Sequence Modeling: Recurrentand Recursive Nets
+</a></p>
+
+<blockquote>
+  <p>Some examples of important design patterns for recurrent neural networks
+include the following:</p>
+  <ul>
+    <li>Recurrent networks that produce an output at each time step and have
+recurrent connections between hidden units.</li>
+    <li>Recurrent networks that produce an output at each time step and have
+recurrent connections only from the output at one time step to the hidden
+units at the next time step.</li>
+    <li>Recurrent networks with recurrent connections between hidden units, that
+read an entire sequence and then produce a single output.</li>
+  </ul>
+</blockquote>
+
+<p>In this section, we will  consider a class of recurrent networks referred to as Elman Networks (Elman,1990) or simple recurrent networks which serve as the basis for more complex approaches like the Long Short-Term Memory (LSTM) networks and Gated Recurrent Unit (GRU). A simple RNN which is typically a three-layer network comprising an input layer, a single hidden layer and an output layer.</p>
+
+<p><a style="color:blue;" href="#Fig">Figure 1</a> is a diagrammatic representation of RNN with  input to hidden connections parametrized by a weight matrix \(U \in R^{d \times h}\) which is used to condition the input word vector \(x^{t}\), hidden-to-hidden recurrent connections parametrized by a weight matrix \(W\in R^{h \times h}\), used to condition the output of the previous time-step \(h^{t−1}\), hidden-to-output connections parametrized by a weight matrix  \(V \in R^{h*o}\)
+ used to condition the output of the current time-step.</p>
+
+<p>and \(h \in R^{n*h}\) representing the hidden state vector or simply the hidden state (or hidden variable) of the network keeping track or as a loose summary of information observed so far and informing the decisions to be made by the network at later points in time. On the Left side is RNN drawn with recurrent connections and on the Right is the same RNN seen as an time unfolded computational graph, where each node is now associated with one particular time instance and this illustrate the computational logic of an RNN at adjacent time steps.</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/rnn.png" />
+<br />
+<span id="Fig">Figure 1</span><br />
+<a href="https://www.google.com/search?q=rnn+image&amp;client=firefox-b-d&amp;tbm=isch&amp;source=iu&amp;ictx=1&amp;fir=lD-kwEF8OCJIoM%252C5nGST21LG70DyM%252C_&amp;vet=1&amp;usg=AI4_-kTE51-vQdo1Mb1V3I10kNw5Xv3yAw&amp;sa=X&amp;ved=2ahUKEwir7rW18sjuAhVOXMAKHSm_CMQQ9QF6BAgHEAE&amp;biw=1366&amp;bih=580#imgrc=8TAzbbCVWa8qZM">source: RNN</a>
+<br /></p>
+
+<p>Most RNNs computation  can be decomposed into three blocks of parameters and associated transformations or activation function:</p>
+<ul>
+  <li>
+    <ol>
+      <li>from the input to the hidden state,</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>from the previous hidden state to the next hidden state, and</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>from the hidden state to the output</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Armed with a summary of RNNs computational decomposition, let assume we have a minibatch of inputs \(X^{t} \in R^{n×d}\) where each row of \(X^{t}\) corresponds to one example at time step <strong><em>t</em></strong> from the sequence and  \(h^{t} \in R^{n*h}\) be  the hidden state at time <strong><em>t</em></strong>. 
+ Unlike standard feedforward networks, RNNs current hidden state \(h^{t}\) is a function \(\phi\) of the previous hidden state \(h^{t-1}\) and the current input \(x^{t}\) defined by \(h^{t}=\phi(x^{t}U+ h^{t-1}W+b^{h} )\) where  \(b^{h} \in R^h\) is the bias term and the weights $W$ determine how the network current state makes use of past context in calculating the output for the current input.</p>
+
+<p>The fact that the computation of the hidden state at time t requires the value of the hidden state from time <strong>t−1</strong> mandates an incremental inference algorithm that proceeds from the start of the sequence to the end and thus RNNs condition the next word on the sentence history. With \(h^{t}\) defined, RNN is defined as function $\phi$ taking as input a state vector \(h^{t-1}\) and an input vector \(x^{t}\) and return a new state vector \(h^{t}\). The initial state vector \(h^{0}\), is also an input to RNN, assumed to be a zero vector and often omitted. The hidden state $h$ is then used as the input for the output layer and is given by</p>
+
+\[h^{t}=\phi(X^{t}U+ h^{t-1}W+b^{h} )\]
+
+\[O=f(h^{t}V +b^{o})\]
+
+\[\hat y=\phi (O)\]
+
+<p>where \(O \in R^{n \times o}\),  \(b^{o} \in R^{o}\) and \(\hat y\) is the next predicted word given the current hidden state.</p>
+
+<p>Layers performing \(h^{t}=\phi(x^{t}U+ h^{t-1}W+b^{h} )\)  in RNNs are called recurrent layers.</p>
+
+<h1 id="let-us-now-train-a-simple-rnn-to-predict-a-movie-review">Let us now train a simple RNN to predict a movie review</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers.experimental.preprocessing</span> <span class="kn">import</span> <span class="n">TextVectorization</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="p">,</span><span class="n">re</span><span class="p">,</span><span class="n">string</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<h1 id="loading-the-imdb-data">Loading the IMDB data</h1>
+<p>You’ll restrict the movie reviews to the top 15,000 most common words and  considering looking at the first 30 words in every review. The network will learn 16-dimensional embeddings for each of the 15,000 words</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">train_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/aclImdb/train/'</span><span class="p">,</span>
+                                                               <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                               <span class="n">subset</span><span class="o">=</span><span class="s">'training'</span><span class="p">,</span>
+                                                              <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                                                               <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">val_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/aclImdb/train/'</span><span class="p">,</span>
+                                                               <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                            <span class="n">subset</span><span class="o">=</span><span class="s">'validation'</span><span class="p">,</span>
+                                                              <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                                                            <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Found 25000 files belonging to 2 classes.
+Using 18750 files for training.
+Found 25000 files belonging to 2 classes.
+Using 6250 files for validation.
+</code></pre></div></div>
+
+<p>From the above result, there are 25,000 examples in the training folder, of which 75% (18750) is used for training and 25% (6250) as a validation set</p>
+
+<p>names of categories under the labels</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="n">class_names</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'index'</span> <span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s">"corresponds to "</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index 0 corresponds to  neg
+index 1 corresponds to  pos
+</code></pre></div></div>
+
+<p>Creates a <code class="language-plaintext highlighter-rouge">Dataset</code> that prefetches elements from this dataset</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AUTOTUNE</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="c1">#val_data=val_data.cache().prefetch(buffer_size=AUTOTUNE)
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">numpy</span><span class="p">(),</span><span class="s">'</span><span class="se">\n</span><span class="s"> </span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">numpy</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b"Neither the total disaster the UK critics claimed nor the misunderstood masterpiece its few fanboys insist, Revolver is at the very least an admirable attempt by Guy Ritchie to add a little substance to his conman capers. But then, nothing is more despised than an ambitious film that bites off more than it can chew, especially one using the gangster/con-artist movie framework. As might be expected from Luc Besson's name on the credits as producer, there's a definite element of 'Cinema de look' about it: set in a kind of realistic fantasy world where America and Britain overlap, it looks great, has a couple of superbly edited and conceived action sequences and oozes style, all of which mark it up as a disposable entertainment. But Ritchie clearly wants to do more than simply rehash his own movies for a fast buck, and he's spent a lot of time thinking and reading about life, the universe and everything. If anything its problem is that he's trying to throw in too many influences (a bit of Machiavelli, a dash of Godard, a lot of the Principles of Chess), motifs and techniques, littering the screen with quotes: the film was originally intended to end with three minutes of epigrams over photos of corpses of mob victims, and at times it feels as if he never read a fortune cookie he didn't want to turn into a movie. Rather than a commercial for Kabbalism, it's really more a mixture of the overlapping principles of commerce, chess and confidence trickery that for the most part pulls off the difficult trick of making the theosophy accessible while hiding the film's central (somewhat metaphysical) con.&lt;br /&gt;&lt;br /&gt;The last third is where most of the problems can be found as Jason Statham takes on the enemy (literally) within with lots of ambitious but not always entirely successful crosscutting within the frame to contrast people's exterior bravado with their inner fear and anger, but it's got a lot going for it all the same. Not worth starting a new religion over, but I'm surprised it didn't get a US distributor. Maybe they found Ray Liotta's intentionally fake tan just too damn scary?" 
+ 
+ 1
+</code></pre></div></div>
+
+<h1 id="text-preprocessing">Text preprocessing</h1>
+
+<p>You’ll restrict the movie reviews to the top 15,000 most common words and will consider looking at the first 30 words in every review. The network will learn 16-dimensional embeddings for each of the 15,000 words</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">max_features</span><span class="o">=</span><span class="mi">15000</span>
+<span class="n">max_len</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">encoder</span><span class="o">=</span><span class="n">TextVectorization</span><span class="p">(</span><span class="n">max_tokens</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span><span class="n">output_mode</span><span class="o">=</span><span class="s">"int"</span><span class="p">,</span>
+                          <span class="n">output_sequence_length</span><span class="o">=</span><span class="n">max_len</span><span class="p">,</span>
+         <span class="n">standardize</span><span class="o">=</span><span class="s">'lower_and_strip_punctuation'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encoder</span><span class="p">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>The .adapt method sets the layer’s vocabulary. Here are the first 70 tokens. After the padding and unknown tokens they’re sorted by frequency:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">encoder</span><span class="p">.</span><span class="n">get_vocabulary</span><span class="p">()[:</span><span class="mi">70</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '[UNK]', 'the', 'and', 'a', 'of', 'to', 'is', 'in', 'it', 'i', 'this', 'that', 'br', 'was', 'as', 'for', 'with', 'but', 'movie', 'film', 'on', 'not', 'you', 'are', 'his', 'have', 'he', 'be', 'one', 'its', 'at', 'all', 'by', 'an', 'they', 'from', 'who', 'so', 'like', 'her', 'just', 'or', 'about', 'has', 'if', 'out', 'some', 'there', 'what', 'good', 'very', 'more', 'when', 'even', 'she', 'no', 'my', 'up', 'would', 'only', 'time', 'which', 'really', 'story', 'their', 'were', 'had', 'see', 'can']
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span><span class="p">(</span><span class="n">encoder</span><span class="p">.</span><span class="n">get_vocabulary</span><span class="p">())</span><span class="o">==</span><span class="n">max_features</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RNNs</span><span class="p">(</span><span class="n">K</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">embedd_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RNNs</span><span class="p">,</span><span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedd_dim</span><span class="o">=</span><span class="n">embedd_dim</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedded_layer</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span><span class="n">input_length</span><span class="o">=</span><span class="n">max_len</span><span class="p">,</span>
+                                               <span class="n">output_dim</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embedd_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rnn</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">SimpleRNN</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">f</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">encoded_input</span><span class="o">=</span><span class="n">encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">embed</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embedded_layer</span><span class="p">(</span><span class="n">encoded_input</span><span class="p">)</span>
+        <span class="n">rnn_layer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">embed</span><span class="p">)</span>
+        <span class="n">dropout_layer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">rnn_layer</span><span class="p">)</span>
+        <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">dropout_layer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">embedding_dim</span><span class="o">=</span><span class="mi">16</span>
+
+<span class="n">model</span><span class="o">=</span><span class="n">RNNs</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'rmsprop'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'binary_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'acc'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span><span class="n">validation_data</span><span class="o">=</span><span class="n">val_data</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/6
+188/188 [==============================] - 28s 116ms/step - loss: 0.6931 - acc: 0.5087 - val_loss: 0.6920 - val_acc: 0.5302
+Epoch 2/6
+188/188 [==============================] - 15s 80ms/step - loss: 0.6756 - acc: 0.5999 - val_loss: 0.6030 - val_acc: 0.6744
+Epoch 3/6
+188/188 [==============================] - 16s 87ms/step - loss: 0.5464 - acc: 0.7315 - val_loss: 0.5255 - val_acc: 0.7392
+Epoch 4/6
+188/188 [==============================] - 16s 87ms/step - loss: 0.4493 - acc: 0.8014 - val_loss: 0.5192 - val_acc: 0.7443
+Epoch 5/6
+188/188 [==============================] - 18s 93ms/step - loss: 0.3941 - acc: 0.8296 - val_loss: 0.5410 - val_acc: 0.7307
+Epoch 6/6
+188/188 [==============================] - 17s 89ms/step - loss: 0.3551 - acc: 0.8481 - val_loss: 0.5651 - val_acc: 0.7226
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x1b52dae1dd8&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s">"This movie is fantastic! I really like it because it is so good!"</span><span class="p">,</span>
+    <span class="s">"Not a good movie!"</span><span class="p">,</span>
+    <span class="s">"The movie was great!"</span><span class="p">,</span>
+    <span class="s">"This movie really sucks! Can I get my money back please?"</span><span class="p">,</span>
+    <span class="s">"The movie was terrible..."</span><span class="p">,</span>
+    <span class="s">"This is a confused movie."</span><span class="p">,</span>
+  <span class="s">"The movie is one of best movies i have ever watched!"</span><span class="p">,</span>
+  <span class="s">"Men i dont think i can watch this movie again"</span>
+    
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">result</span><span class="o">=</span><span class="s">'positive review'</span> <span class="k">if</span> <span class="n">predictions</span><span class="o">&gt;</span><span class="mf">0.5</span> <span class="k">else</span> <span class="s">'negative review'</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>positive review
+positive review
+positive review
+negative review
+negative review
+negative review
+positive review
+negative review
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<p> <b>References:</b></p>
+
+<p><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf" title="An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition by Daniel Jurafsky &amp; James H. Martin Chapter 9" target="_blank">Deep Learning Architectures for Sequence Processing</a></p>
+
+<p><a href="https://www.tensorflow.org/text/guide/word_embeddings" title="Tensorflow Documentation" target="_blank">Word embeddings</a></p>
+
+<p><a href="https://d2l.ai/chapter_recurrent-neural-networks/rnn.html#equation-rnn-h-with-state" title="Dive Into Deep Learning Chapter8 section-8.4." target="_blank"> Recurrent Neural Networks</a>
+<a href="https://www.deeplearningbook.org/contents/rnn.html" title="Ian Goodfellow, Yoshua Bengio and Aaron Courville (2016). Deep Learning.  MIT Press,pp.389-413" target="_blank">Chapter 10:  Sequence Modeling: Recurrentand Recursive Nets</a></p>
+
+<p><a href="https://link.springer.com/article/10.1007/BF00114844" title="Elman, J. L. (1991)." target="_blank">Distributed representations, simple recurrent networks, and grammatical structure. 
+Machine learning, 7(2), 195-225.</a></p>
+
+<p><a href="https://arxiv.org/pdf/1412.7753.pdf" title="Mikolov, T., Joulin, A., Chopra, S., Mathieu, M., &amp; Ranzato, M. A. (2014)." target="_blank">Learning longer memory in recurrent neural networks. arXiv preprint arXiv:1412.7753.</a></p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.]]></summary></entry><entry><title type="html">Feature Extraction with Bag of Words (BOWs)</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html" rel="alternate" type="text/html" title="Feature Extraction with Bag of Words (BOWs)" /><published>2021-03-22T00:00:00+01:00</published><updated>2021-03-22T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html"><![CDATA[<p>In this tutorial, we will learn about Bag of Words  (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.</p>
+
+<p>In order to model a text documents, the raw text cannot be fed directly to the algorithm as these algorithms expect numerical feature vectors so instead we need to turn the text content into numerical feature vectors.</p>
+
+<p><span class="w3-text-blue"> From the <a href="https://scikit-learn.org/stable/modules/feature_extraction.html">scikit-learn documentation</a>:</span>
+<b>
+We call vectorization the general process of turning a collection of text documents into numerical feature vectors.
+</b></p>
+
+<p>When modelling a data it is important to decide what features of the input are relevant, and how to encode those features. When we consider a textual data such as a sentence or a document  for instance the observable features are the counts and the order of the letters and the words within the text and as such we a way to extract these features from the text. There are several ways of extracting features from a textual data but in this tutorial we will only consider a very common feature extraction procedures for sentences and documents known as the <b> bag-of-words approach (BOW)</b> which looks at the histogram of the unique words within the text ( considering each word count as a feature.)</p>
+
+<p><b>Bag Of Words (BOWs) Approach</b></p>
+<p>Is a feature extraction technique used for extracting features from textual data and is commonly used in problems such as language modeling and document classification.  A bag-of-words is a representation of textual data, describing the occurrence of words within a sentence or document, disregarding grammar and the order of words.</p>
+
+<p><b>How does Bag of Words Works</b></p>
+<p>In order to understand how bag of words works let consider the two simple text documents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Boys like playing football and Emma is a boy so Emma likes playing football
+
+2  Mary likes watching movies 
+
+</code></pre></div></div>
+
+<p>Based on these two text documents, a list of token (words) for each document is as follows</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="dl">'</span><span class="s1">Boys</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">like</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">playing</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">football</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">and</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Emma</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">is</span><span class="dl">'</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">boy</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">so</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Emma</span><span class="dl">'</span><span class="p">,</span> 
+
+<span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">playing</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">football</span><span class="dl">'</span><span class="p">]</span>
+
+
+<span class="p">[</span><span class="dl">'</span><span class="s1">Mary</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">watching</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">movies</span><span class="dl">'</span><span class="p">]</span>
+
+
+</code></pre></div></div>
+<p>denoting document 1 by doc1 and 2  by doc2, we will construct a dictionary (key-&gt;value pair) of
+words for both doc1 and doc2 where each key is a word, and each value is the number of occurrences of that word in the given text document.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">doc1</span><span class="o">=</span><span class="p">{</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">and</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">boy</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Boys</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Emma</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">football</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
+
+<span class="dl">'</span><span class="s1">is</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">like</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">playing</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>   <span class="dl">'</span><span class="s1">so</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+
+<span class="nx">dco2</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Mary</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="dl">'</span><span class="s1">movies</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">,</span><span class="dl">'</span><span class="s1">watching</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><b>NOTE :</b> the order of the words is not important</p>
+
+<p>considering <strong>a</strong> as a stop word, we first define our vocabulary words, which is the set of all unique words found in our document set and it consist of</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">and</span><span class="p">,</span> <span class="nx">boy</span><span class="p">,</span> <span class="nx">boys</span><span class="p">,</span> <span class="nx">emma</span><span class="p">,</span>  <span class="nx">football</span><span class="p">,</span> <span class="nx">is</span><span class="p">,</span> <span class="nx">like</span><span class="p">,</span> <span class="nx">likes</span><span class="p">,</span> <span class="nx">mary</span><span class="p">,</span> <span class="nx">movies</span><span class="p">,</span> <span class="nx">playing</span><span class="p">,</span> <span class="nx">so</span><span class="p">,</span> <span class="nx">watching</span>
+
+</code></pre></div></div>
+<p>and the  features extracted using bag of words for the document set will be</p>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog.jpg" /></p>
+
+<p><b>scikit-learn CountVectorize implementation</b></p>
+<p>
+Using CountVectorize the text is preprocessed, tokenize and stopwords are filtered, it then builds a dictionary of features and transforms documents to feature vectors:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docs=['Boys like playing football and Emma is a boy so Emma likes playing football',
+   "Mary likes watching movies"]
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">feature_extr</span><span class="o">=</span><span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">model</span><span class="o">=</span><span class="n">feature_extr</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog1.jpg" /></p>
+
+<p><b>Disadvantages</b></p>
+<p>Although BOWs is very simple to understand and implement, it has some disadvantages which include</p>
+
+<ul>
+  <li>highly sparse vectors or matrix as the are  very few non-zero elements in dimensions corresponding to words that occur in the sentence.</li>
+  <li>Bag of words representation leads to a high dimensional feature vector as the total dimension is the vocabulary size.</li>
+  <li>Bag of words representation does not consider the semantic relation between words by assuming that the words are independent of each other.</li>
+</ul>
+
+<p><b> Buiding a Classifier with the features extracted using BOWS</b></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+</code></pre></div></div>
+<p>The dataset called “Twenty Newsgroups”. which is a collection of approximately 20,000 newsgroup documents, partitioned (nearly) evenly across 20 different newsgroups. <a href="http://qwone.com/~jason/20Newsgroups/">Official description of theTwenty Newsgroups data</a> will be used as our data but instead of the 20 different groups we will work on a partial dataset with only 11 categories out of the 20 available in the dataset. The code below is list of the 11 categories.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s">'alt.atheism'</span><span class="p">,</span> <span class="s">'soc.religion.christian'</span><span class="p">,</span><span class="s">'comp.graphics'</span><span class="p">,</span> <span class="s">'sci.med'</span><span class="p">,</span><span class="s">'sci.electronics'</span><span class="p">,</span>
+              <span class="s">'sci.space'</span><span class="p">,</span><span class="s">'talk.politics.guns'</span><span class="p">,</span><span class="s">'talk.politics.mideast'</span><span class="p">,</span><span class="s">'talk.politics.misc'</span><span class="p">,</span>
+              <span class="s">'talk.religion.misc'</span><span class="p">,</span><span class="s">'misc.forsale'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Loading the training data</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">twenty_news_train</span><span class="o">=</span><span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s">'train'</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span><span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s">'footers'</span><span class="p">,</span><span class="s">'headers'</span><span class="p">,</span><span class="s">'quotes'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Let’s print the third lines of the first loaded file and the first four categories  with the target variable  :</p>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog23.jpg" />
+<img class=" w3-border" src="/arizeblog/assets/images/python/bog22.jpg" /></p>
+
+<p><b>A Classifier Pipeline </b></p>
+
+<p>In order to make the vectorizer =&gt; classifier easier to work with, let build a pipeline with  a regularized linear models with stochastic gradient descent (SGD) learning as our classifier as below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">news_clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">target</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Let now train the classifier</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">news_clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">target</span><span class="p">)</span>
+</code></pre></div></div>
+<p>We now test the classifier on new instances</p>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog3.jpg" /></p>
+
+<p><b>Evaluation of the performance on the test set</b></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">twenty_news_test</span><span class="o">=</span><span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s">'test'</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span><span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s">'footers'</span><span class="p">,</span><span class="s">'headers'</span><span class="p">,</span><span class="s">'quotes'</span><span class="p">))</span>
+</code></pre></div></div>
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog4.jpg" /></p>
+
+<p> <b>References:</b></p>
+<hr />
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Bag-of-words_model" target="_blank">Bag-of-words model - Wikipedia
+</a><br /></li>
+  <li>
+    <p><a href="https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984/ref=as_li_ss_tl?ie=UTF8&amp;qid=1502062931&amp;sr=8-1&amp;keywords=Neural+Network+Methods+in+Natural+Language+Processing&amp;linkCode=sl1&amp;tag=inspiredalgor-20&amp;linkId=d63df073fea3ebe2d405820570b3ff03" target="_blank">Yoav Goldberg (2017). Neural Network Methods in Natural Language Processing</a><br /></p>
+  </li>
+  <li><a href="https://scikit-learn.org/stable/modules/feature_extraction.html" target="_blank">Feature extraction-scikit-learn documentation</a><br /></li>
+</ul>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this tutorial, we will learn about Bag of Words (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.]]></summary></entry><entry><title type="html">Dropout Regularization</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout.html" rel="alternate" type="text/html" title="Dropout Regularization" /><published>2021-02-10T00:00:00+01:00</published><updated>2021-02-10T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout.html"><![CDATA[<p>In this article, we will learn about , what it is, how it works and  we will implement it sampling using Python</p>
+
+<p>The term <b>“dropout”</b> refers to dropping out units in a neural network. It is a technique for addressing overfitting. It consists of randomly dropping out some fraction of the nodes (setting fraction of the units to zero (injecting noise)) in each layer before calculating subsequent layer during training and has become a standard technique for training neural networks. When dropout is applied, during training its zeros out some fraction of the nodes with probability p in each layer before calculating the subsequent layer and the resulting network can be viewed as a subset of the original network. Because the fraction of the nodes that are drop out are chosen randomly on every pass, the representations in each layer can’t depend on the exact values taken by nodes in the previous layer.</p>
+
+<p><b> Dropout rate</b> is the fraction of the nodes in a layer that are zeroed out and it’s usually set between 0 and 1</p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this article, we will learn about , what it is, how it works and we will implement it sampling using Python]]></summary></entry><entry><title type="html">Deploying A Machine Learning Model Using Django</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html" rel="alternate" type="text/html" title="Deploying A Machine Learning Model Using Django" /><published>2021-02-05T00:00:00+01:00</published><updated>2021-02-05T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html"><![CDATA[<p>This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code.</p>
+
+<h3><b>Lines of Code Used To Train The Model</b></h3>
+
+<p> packages needed for performing the analysis</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span><span class="n">roc_curve</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">,</span><span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">is_string_dtype</span><span class="p">,</span> <span class="n">is_numeric_dtype</span><span class="p">,</span><span class="n">is_categorical_dtype</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+<p>Loading the iris data and scaling the input variables</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iris_data</span><span class="o">=</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">scalar</span><span class="o">=</span><span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">iris_feat</span><span class="o">=</span><span class="n">scalar</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Splitting the dataset into training and testing sets</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span> <span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris_data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span>
+                                             <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Training the model</p>
+
+<pre><code class="language-Python">xgbd=XGBClassifier(n_estimators=100,criterion='entropy', max_delta_step=6,
+                     min_samples_split=45,colsample_bytree=.4,max_depth=13,
+                     gama=10,max_features=11,min_child_weight=.4)
+xgbd.fit(X_train,y_train)
+
+</code></pre>
+
+<p>Testing the model on the test data</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_predict</span>  <span class="o">=</span> <span class="n">xgbd</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Determining the impact of each variable on the prediction of the species</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># converting the data into a  data frame
+</span><span class="n">features</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">iris_data</span><span class="p">.</span><span class="n">feature_names</span><span class="p">)</span>
+
+<span class="c1"># RENAMING THE FEACTURES
+</span><span class="n">features</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">"sepal length (cm)"</span><span class="p">:</span><span class="s">"sepal_length(cm)"</span><span class="p">,</span><span class="s">"sepal width (cm)"</span><span class="p">:</span><span class="s">"sepal_width(cm)"</span><span class="p">,</span>
+                         <span class="s">"petal length (cm)"</span><span class="p">:</span><span class="s">"petal_length(cm)"</span><span class="p">,</span><span class="s">"petal width (cm)"</span><span class="p">:</span><span class="s">"petal_width_(cm)"</span>
+<span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">features_impt</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">xgbd</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">features</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Importances of Features'</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">fea</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">features_impt</span><span class="p">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/importance.jpg" /></p>
+
+<p>Creating a Confusion Matrix</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conf_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">()</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_mat</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Predicted'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Actual Values'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Confusion Matrix'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/confusion.jpg" /></p>
+
+<p>Saving the trained model</p>
+
+<pre><code class="language-Python"># create a directory named models
+os.makedirs('models')
+# SAVE THE MODEL
+joblib.dump(xgbd,'models/iris_model.pkl')
+</code></pre>
+<p>Example of how to load a saved model</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># loading the saved model
+</span><span class="n">model</span><span class="o">=</span><span class="n">joblib</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">'models/iris_model.pkl'</span><span class="p">)</span>
+<span class="n">model</span>
+</code></pre></div></div>
+<p>After training and saving the model, we will now deploy the trained model to predict new species of iris based on users inputs using Django framework.</p>
+
+<h3><b> The Django Project (ml_django project)</b></h3>
+<p>A project is a collection of configuration which can contain multiple apps. Before creating the Django project which will be named ml_django, we need to first install Django, so from the command line run:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">Django</span>
+</code></pre></div></div>
+<p>After installing Django, cd (change directory) into a directory where you’d like to store your project and run the following command:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="err">$</span> <span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">ml_django</span>
+</code></pre></div></div>
+
+<p>to create the ml_django project in your current directory. Since the ml_django project has been created let’s look at what the ml_django project contains</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/ml_django.jpg" /></p>
+
+<p>The files are:</p>
+
+<ul>
+  <li>
+    <p>The outer <b>ml_django/ </b> root directory is just a container for the project.</p>
+  </li>
+  <li>
+    <p><b>manage.py</b> is a command-line utility that lets you interact with the ml_django project.</p>
+  </li>
+  <li>
+    <p>The inner <b>ml_django/ </b> directory is the actual Python package for the project.</p>
+  </li>
+  <li>
+    <p><b>ml_django/<strong>init</strong>.py </b> is an empty file that tells Python to treat ml_django directory as a Python module</p>
+  </li>
+  <li>
+    <p><b>ml_django/settings.py:</b> is the main configuration file for the ml_django project containing initial default settings.</p>
+  </li>
+  <li>
+    <p><b>ml_django/urls.py</b> is the URL declarations for the ml_django project. Each URL defined here is mapped to a view and it tells the project how to handle each view.</p>
+  </li>
+  <li>
+    <p><b>ml_django/wsgi.py </b> is an entry-point for WSGI-compatible web servers to serve your project.</p>
+  </li>
+</ul>
+
+<h3><b>The development server </b></h3>
+<p>Change into the outer ml_django directory and start the development server by running the following command:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
+</code></pre></div></div>
+<p><br />
+After running the command, open a Web browser and  visit http://127.0.0.1:8000/ and you will see something similar to the one below</p>
+
+<p><img src="/arizeblog/assets/images/python/ml_django/server.jpg" style="width:600px;height:300px;" />
+  <br />
+ with everything working we are now set to create the iris app</p>
+<h3><b>Creating the iris app</b></h3>
+<p>An app is a Web application that does something. In our case the app will be predicting new instances of the iris species based on a user input. Let create the iris app by running the command:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">startapp</span> <span class="n">iris</span>
+</code></pre></div></div>
+
+<h3><b>Managing Static Files</b></h3>
+
+<p>Websites generally need to serve additional files such as  JavaScript files and CSS files. In Django these files are known as <strong>static files</strong>.  These static files are import factor in web development and are used in designing the UI. Django provides django.contrib.staticfiles to help you manage them. In the outer ml_django/ root directory create a
+directory/folder named <b>static</b> which will contain all our static files. Your static folder should be similar to the one below depending on the sub-folders</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/static.jpg" /></p>
+
+<p>For us to be able use these static files we need to edit the settings file, so in your settings file move to the bottom and define STATIC_URL to be</p>
+
+<pre><code class="language-Python">   STATIC_URL = '/static/'
+</code></pre>
+<p>STATIC_URL is the base url of which the static files in the STATIC_ROOT are served</p>
+
+<p>Create another folder in the outer ml_django/ root directory named <b>static_dir</b> and beneath STATIC_URL in the settings file define</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="n">STATIC_ROOT</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span><span class="s">"/static_dir"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>We have set STATIC_ROOT to the static_dir directory and this is where we’d like to serve the static files when we run</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">collectstatic</span>
+</code></pre></div></div>
+
+<p>Let now define a list of directories (STATICFILES_DIRS) in the settings file where django will look for the static files</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  STATICFILES_DIRS=('static','C:/Users/USER/Music/ml_django/static')
+</code></pre></div></div>
+
+<p>where C:/Users/USER/Music/ml_django/static is the absolute path to the static directory containing the static files. From the command-line run</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   $ python manage.py collectstatic
+</code></pre></div></div>
+<p>to copy all files from your static folders into the STATIC_ROOT directory</p>
+
+<h3><b>The Model For The Iris App </b></h3>
+<p>Since the application will be accepting input from users, we need a database to store users inputs. The model is essentially our database layout, with additional metadata. Edit the <b>iris/models.py </b> file and add the following  lines code to it</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c1"># Create your models here.
+</span><span class="k">class</span> <span class="nc">IrisData</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">sepal_length</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">sepal_width</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">petal_length</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">petal_width</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">species</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s">'IrisData'</span>
+        <span class="c1">#managed = True
+</span>        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">'data'</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">'Data From Users'</span>
+
+</code></pre></div></div>
+<p>which will define the models for the iris application.</p>
+
+<h3><b>Activating the Iris application</b></h3>
+<p>To keep track of our application and be able to create database tables for the model created above, we need to activate the iris app. To do so, edit the settings.py file and add under INSTALLED_APPS add <b> ‘iris.apps.IrisConfig’</b></p>
+
+<pre><code class="language-Python"># Application definition
+
+INSTALLED_APPS = [
+     'iris.apps.IrisConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+</code></pre>
+
+<p>Since we’ve installed the iris application into our project let run</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+</code></pre></div></div>
+<p>which tells Django that we’ve made some changes to the models (in this case, we’ve create a new one) and that we’d like the changes to be stored as a migration and then run</p>
+
+<pre><code class="language-Python"> $ python manage.py migrate
+</code></pre>
+<p>for it to run the migrations and manage the database schema automatically.</p>
+
+<h3><b> Django Admin Interface</b></h3>
+
+<p><b>iris/admin.py </b> contains the configuration necessary to connect our iris app to the administration interface. Let’s add the model IrisData we created to the administration site and customize the way model is displayed by editing  <b>iris/admin.py </b> as below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+ <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">IrisData</span>
+ <span class="c1"># Register your models here.
+</span>
+ <span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">IrisData</span><span class="p">)</span>
+
+ <span class="k">class</span> <span class="nc">IrisDataAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+     <span class="n">list_display</span><span class="o">=</span><span class="p">(</span><span class="s">'sepal_length'</span><span class="p">,</span><span class="s">'sepal_width'</span><span class="p">,</span><span class="s">'petal_length'</span><span class="p">,</span><span class="s">'petal_width'</span><span class="p">,</span><span class="s">'species'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>For us to get access to the admin interface, we’ll need to create a user who can login to the admin site by Running the following command:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</code></pre></div></div>
+<p>enter the desired username and press enter.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Username:
+</code></pre></div></div>
+<p>You will then be prompted for your desired email address:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Email address:
+</code></pre></div></div>
+<p>then</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Password: **********
+Password (again): *********
+Superuser created successfully
+
+</code></pre></div></div>
+<p><br /></p>
+
+<p>Let run the development server again by running</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
+
+</code></pre></div></div>
+<p>In your browser enter <b>localhost:8000/admin</b></p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/admin1.jpg" /></p>
+
+<p>fill in your particulars to get access to the admin interface which should be like the figure below <br /></p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/admin2.jpg" /></p>
+
+<h3><b>Creating The Views Of The iris Application</b></h3>
+
+<p>In Django, web pages and other content are delivered by views. Each view is represented by a simple Python function
+(or method, in the case of class-based views). Django will choose a view base on the requested URL. So let’s first
+create our application views and define a URL pattern for these views.</p>
+
+<p>Before creating the views, create a sub-directory named model which resides in the iris folder and copy the saved model into that folder (<b>iris/models/iris_model.pkl</b>). Let now create the views by editing the iris/views.py
+to have</p>
+<pre><code class="language-Python">
+from datetime import datetime
+from django.shortcuts import render
+from xgboost import XGBClassifier
+import numpy as np
+from xgboost import XGBClassifier
+import joblib
+import os
+from .models import IrisData
+import posixpath
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# loading the saved model
+model=joblib.load(os.path.join(BASE_DIR,'iris/models/iris_model.pkl'))
+#,{'title':'Home Page','year':datetime.now().year,}
+def home(request):
+    return render(request,'iris/form.html')
+
+def SpeciesPrediction(request):
+    if request.method=='POST':
+
+      # receive the values entered by the user
+
+        sepal_l=request.POST['sepal_length']
+        sepal_w=request.POST['sepal_width']
+        petal_l=request.POST['petal_length']
+        petal_w=request.POST['petal_width']
+
+        """ saving the received data as a list according to the position of the features
+        in the dataset used to train the model which can be known by calling iris_data.feature_names
+        and is giving below as  
+         ['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']
+          """
+
+        data=[sepal_l,sepal_w,petal_l,petal_w]
+
+        # converting the data into array
+        data=np.array(data).reshape(-1,4)
+
+        # the expected prediction by the model based on the user input
+
+        result=model.predict(data)
+        Species = ['Setosa', 'versicolor', 'virginica']
+        result = Species[result[0]]
+
+        # saving the data into the database
+
+        save_data=IrisData(sepal_length=sepal_l,sepal_width=sepal_w,petal_width=petal_w,
+                           petal_length=petal_l,species=result )
+        save_data.save()
+        context={"result":result}
+        return render(request, 'iris/irispredict.html', context)
+
+</code></pre>
+
+<h3><b>Defining A URL Patterns For The Iris Application Views</b></h3>
+<p>Let define the urls and map them to the views created so that when a user request a url Django runs through
+each URL pattern and stops at the first one that matches the requested URL.  Django then import the view of the matching
+URL pattern and executes it. Let Define our urls by editing <b>ml_django/urls.py</b></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"""
+Definition of urls for IrisPrediction.
+"""
+
+from datetime import datetime
+from django.urls import path
+from django.contrib import admin
+from iris import  views
+
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('SpeciesPrediction',views.SpeciesPrediction,name='SpeciesPrediction'),
+    path('admin/', admin.site.urls),
+]
+
+</code></pre></div></div>
+
+<p>and finally, we will create the HTML files for the views created.</p>
+
+<h3><b>Templates Configuration</b></h3>
+
+<p>In Django, templates engines are configured under the TEMPLATES setting in the settings file so in the settings file under TEMPLATES set “DIRS” to</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">'DIRS'</span><span class="p">:</span> <span class="p">[</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span><span class="s">'templates'</span><span class="p">)],</span>
+
+       <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>and in the outer ml_django/ root directory create a directory/folder named <b>templates</b>  and then a sub-directory named <b> iris</b>. Within the iris sub-directory in the templates directory let create an HTML form name form.html that accept inputs from users  and then send that information back to the server, an irispredict.html that render the result generated by the views and layout.thml to serve as the base layout for the project.Click
+ on <b><a style="color:blue" href="/arizeblog/assets/images/python/ml_django/layout.text" target="_blank">layout.html</a>,
+ <a style="color:blue" href="/arizeblog/assets/images/python/ml_django/form.text" target="_blank">form.html</a>
+<a style="color:blue" href="/arizeblog/assets/images/python/ml_django/irispredict.text">irispredict.html</a>
+</b> to copy the files to their respective files in the templates/iris folder. The templates directory should be similar to the figure below</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/templates.jpg" /></p>
+
+<p>After copy the html files, Let now test our application on new instance from users by running</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
+
+</code></pre></div></div>
+<p>After running the command, open a Web browser and  visit http://127.0.0.1:8000/ and you will see something similar to the one below</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues.jpg" /></p>
+
+<p>Now enter the values for the features</p>
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues2.jpg" /></p>
+
+<p> and click on Predict Species for the model to predict the species based on the
+values entered </p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues3.jpg" /></p>
+
+<p>  visit http://127.0.0.1:8000/admin to accesses the admin interface and then click on <b> Data
+From Users </b> to look at the saved data from users in the database
+</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/database.jpg" /></p>
+
+<p> <b>References:</b></p>
+<p>-<a href="https://docs.djangoproject.com/en/3.1/">
+Django documentation
+</a></p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code.]]></summary></entry></feed>

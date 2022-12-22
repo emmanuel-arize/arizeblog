@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Introduction to Recurrent Neural Networks (RNNs) | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Introduction to Recurrent Neural Networks (RNNs)" />
+<meta name="author" content="Arize Emmanuel" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS." />
+<meta property="og:description" content="A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-06T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction to Recurrent Neural Networks (RNNs)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arize Emmanuel"},"dateModified":"2021-05-06T00:00:00+01:00","datePublished":"2021-05-06T00:00:00+01:00","description":"A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.","headline":"Introduction to Recurrent Neural Networks (RNNs)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html"},"url":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-bar w3-gray">
+        <!--         
+        <a href="/arizeblog/" class="w3-bar-item w3-button">Home</a> -->
+
+
+
+        <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with Python </b></a>
+
+        <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with R </b></a>
+
+
+
+        <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black"> 
+            <b>Power Bi (DAX & M) </b></a>
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+        <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b> </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>  </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>  </a>
+        
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+            <b>VBA</b> </a>
+
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+        <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script><br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <br style="margin-top:10px;">
+<div class="w3-row">
+    <!-- Blog entries -->
+    <!-- Blog entries -->
+    <div style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Introduction to Recurrent Neural Networks (RNNs)</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2021-05-06T00:00:00+01:00" itemprop="datePublished">May 6, 2021
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">
+          By Arize Emmanuel</span></span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.</p>
+
+<p><b style="text-decoration:underline;font-size: 20px;text-transform: uppercase;">Recurrent neural networks or RNNs</b> are networks containing recurrent connections within their network connections and are often used for processing sequential data.</p>
+
+<p>An assumption of feedforward networks is that the inputs are independent (one input has no dependency on another) of one another, however in sequential data such as textual data (we will limit ourselves to textual data since it is the most widespread forms of sequence data), this assumption is not true, since in a sentence the occurrence of a word influences or is influenced by the occurrences of other words in the sentence.</p>
+
+<p>When processing data, RNNs assumes that an incoming data take the form of a sequence of vectors or tensors, which can be sequences of word or sequences of characters as in textual data, sequence of observations over a period of time as in time series etc.  As RNNs process the data, RNNs have recurrent connections that allows a memory to persist in the network’s internal state keeping track of information observed so far and informing the decisions to be made by the network at later points in time and also share parameters across different parts of the network making it possible to extend and apply the network to inputs of variable lengths and generalize across them. This makes RNNs useful for Timeseries forecasting and natural language processing (NLP) systems such as document classification, sentiment analysis, automatic translation, generating text for applications such as chatbots. Since the same parameters are used for all time steps, the parameterization cost of an RNN does not grow as the number of time steps increases.</p>
+
+<p>From the book <a href="https://www.deeplearningbook.org/contents/rnn.html" target="_blank">Deep Learning: Sequence Modeling: Recurrentand Recursive Nets
+</a></p>
+
+<blockquote>
+  <p>Some examples of important design patterns for recurrent neural networks
+include the following:</p>
+  <ul>
+    <li>Recurrent networks that produce an output at each time step and have
+recurrent connections between hidden units.</li>
+    <li>Recurrent networks that produce an output at each time step and have
+recurrent connections only from the output at one time step to the hidden
+units at the next time step.</li>
+    <li>Recurrent networks with recurrent connections between hidden units, that
+read an entire sequence and then produce a single output.</li>
+  </ul>
+</blockquote>
+
+<p>In this section, we will  consider a class of recurrent networks referred to as Elman Networks (Elman,1990) or simple recurrent networks which serve as the basis for more complex approaches like the Long Short-Term Memory (LSTM) networks and Gated Recurrent Unit (GRU). A simple RNN which is typically a three-layer network comprising an input layer, a single hidden layer and an output layer.</p>
+
+<p><a style="color:blue;" href="#Fig">Figure 1</a> is a diagrammatic representation of RNN with  input to hidden connections parametrized by a weight matrix \(U \in R^{d \times h}\) which is used to condition the input word vector \(x^{t}\), hidden-to-hidden recurrent connections parametrized by a weight matrix \(W\in R^{h \times h}\), used to condition the output of the previous time-step \(h^{t−1}\), hidden-to-output connections parametrized by a weight matrix  \(V \in R^{h*o}\)
+ used to condition the output of the current time-step.</p>
+
+<p>and \(h \in R^{n*h}\) representing the hidden state vector or simply the hidden state (or hidden variable) of the network keeping track or as a loose summary of information observed so far and informing the decisions to be made by the network at later points in time. On the Left side is RNN drawn with recurrent connections and on the Right is the same RNN seen as an time unfolded computational graph, where each node is now associated with one particular time instance and this illustrate the computational logic of an RNN at adjacent time steps.</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/rnn.png" />
+<br />
+<span id="Fig">Figure 1</span><br />
+<a href="https://www.google.com/search?q=rnn+image&amp;client=firefox-b-d&amp;tbm=isch&amp;source=iu&amp;ictx=1&amp;fir=lD-kwEF8OCJIoM%252C5nGST21LG70DyM%252C_&amp;vet=1&amp;usg=AI4_-kTE51-vQdo1Mb1V3I10kNw5Xv3yAw&amp;sa=X&amp;ved=2ahUKEwir7rW18sjuAhVOXMAKHSm_CMQQ9QF6BAgHEAE&amp;biw=1366&amp;bih=580#imgrc=8TAzbbCVWa8qZM">source: RNN</a>
+<br /></p>
+
+<p>Most RNNs computation  can be decomposed into three blocks of parameters and associated transformations or activation function:</p>
+<ul>
+  <li>
+    <ol>
+      <li>from the input to the hidden state,</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>from the previous hidden state to the next hidden state, and</li>
+    </ol>
+  </li>
+  <li>
+    <ol>
+      <li>from the hidden state to the output</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Armed with a summary of RNNs computational decomposition, let assume we have a minibatch of inputs \(X^{t} \in R^{n×d}\) where each row of \(X^{t}\) corresponds to one example at time step <strong><em>t</em></strong> from the sequence and  \(h^{t} \in R^{n*h}\) be  the hidden state at time <strong><em>t</em></strong>. 
+ Unlike standard feedforward networks, RNNs current hidden state \(h^{t}\) is a function \(\phi\) of the previous hidden state \(h^{t-1}\) and the current input \(x^{t}\) defined by \(h^{t}=\phi(x^{t}U+ h^{t-1}W+b^{h} )\) where  \(b^{h} \in R^h\) is the bias term and the weights $W$ determine how the network current state makes use of past context in calculating the output for the current input.</p>
+
+<p>The fact that the computation of the hidden state at time t requires the value of the hidden state from time <strong>t−1</strong> mandates an incremental inference algorithm that proceeds from the start of the sequence to the end and thus RNNs condition the next word on the sentence history. With \(h^{t}\) defined, RNN is defined as function $\phi$ taking as input a state vector \(h^{t-1}\) and an input vector \(x^{t}\) and return a new state vector \(h^{t}\). The initial state vector \(h^{0}\), is also an input to RNN, assumed to be a zero vector and often omitted. The hidden state $h$ is then used as the input for the output layer and is given by</p>
+
+\[h^{t}=\phi(X^{t}U+ h^{t-1}W+b^{h} )\]
+
+\[O=f(h^{t}V +b^{o})\]
+
+\[\hat y=\phi (O)\]
+
+<p>where \(O \in R^{n \times o}\),  \(b^{o} \in R^{o}\) and \(\hat y\) is the next predicted word given the current hidden state.</p>
+
+<p>Layers performing \(h^{t}=\phi(x^{t}U+ h^{t-1}W+b^{h} )\)  in RNNs are called recurrent layers.</p>
+
+<h1 id="let-us-now-train-a-simple-rnn-to-predict-a-movie-review">Let us now train a simple RNN to predict a movie review</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers.experimental.preprocessing</span> <span class="kn">import</span> <span class="n">TextVectorization</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="p">,</span><span class="n">re</span><span class="p">,</span><span class="n">string</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+</code></pre></div></div>
+
+<h1 id="loading-the-imdb-data">Loading the IMDB data</h1>
+<p>You’ll restrict the movie reviews to the top 15,000 most common words and  considering looking at the first 30 words in every review. The network will learn 16-dimensional embeddings for each of the 15,000 words</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">train_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/aclImdb/train/'</span><span class="p">,</span>
+                                                               <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                               <span class="n">subset</span><span class="o">=</span><span class="s">'training'</span><span class="p">,</span>
+                                                              <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                                                               <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">val_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/aclImdb/train/'</span><span class="p">,</span>
+                                                               <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                            <span class="n">subset</span><span class="o">=</span><span class="s">'validation'</span><span class="p">,</span>
+                                                              <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+                                                            <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Found 25000 files belonging to 2 classes.
+Using 18750 files for training.
+Found 25000 files belonging to 2 classes.
+Using 6250 files for validation.
+</code></pre></div></div>
+
+<p>From the above result, there are 25,000 examples in the training folder, of which 75% (18750) is used for training and 25% (6250) as a validation set</p>
+
+<p>names of categories under the labels</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="n">class_names</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'index'</span> <span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s">"corresponds to "</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index 0 corresponds to  neg
+index 1 corresponds to  pos
+</code></pre></div></div>
+
+<p>Creates a <code class="language-plaintext highlighter-rouge">Dataset</code> that prefetches elements from this dataset</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AUTOTUNE</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="c1">#val_data=val_data.cache().prefetch(buffer_size=AUTOTUNE)
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">numpy</span><span class="p">(),</span><span class="s">'</span><span class="se">\n</span><span class="s"> </span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">numpy</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b"Neither the total disaster the UK critics claimed nor the misunderstood masterpiece its few fanboys insist, Revolver is at the very least an admirable attempt by Guy Ritchie to add a little substance to his conman capers. But then, nothing is more despised than an ambitious film that bites off more than it can chew, especially one using the gangster/con-artist movie framework. As might be expected from Luc Besson's name on the credits as producer, there's a definite element of 'Cinema de look' about it: set in a kind of realistic fantasy world where America and Britain overlap, it looks great, has a couple of superbly edited and conceived action sequences and oozes style, all of which mark it up as a disposable entertainment. But Ritchie clearly wants to do more than simply rehash his own movies for a fast buck, and he's spent a lot of time thinking and reading about life, the universe and everything. If anything its problem is that he's trying to throw in too many influences (a bit of Machiavelli, a dash of Godard, a lot of the Principles of Chess), motifs and techniques, littering the screen with quotes: the film was originally intended to end with three minutes of epigrams over photos of corpses of mob victims, and at times it feels as if he never read a fortune cookie he didn't want to turn into a movie. Rather than a commercial for Kabbalism, it's really more a mixture of the overlapping principles of commerce, chess and confidence trickery that for the most part pulls off the difficult trick of making the theosophy accessible while hiding the film's central (somewhat metaphysical) con.&lt;br /&gt;&lt;br /&gt;The last third is where most of the problems can be found as Jason Statham takes on the enemy (literally) within with lots of ambitious but not always entirely successful crosscutting within the frame to contrast people's exterior bravado with their inner fear and anger, but it's got a lot going for it all the same. Not worth starting a new religion over, but I'm surprised it didn't get a US distributor. Maybe they found Ray Liotta's intentionally fake tan just too damn scary?" 
+ 
+ 1
+</code></pre></div></div>
+
+<h1 id="text-preprocessing">Text preprocessing</h1>
+
+<p>You’ll restrict the movie reviews to the top 15,000 most common words and will consider looking at the first 30 words in every review. The network will learn 16-dimensional embeddings for each of the 15,000 words</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">max_features</span><span class="o">=</span><span class="mi">15000</span>
+<span class="n">max_len</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">encoder</span><span class="o">=</span><span class="n">TextVectorization</span><span class="p">(</span><span class="n">max_tokens</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span><span class="n">output_mode</span><span class="o">=</span><span class="s">"int"</span><span class="p">,</span>
+                          <span class="n">output_sequence_length</span><span class="o">=</span><span class="n">max_len</span><span class="p">,</span>
+         <span class="n">standardize</span><span class="o">=</span><span class="s">'lower_and_strip_punctuation'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encoder</span><span class="p">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>The .adapt method sets the layer’s vocabulary. Here are the first 70 tokens. After the padding and unknown tokens they’re sorted by frequency:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">encoder</span><span class="p">.</span><span class="n">get_vocabulary</span><span class="p">()[:</span><span class="mi">70</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '[UNK]', 'the', 'and', 'a', 'of', 'to', 'is', 'in', 'it', 'i', 'this', 'that', 'br', 'was', 'as', 'for', 'with', 'but', 'movie', 'film', 'on', 'not', 'you', 'are', 'his', 'have', 'he', 'be', 'one', 'its', 'at', 'all', 'by', 'an', 'they', 'from', 'who', 'so', 'like', 'her', 'just', 'or', 'about', 'has', 'if', 'out', 'some', 'there', 'what', 'good', 'very', 'more', 'when', 'even', 'she', 'no', 'my', 'up', 'would', 'only', 'time', 'which', 'really', 'story', 'their', 'were', 'had', 'see', 'can']
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">len</span><span class="p">(</span><span class="n">encoder</span><span class="p">.</span><span class="n">get_vocabulary</span><span class="p">())</span><span class="o">==</span><span class="n">max_features</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RNNs</span><span class="p">(</span><span class="n">K</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">embedd_dim</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RNNs</span><span class="p">,</span><span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedd_dim</span><span class="o">=</span><span class="n">embedd_dim</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedded_layer</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span><span class="n">input_length</span><span class="o">=</span><span class="n">max_len</span><span class="p">,</span>
+                                               <span class="n">output_dim</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embedd_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rnn</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">SimpleRNN</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">f</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">encoded_input</span><span class="o">=</span><span class="n">encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">embed</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embedded_layer</span><span class="p">(</span><span class="n">encoded_input</span><span class="p">)</span>
+        <span class="n">rnn_layer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">embed</span><span class="p">)</span>
+        <span class="n">dropout_layer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">rnn_layer</span><span class="p">)</span>
+        <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">dropout_layer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">embedding_dim</span><span class="o">=</span><span class="mi">16</span>
+
+<span class="n">model</span><span class="o">=</span><span class="n">RNNs</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'rmsprop'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'binary_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'acc'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span><span class="n">validation_data</span><span class="o">=</span><span class="n">val_data</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/6
+188/188 [==============================] - 28s 116ms/step - loss: 0.6931 - acc: 0.5087 - val_loss: 0.6920 - val_acc: 0.5302
+Epoch 2/6
+188/188 [==============================] - 15s 80ms/step - loss: 0.6756 - acc: 0.5999 - val_loss: 0.6030 - val_acc: 0.6744
+Epoch 3/6
+188/188 [==============================] - 16s 87ms/step - loss: 0.5464 - acc: 0.7315 - val_loss: 0.5255 - val_acc: 0.7392
+Epoch 4/6
+188/188 [==============================] - 16s 87ms/step - loss: 0.4493 - acc: 0.8014 - val_loss: 0.5192 - val_acc: 0.7443
+Epoch 5/6
+188/188 [==============================] - 18s 93ms/step - loss: 0.3941 - acc: 0.8296 - val_loss: 0.5410 - val_acc: 0.7307
+Epoch 6/6
+188/188 [==============================] - 17s 89ms/step - loss: 0.3551 - acc: 0.8481 - val_loss: 0.5651 - val_acc: 0.7226
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x1b52dae1dd8&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="p">[</span>
+     <span class="s">"This movie is fantastic! I really like it because it is so good!"</span><span class="p">,</span>
+    <span class="s">"Not a good movie!"</span><span class="p">,</span>
+    <span class="s">"The movie was great!"</span><span class="p">,</span>
+    <span class="s">"This movie really sucks! Can I get my money back please?"</span><span class="p">,</span>
+    <span class="s">"The movie was terrible..."</span><span class="p">,</span>
+    <span class="s">"This is a confused movie."</span><span class="p">,</span>
+  <span class="s">"The movie is one of best movies i have ever watched!"</span><span class="p">,</span>
+  <span class="s">"Men i dont think i can watch this movie again"</span>
+    
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">result</span><span class="o">=</span><span class="s">'positive review'</span> <span class="k">if</span> <span class="n">predictions</span><span class="o">&gt;</span><span class="mf">0.5</span> <span class="k">else</span> <span class="s">'negative review'</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>positive review
+positive review
+positive review
+negative review
+negative review
+negative review
+positive review
+negative review
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<p> <b>References:</b></p>
+
+<p><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf" title="An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition by Daniel Jurafsky &amp; James H. Martin Chapter 9" target="_blank">Deep Learning Architectures for Sequence Processing</a></p>
+
+<p><a href="https://www.tensorflow.org/text/guide/word_embeddings" title="Tensorflow Documentation" target="_blank">Word embeddings</a></p>
+
+<p><a href="https://d2l.ai/chapter_recurrent-neural-networks/rnn.html#equation-rnn-h-with-state" title="Dive Into Deep Learning Chapter8 section-8.4." target="_blank"> Recurrent Neural Networks</a>
+<a href="https://www.deeplearningbook.org/contents/rnn.html" title="Ian Goodfellow, Yoshua Bengio and Aaron Courville (2016). Deep Learning.  MIT Press,pp.389-413" target="_blank">Chapter 10:  Sequence Modeling: Recurrentand Recursive Nets</a></p>
+
+<p><a href="https://link.springer.com/article/10.1007/BF00114844" title="Elman, J. L. (1991)." target="_blank">Distributed representations, simple recurrent networks, and grammatical structure. 
+Machine learning, 7(2), 195-225.</a></p>
+
+<p><a href="https://arxiv.org/pdf/1412.7753.pdf" title="Mikolov, T., Joulin, A., Chopra, S., Mathieu, M., &amp; Ranzato, M. A. (2014)." target="_blank">Learning longer memory in recurrent neural networks. arXiv preprint arXiv:1412.7753.</a></p>
+</span>
+            </div><a class="u-url" href="/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended ML-Python-Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+    
+    
+    
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html">Introduction to LSTMs
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html">Introduction to Recurrent Neural Networks (RNNs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/03/22/BOWS.html">Feature Extraction with Bag of Words (BOWs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/10/Dropout.html">Dropout Regularization
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/05/ml-django.html">Deploying A Machine Learning Model Using Django
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression.html">Logistic Regression
+          </li>
+  
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/14/cross-validation.html">Cross-Validation (ML-python)
+          </li>
+  
+    
+   
+
+
+    </ul>
+  </div>
+
+  </div>
+  <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

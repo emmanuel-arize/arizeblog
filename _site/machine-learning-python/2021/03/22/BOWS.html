@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Feature Extraction with Bag of Words (BOWs) | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Feature Extraction with Bag of Words (BOWs)" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this tutorial, we will learn about Bag of Words (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted." />
+<meta property="og:description" content="In this tutorial, we will learn about Bag of Words (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-22T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Feature Extraction with Bag of Words (BOWs)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2021-03-22T00:00:00+01:00","datePublished":"2021-03-22T00:00:00+01:00","description":"In this tutorial, we will learn about Bag of Words (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.","headline":"Feature Extraction with Bag of Words (BOWs)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html"},"url":"http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-bar w3-gray">
+        <!--         
+        <a href="/arizeblog/" class="w3-bar-item w3-button">Home</a> -->
+
+
+
+        <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with Python </b></a>
+
+        <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with R </b></a>
+
+
+
+        <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black"> 
+            <b>Power Bi (DAX & M) </b></a>
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+        <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b> </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>  </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>  </a>
+        
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+            <b>VBA</b> </a>
+
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+        <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script><br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <br style="margin-top:10px;">
+<div class="w3-row">
+    <!-- Blog entries -->
+    <!-- Blog entries -->
+    <div style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Feature Extraction with Bag of Words (BOWs)</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2021-03-22T00:00:00+01:00" itemprop="datePublished">Mar 22, 2021
+      </time></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In this tutorial, we will learn about Bag of Words  (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.</p>
+
+<p>In order to model a text documents, the raw text cannot be fed directly to the algorithm as these algorithms expect numerical feature vectors so instead we need to turn the text content into numerical feature vectors.</p>
+
+<p><span class="w3-text-blue"> From the <a href="https://scikit-learn.org/stable/modules/feature_extraction.html">scikit-learn documentation</a>:</span>
+<b>
+We call vectorization the general process of turning a collection of text documents into numerical feature vectors.
+</b></p>
+
+<p>When modelling a data it is important to decide what features of the input are relevant, and how to encode those features. When we consider a textual data such as a sentence or a document  for instance the observable features are the counts and the order of the letters and the words within the text and as such we a way to extract these features from the text. There are several ways of extracting features from a textual data but in this tutorial we will only consider a very common feature extraction procedures for sentences and documents known as the <b> bag-of-words approach (BOW)</b> which looks at the histogram of the unique words within the text ( considering each word count as a feature.)</p>
+
+<p><b>Bag Of Words (BOWs) Approach</b></p>
+<p>Is a feature extraction technique used for extracting features from textual data and is commonly used in problems such as language modeling and document classification.  A bag-of-words is a representation of textual data, describing the occurrence of words within a sentence or document, disregarding grammar and the order of words.</p>
+
+<p><b>How does Bag of Words Works</b></p>
+<p>In order to understand how bag of words works let consider the two simple text documents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Boys like playing football and Emma is a boy so Emma likes playing football
+
+2  Mary likes watching movies 
+
+</code></pre></div></div>
+
+<p>Based on these two text documents, a list of token (words) for each document is as follows</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="dl">'</span><span class="s1">Boys</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">like</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">playing</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">football</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">and</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Emma</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">is</span><span class="dl">'</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">boy</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">so</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Emma</span><span class="dl">'</span><span class="p">,</span> 
+
+<span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">playing</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">football</span><span class="dl">'</span><span class="p">]</span>
+
+
+<span class="p">[</span><span class="dl">'</span><span class="s1">Mary</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">watching</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">movies</span><span class="dl">'</span><span class="p">]</span>
+
+
+</code></pre></div></div>
+<p>denoting document 1 by doc1 and 2  by doc2, we will construct a dictionary (key-&gt;value pair) of
+words for both doc1 and doc2 where each key is a word, and each value is the number of occurrences of that word in the given text document.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">doc1</span><span class="o">=</span><span class="p">{</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">and</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">boy</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Boys</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Emma</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">football</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
+
+<span class="dl">'</span><span class="s1">is</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">like</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">playing</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>   <span class="dl">'</span><span class="s1">so</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+
+<span class="nx">dco2</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">likes</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Mary</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="dl">'</span><span class="s1">movies</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">,</span><span class="dl">'</span><span class="s1">watching</span><span class="dl">'</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><b>NOTE :</b> the order of the words is not important</p>
+
+<p>considering <strong>a</strong> as a stop word, we first define our vocabulary words, which is the set of all unique words found in our document set and it consist of</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">and</span><span class="p">,</span> <span class="nx">boy</span><span class="p">,</span> <span class="nx">boys</span><span class="p">,</span> <span class="nx">emma</span><span class="p">,</span>  <span class="nx">football</span><span class="p">,</span> <span class="nx">is</span><span class="p">,</span> <span class="nx">like</span><span class="p">,</span> <span class="nx">likes</span><span class="p">,</span> <span class="nx">mary</span><span class="p">,</span> <span class="nx">movies</span><span class="p">,</span> <span class="nx">playing</span><span class="p">,</span> <span class="nx">so</span><span class="p">,</span> <span class="nx">watching</span>
+
+</code></pre></div></div>
+<p>and the  features extracted using bag of words for the document set will be</p>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog.jpg" /></p>
+
+<p><b>scikit-learn CountVectorize implementation</b></p>
+<p>
+Using CountVectorize the text is preprocessed, tokenize and stopwords are filtered, it then builds a dictionary of features and transforms documents to feature vectors:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docs=['Boys like playing football and Emma is a boy so Emma likes playing football',
+   "Mary likes watching movies"]
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">feature_extr</span><span class="o">=</span><span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">model</span><span class="o">=</span><span class="n">feature_extr</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog1.jpg" /></p>
+
+<p><b>Disadvantages</b></p>
+<p>Although BOWs is very simple to understand and implement, it has some disadvantages which include</p>
+
+<ul>
+  <li>highly sparse vectors or matrix as the are  very few non-zero elements in dimensions corresponding to words that occur in the sentence.</li>
+  <li>Bag of words representation leads to a high dimensional feature vector as the total dimension is the vocabulary size.</li>
+  <li>Bag of words representation does not consider the semantic relation between words by assuming that the words are independent of each other.</li>
+</ul>
+
+<p><b> Buiding a Classifier with the features extracted using BOWS</b></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+</code></pre></div></div>
+<p>The dataset called “Twenty Newsgroups”. which is a collection of approximately 20,000 newsgroup documents, partitioned (nearly) evenly across 20 different newsgroups. <a href="http://qwone.com/~jason/20Newsgroups/">Official description of theTwenty Newsgroups data</a> will be used as our data but instead of the 20 different groups we will work on a partial dataset with only 11 categories out of the 20 available in the dataset. The code below is list of the 11 categories.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s">'alt.atheism'</span><span class="p">,</span> <span class="s">'soc.religion.christian'</span><span class="p">,</span><span class="s">'comp.graphics'</span><span class="p">,</span> <span class="s">'sci.med'</span><span class="p">,</span><span class="s">'sci.electronics'</span><span class="p">,</span>
+              <span class="s">'sci.space'</span><span class="p">,</span><span class="s">'talk.politics.guns'</span><span class="p">,</span><span class="s">'talk.politics.mideast'</span><span class="p">,</span><span class="s">'talk.politics.misc'</span><span class="p">,</span>
+              <span class="s">'talk.religion.misc'</span><span class="p">,</span><span class="s">'misc.forsale'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Loading the training data</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">twenty_news_train</span><span class="o">=</span><span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s">'train'</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span><span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s">'footers'</span><span class="p">,</span><span class="s">'headers'</span><span class="p">,</span><span class="s">'quotes'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Let’s print the third lines of the first loaded file and the first four categories  with the target variable  :</p>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog23.jpg" />
+<img class=" w3-border" src="/arizeblog/assets/images/python/bog22.jpg" /></p>
+
+<p><b>A Classifier Pipeline </b></p>
+
+<p>In order to make the vectorizer =&gt; classifier easier to work with, let build a pipeline with  a regularized linear models with stochastic gradient descent (SGD) learning as our classifier as below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">news_clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">target</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Let now train the classifier</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">news_clf</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">twenty_news_train</span><span class="p">.</span><span class="n">target</span><span class="p">)</span>
+</code></pre></div></div>
+<p>We now test the classifier on new instances</p>
+
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog3.jpg" /></p>
+
+<p><b>Evaluation of the performance on the test set</b></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">twenty_news_test</span><span class="o">=</span><span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s">'test'</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">,</span><span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s">'footers'</span><span class="p">,</span><span class="s">'headers'</span><span class="p">,</span><span class="s">'quotes'</span><span class="p">))</span>
+</code></pre></div></div>
+<p><img class=" w3-border" src="/arizeblog/assets/images/python/bog4.jpg" /></p>
+
+<p> <b>References:</b></p>
+<hr />
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Bag-of-words_model" target="_blank">Bag-of-words model - Wikipedia
+</a><br /></li>
+  <li>
+    <p><a href="https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984/ref=as_li_ss_tl?ie=UTF8&amp;qid=1502062931&amp;sr=8-1&amp;keywords=Neural+Network+Methods+in+Natural+Language+Processing&amp;linkCode=sl1&amp;tag=inspiredalgor-20&amp;linkId=d63df073fea3ebe2d405820570b3ff03" target="_blank">Yoav Goldberg (2017). Neural Network Methods in Natural Language Processing</a><br /></p>
+  </li>
+  <li><a href="https://scikit-learn.org/stable/modules/feature_extraction.html" target="_blank">Feature extraction-scikit-learn documentation</a><br /></li>
+</ul>
+
+</span>
+            </div><a class="u-url" href="/arizeblog/machine-learning-python/2021/03/22/BOWS.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended ML-Python-Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+    
+    
+    
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html">Introduction to LSTMs
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html">Introduction to Recurrent Neural Networks (RNNs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/03/22/BOWS.html">Feature Extraction with Bag of Words (BOWs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/10/Dropout.html">Dropout Regularization
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/05/ml-django.html">Deploying A Machine Learning Model Using Django
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression.html">Logistic Regression
+          </li>
+  
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/14/cross-validation.html">Cross-Validation (ML-python)
+          </li>
+  
+    
+   
+
+
+    </ul>
+  </div>
+
+  </div>
+  <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

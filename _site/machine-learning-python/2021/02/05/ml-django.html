@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Deploying A Machine Learning Model Using Django | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Deploying A Machine Learning Model Using Django" />
+<meta name="author" content="Arize Emmanuel" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code." />
+<meta property="og:description" content="This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-05T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Deploying A Machine Learning Model Using Django" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arize Emmanuel"},"dateModified":"2021-02-05T00:00:00+01:00","datePublished":"2021-02-05T00:00:00+01:00","description":"This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code.","headline":"Deploying A Machine Learning Model Using Django","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html"},"url":"http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-bar w3-gray">
+        <!--         
+        <a href="/arizeblog/" class="w3-bar-item w3-button">Home</a> -->
+
+
+
+        <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with Python </b></a>
+
+        <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with R </b></a>
+
+
+
+        <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black"> 
+            <b>Power Bi (DAX & M) </b></a>
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+        <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b> </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>  </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>  </a>
+        
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+            <b>VBA</b> </a>
+
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+        <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script><br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <br style="margin-top:10px;">
+<div class="w3-row">
+    <!-- Blog entries -->
+    <!-- Blog entries -->
+    <div style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Deploying A Machine Learning Model Using Django</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2021-02-05T00:00:00+01:00" itemprop="datePublished">Feb 5, 2021
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">
+          By Arize Emmanuel</span></span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code.</p>
+
+<h3><b>Lines of Code Used To Train The Model</b></h3>
+
+<p> packages needed for performing the analysis</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span><span class="n">roc_curve</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">,</span><span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">is_string_dtype</span><span class="p">,</span> <span class="n">is_numeric_dtype</span><span class="p">,</span><span class="n">is_categorical_dtype</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+<p>Loading the iris data and scaling the input variables</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iris_data</span><span class="o">=</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">scalar</span><span class="o">=</span><span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">iris_feat</span><span class="o">=</span><span class="n">scalar</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Splitting the dataset into training and testing sets</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span> <span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris_data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span>
+                                             <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Training the model</p>
+
+<pre><code class="language-Python">xgbd=XGBClassifier(n_estimators=100,criterion='entropy', max_delta_step=6,
+                     min_samples_split=45,colsample_bytree=.4,max_depth=13,
+                     gama=10,max_features=11,min_child_weight=.4)
+xgbd.fit(X_train,y_train)
+
+</code></pre>
+
+<p>Testing the model on the test data</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_predict</span>  <span class="o">=</span> <span class="n">xgbd</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Determining the impact of each variable on the prediction of the species</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># converting the data into a  data frame
+</span><span class="n">features</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">iris_data</span><span class="p">.</span><span class="n">feature_names</span><span class="p">)</span>
+
+<span class="c1"># RENAMING THE FEACTURES
+</span><span class="n">features</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">"sepal length (cm)"</span><span class="p">:</span><span class="s">"sepal_length(cm)"</span><span class="p">,</span><span class="s">"sepal width (cm)"</span><span class="p">:</span><span class="s">"sepal_width(cm)"</span><span class="p">,</span>
+                         <span class="s">"petal length (cm)"</span><span class="p">:</span><span class="s">"petal_length(cm)"</span><span class="p">,</span><span class="s">"petal width (cm)"</span><span class="p">:</span><span class="s">"petal_width_(cm)"</span>
+<span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">features_impt</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">xgbd</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">features</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Importances of Features'</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">fea</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">features_impt</span><span class="p">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/importance.jpg" /></p>
+
+<p>Creating a Confusion Matrix</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conf_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">()</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_mat</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Predicted'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Actual Values'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Confusion Matrix'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/confusion.jpg" /></p>
+
+<p>Saving the trained model</p>
+
+<pre><code class="language-Python"># create a directory named models
+os.makedirs('models')
+# SAVE THE MODEL
+joblib.dump(xgbd,'models/iris_model.pkl')
+</code></pre>
+<p>Example of how to load a saved model</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># loading the saved model
+</span><span class="n">model</span><span class="o">=</span><span class="n">joblib</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">'models/iris_model.pkl'</span><span class="p">)</span>
+<span class="n">model</span>
+</code></pre></div></div>
+<p>After training and saving the model, we will now deploy the trained model to predict new species of iris based on users inputs using Django framework.</p>
+
+<h3><b> The Django Project (ml_django project)</b></h3>
+<p>A project is a collection of configuration which can contain multiple apps. Before creating the Django project which will be named ml_django, we need to first install Django, so from the command line run:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">Django</span>
+</code></pre></div></div>
+<p>After installing Django, cd (change directory) into a directory where you’d like to store your project and run the following command:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="err">$</span> <span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">ml_django</span>
+</code></pre></div></div>
+
+<p>to create the ml_django project in your current directory. Since the ml_django project has been created let’s look at what the ml_django project contains</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/ml_django.jpg" /></p>
+
+<p>The files are:</p>
+
+<ul>
+  <li>
+    <p>The outer <b>ml_django/ </b> root directory is just a container for the project.</p>
+  </li>
+  <li>
+    <p><b>manage.py</b> is a command-line utility that lets you interact with the ml_django project.</p>
+  </li>
+  <li>
+    <p>The inner <b>ml_django/ </b> directory is the actual Python package for the project.</p>
+  </li>
+  <li>
+    <p><b>ml_django/<strong>init</strong>.py </b> is an empty file that tells Python to treat ml_django directory as a Python module</p>
+  </li>
+  <li>
+    <p><b>ml_django/settings.py:</b> is the main configuration file for the ml_django project containing initial default settings.</p>
+  </li>
+  <li>
+    <p><b>ml_django/urls.py</b> is the URL declarations for the ml_django project. Each URL defined here is mapped to a view and it tells the project how to handle each view.</p>
+  </li>
+  <li>
+    <p><b>ml_django/wsgi.py </b> is an entry-point for WSGI-compatible web servers to serve your project.</p>
+  </li>
+</ul>
+
+<h3><b>The development server </b></h3>
+<p>Change into the outer ml_django directory and start the development server by running the following command:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
+</code></pre></div></div>
+<p><br />
+After running the command, open a Web browser and  visit http://127.0.0.1:8000/ and you will see something similar to the one below</p>
+
+<p><img src="/arizeblog/assets/images/python/ml_django/server.jpg" style="width:600px;height:300px;" />
+  <br />
+ with everything working we are now set to create the iris app</p>
+<h3><b>Creating the iris app</b></h3>
+<p>An app is a Web application that does something. In our case the app will be predicting new instances of the iris species based on a user input. Let create the iris app by running the command:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">startapp</span> <span class="n">iris</span>
+</code></pre></div></div>
+
+<h3><b>Managing Static Files</b></h3>
+
+<p>Websites generally need to serve additional files such as  JavaScript files and CSS files. In Django these files are known as <strong>static files</strong>.  These static files are import factor in web development and are used in designing the UI. Django provides django.contrib.staticfiles to help you manage them. In the outer ml_django/ root directory create a
+directory/folder named <b>static</b> which will contain all our static files. Your static folder should be similar to the one below depending on the sub-folders</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/static.jpg" /></p>
+
+<p>For us to be able use these static files we need to edit the settings file, so in your settings file move to the bottom and define STATIC_URL to be</p>
+
+<pre><code class="language-Python">   STATIC_URL = '/static/'
+</code></pre>
+<p>STATIC_URL is the base url of which the static files in the STATIC_ROOT are served</p>
+
+<p>Create another folder in the outer ml_django/ root directory named <b>static_dir</b> and beneath STATIC_URL in the settings file define</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="n">STATIC_ROOT</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span><span class="s">"/static_dir"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>We have set STATIC_ROOT to the static_dir directory and this is where we’d like to serve the static files when we run</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">collectstatic</span>
+</code></pre></div></div>
+
+<p>Let now define a list of directories (STATICFILES_DIRS) in the settings file where django will look for the static files</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  STATICFILES_DIRS=('static','C:/Users/USER/Music/ml_django/static')
+</code></pre></div></div>
+
+<p>where C:/Users/USER/Music/ml_django/static is the absolute path to the static directory containing the static files. From the command-line run</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   $ python manage.py collectstatic
+</code></pre></div></div>
+<p>to copy all files from your static folders into the STATIC_ROOT directory</p>
+
+<h3><b>The Model For The Iris App </b></h3>
+<p>Since the application will be accepting input from users, we need a database to store users inputs. The model is essentially our database layout, with additional metadata. Edit the <b>iris/models.py </b> file and add the following  lines code to it</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="c1"># Create your models here.
+</span><span class="k">class</span> <span class="nc">IrisData</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">sepal_length</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">sepal_width</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">petal_length</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">petal_width</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
+    <span class="n">species</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s">'IrisData'</span>
+        <span class="c1">#managed = True
+</span>        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">'data'</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">'Data From Users'</span>
+
+</code></pre></div></div>
+<p>which will define the models for the iris application.</p>
+
+<h3><b>Activating the Iris application</b></h3>
+<p>To keep track of our application and be able to create database tables for the model created above, we need to activate the iris app. To do so, edit the settings.py file and add under INSTALLED_APPS add <b> ‘iris.apps.IrisConfig’</b></p>
+
+<pre><code class="language-Python"># Application definition
+
+INSTALLED_APPS = [
+     'iris.apps.IrisConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+</code></pre>
+
+<p>Since we’ve installed the iris application into our project let run</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+</code></pre></div></div>
+<p>which tells Django that we’ve made some changes to the models (in this case, we’ve create a new one) and that we’d like the changes to be stored as a migration and then run</p>
+
+<pre><code class="language-Python"> $ python manage.py migrate
+</code></pre>
+<p>for it to run the migrations and manage the database schema automatically.</p>
+
+<h3><b> Django Admin Interface</b></h3>
+
+<p><b>iris/admin.py </b> contains the configuration necessary to connect our iris app to the administration interface. Let’s add the model IrisData we created to the administration site and customize the way model is displayed by editing  <b>iris/admin.py </b> as below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+ <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">IrisData</span>
+ <span class="c1"># Register your models here.
+</span>
+ <span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">IrisData</span><span class="p">)</span>
+
+ <span class="k">class</span> <span class="nc">IrisDataAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+     <span class="n">list_display</span><span class="o">=</span><span class="p">(</span><span class="s">'sepal_length'</span><span class="p">,</span><span class="s">'sepal_width'</span><span class="p">,</span><span class="s">'petal_length'</span><span class="p">,</span><span class="s">'petal_width'</span><span class="p">,</span><span class="s">'species'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>For us to get access to the admin interface, we’ll need to create a user who can login to the admin site by Running the following command:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</code></pre></div></div>
+<p>enter the desired username and press enter.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Username:
+</code></pre></div></div>
+<p>You will then be prompted for your desired email address:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Email address:
+</code></pre></div></div>
+<p>then</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Password: **********
+Password (again): *********
+Superuser created successfully
+
+</code></pre></div></div>
+<p><br /></p>
+
+<p>Let run the development server again by running</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
+
+</code></pre></div></div>
+<p>In your browser enter <b>localhost:8000/admin</b></p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/admin1.jpg" /></p>
+
+<p>fill in your particulars to get access to the admin interface which should be like the figure below <br /></p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/admin2.jpg" /></p>
+
+<h3><b>Creating The Views Of The iris Application</b></h3>
+
+<p>In Django, web pages and other content are delivered by views. Each view is represented by a simple Python function
+(or method, in the case of class-based views). Django will choose a view base on the requested URL. So let’s first
+create our application views and define a URL pattern for these views.</p>
+
+<p>Before creating the views, create a sub-directory named model which resides in the iris folder and copy the saved model into that folder (<b>iris/models/iris_model.pkl</b>). Let now create the views by editing the iris/views.py
+to have</p>
+<pre><code class="language-Python">
+from datetime import datetime
+from django.shortcuts import render
+from xgboost import XGBClassifier
+import numpy as np
+from xgboost import XGBClassifier
+import joblib
+import os
+from .models import IrisData
+import posixpath
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# loading the saved model
+model=joblib.load(os.path.join(BASE_DIR,'iris/models/iris_model.pkl'))
+#,{'title':'Home Page','year':datetime.now().year,}
+def home(request):
+    return render(request,'iris/form.html')
+
+def SpeciesPrediction(request):
+    if request.method=='POST':
+
+      # receive the values entered by the user
+
+        sepal_l=request.POST['sepal_length']
+        sepal_w=request.POST['sepal_width']
+        petal_l=request.POST['petal_length']
+        petal_w=request.POST['petal_width']
+
+        """ saving the received data as a list according to the position of the features
+        in the dataset used to train the model which can be known by calling iris_data.feature_names
+        and is giving below as  
+         ['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']
+          """
+
+        data=[sepal_l,sepal_w,petal_l,petal_w]
+
+        # converting the data into array
+        data=np.array(data).reshape(-1,4)
+
+        # the expected prediction by the model based on the user input
+
+        result=model.predict(data)
+        Species = ['Setosa', 'versicolor', 'virginica']
+        result = Species[result[0]]
+
+        # saving the data into the database
+
+        save_data=IrisData(sepal_length=sepal_l,sepal_width=sepal_w,petal_width=petal_w,
+                           petal_length=petal_l,species=result )
+        save_data.save()
+        context={"result":result}
+        return render(request, 'iris/irispredict.html', context)
+
+</code></pre>
+
+<h3><b>Defining A URL Patterns For The Iris Application Views</b></h3>
+<p>Let define the urls and map them to the views created so that when a user request a url Django runs through
+each URL pattern and stops at the first one that matches the requested URL.  Django then import the view of the matching
+URL pattern and executes it. Let Define our urls by editing <b>ml_django/urls.py</b></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"""
+Definition of urls for IrisPrediction.
+"""
+
+from datetime import datetime
+from django.urls import path
+from django.contrib import admin
+from iris import  views
+
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('SpeciesPrediction',views.SpeciesPrediction,name='SpeciesPrediction'),
+    path('admin/', admin.site.urls),
+]
+
+</code></pre></div></div>
+
+<p>and finally, we will create the HTML files for the views created.</p>
+
+<h3><b>Templates Configuration</b></h3>
+
+<p>In Django, templates engines are configured under the TEMPLATES setting in the settings file so in the settings file under TEMPLATES set “DIRS” to</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">'DIRS'</span><span class="p">:</span> <span class="p">[</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span><span class="s">'templates'</span><span class="p">)],</span>
+
+       <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>and in the outer ml_django/ root directory create a directory/folder named <b>templates</b>  and then a sub-directory named <b> iris</b>. Within the iris sub-directory in the templates directory let create an HTML form name form.html that accept inputs from users  and then send that information back to the server, an irispredict.html that render the result generated by the views and layout.thml to serve as the base layout for the project.Click
+ on <b><a style="color:blue" href="/arizeblog/assets/images/python/ml_django/layout.text" target="_blank">layout.html</a>,
+ <a style="color:blue" href="/arizeblog/assets/images/python/ml_django/form.text" target="_blank">form.html</a>
+<a style="color:blue" href="/arizeblog/assets/images/python/ml_django/irispredict.text">irispredict.html</a>
+</b> to copy the files to their respective files in the templates/iris folder. The templates directory should be similar to the figure below</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/templates.jpg" /></p>
+
+<p>After copy the html files, Let now test our application on new instance from users by running</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
+
+</code></pre></div></div>
+<p>After running the command, open a Web browser and  visit http://127.0.0.1:8000/ and you will see something similar to the one below</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues.jpg" /></p>
+
+<p>Now enter the values for the features</p>
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues2.jpg" /></p>
+
+<p> and click on Predict Species for the model to predict the species based on the
+values entered </p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues3.jpg" /></p>
+
+<p>  visit http://127.0.0.1:8000/admin to accesses the admin interface and then click on <b> Data
+From Users </b> to look at the saved data from users in the database
+</p>
+
+<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/database.jpg" /></p>
+
+<p> <b>References:</b></p>
+<p>-<a href="https://docs.djangoproject.com/en/3.1/">
+Django documentation
+</a></p>
+</span>
+            </div><a class="u-url" href="/arizeblog/machine-learning-python/2021/02/05/ml-django.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended ML-Python-Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+    
+    
+    
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html">Introduction to LSTMs
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html">Introduction to Recurrent Neural Networks (RNNs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/03/22/BOWS.html">Feature Extraction with Bag of Words (BOWs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/10/Dropout.html">Dropout Regularization
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/05/ml-django.html">Deploying A Machine Learning Model Using Django
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression.html">Logistic Regression
+          </li>
+  
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/14/cross-validation.html">Cross-Validation (ML-python)
+          </li>
+  
+    
+   
+
+
+    </ul>
+  </div>
+
+  </div>
+  <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

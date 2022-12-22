@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Introduction to LSTMs | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Introduction to LSTMs" />
+<meta name="author" content="Arize Emmanuel" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras." />
+<meta property="og:description" content="In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-07T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction to LSTMs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arize Emmanuel"},"dateModified":"2021-05-07T00:00:00+01:00","datePublished":"2021-05-07T00:00:00+01:00","description":"In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.","headline":"Introduction to LSTMs","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"},"url":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-bar w3-gray">
+        <!--         
+        <a href="/arizeblog/" class="w3-bar-item w3-button">Home</a> -->
+
+
+
+        <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with Python </b></a>
+
+        <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with R </b></a>
+
+
+
+        <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black"> 
+            <b>Power Bi (DAX & M) </b></a>
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+        <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b> </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>  </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>  </a>
+        
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+            <b>VBA</b> </a>
+
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+        <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script><br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <br style="margin-top:10px;">
+<div class="w3-row">
+    <!-- Blog entries -->
+    <!-- Blog entries -->
+    <div style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Introduction to LSTMs</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2021-05-07T00:00:00+01:00" itemprop="datePublished">May 7, 2021
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">
+          By Arize Emmanuel</span></span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <hr />
+<p>In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.</p>
+
+<blockquote>
+  <p>Note: In order to understand this post, you must have basic knowledge of recurrent neural networks and Keras. You can refer to <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a> to understand these concepts:</p>
+</blockquote>
+
+<p>Modeling sequential data using coventional <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a>, sometimes encounter sequences in which the gap between the relevant information and the point where it’s needed is very large, with these kind of huge gaps, RNNs are unable connectinformation to where it’s needed. During the backpropagation phase of RNNs, in which error signals (gradients) are backpropagated through time, the recurrent hidden layers (weight matrix associated with the layers) are subject to repeated multiplications. These multiplications are determined by the number of timesteps (length of the sequence), and this might result in numerical instability for lengthy sequence. For lengthy sequence, small weights tend to lead to a situation known as <b>vanishing gradients</b> where error signals propagating backwards get so small that learning either becomes very slow or stops working altogether (error signals fowing backwards in time tend to vanish). Conversely larger weights tend to lead to a situation where error signals are so large that they can cause learning to diverge, a situation known as <b>exploding gradients</b>.</p>
+
+<p>To read more on exploding and vanishing gradients have a look at this papers
+<br />
+<a href="https://arxiv.org/pdf/1211.5063v1.pdf" target="_blank">Understanding the exploding gradient problem</a><br />
+<a href="https://www.semanticscholar.org/paper/Learning-long-term-dependencies-with-gradient-is-Bengio-Simard/d0be39ee052d246ae99c082a565aba25b811be2d" target="_blank">Learning long-term dependencies with gradient descent is difficult</a><br /></p>
+
+<p><a href="https://www.bioinf.jku.at/publications/older/2304.pdf" target="_blank">THE VANISHING GRADIENT PROBLEM DURING LEARNING RECURRENT NEURAL NETS AND PROBLEM SOLUTIONS</a><br /></p>
+
+<p>The vanishing and exploding gradients problem associated with conventional RNNs , limit their abilities when modeling sequences with long range contextual dependencies and to address these issues, more complex RNNs architectures known as Gated Neural Networks (GNNs) have been designed to mitigate these problems by introducing <strong><em>“Gating Mechanism”</em></strong>  to control the flow of information in and out of the units that comprise the network layers. There are several GNNs but in this tutorial we will learn about a notable example known Long short-term memory (LSTM) networks (<a href="http://www.bioinf.jku.at/publications/older/2604.pdf" target="_blank">Hochreiter and Schmidhuber, 1997</a>)</p>
+
+<h1 id="long-short-term-memory-networks-lstms">Long Short-Term Memory NETWORKS (LSTMs)</h1>
+
+<p>LSTM are design to remember information for long periods of time and this is acheived through the use of a <b>memory cell state denoted by \(C_{t}\) </b> which is controled by the gating mechanism. At each time step, the controllable gating mechanisms decide which parts of the inputs will be written to the memory cell state, and which parts of memory cell state will be overwritten (forgotten), regulating information flowing in and out of the memory cell state and this make LSTMs divide the context management problem into two sub-problems: removing information no longer needed from the context and adding information likely to be needed for later decision making to the context. <a href="#lstm">Figure 1</a>  is a A schematic diagram of LSTMs.</p>
+
+<p><img img="" id="lstm" class="w3-center" src="/arizeblog/assets/images/deep/keras/LSTM.png" /><span id="Fig">Figure 1</span>
+<a href="https://www.researchgate.net/figure/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell_fig5_329362532" target="_blank">source <a></a></a></p>
+
+<p>From <a href="#lstm">Figure 1,</a> the first step of the LSTM model is to decide  how to
+ to reset the content of the memory cell and this is controlled by the <b>forget gate </b> denoted as \(f_t\) and defined as</p>
+
+\[f_{t}=\sigma(x_{t}U^{f} +h_{t-1}W^{f} )\]
+
+<p>where \(W^{f}\) denotes the hidden to hidden weights with  the superscript \(f\) as a symbol indicating the forget gate, \(U^{f}\) denoting input to hidden weights. The forget gate computes the weighted sum of the previous hidden state \(h_{t−1}\) and the current input \(x_{t}\) of time step t (time steps correspond to word positions in a sentence) then passes it through a sigmoid activation function which output a vector with values between 0 and 1.  <strong><em>The forgate gate is then multiplied by the previous memory cell \(C_{t-1}\) to decide how much of the previous memory cell content to retain when computing the current memory cell state \(C_{t}\). With a forgate gate value of 0, content of the previous memory cell will be completely discarded and with a value of 1, content of the previous memory cell will be  used when computing the current memory cell</em></strong>. 
+Let defined this multiplcation as</p>
+
+\[k_{t}=C_{t-1} \odot f_{t}\]
+
+<blockquote>
+  <p>NOTE \(\odot\) the Hadamard product (also known as the element-wise product)</p>
+</blockquote>
+
+<p>The next step is to compute the actual information (create a contextual vector or Candidate Memory Cell \(C^{t}\) needed to extract from the previous hidden state and current inputs and is defined by</p>
+
+\[\tilde{C_{t}} = tanh(U^{g}x_{t} + W^{g}h_{t−1} )\]
+
+<p><b>NB:</b>
+This is a contextual vector \(\tilde{C_{t}}\) containing all possible values that needs to be
+added to the cell state.</p>
+
+<p>The model then decide how information stored in the Candidate Memory Cell is selected and this is regulated by the <b> add or input gate</b>. The input gate is defined as</p>
+
+\[i_{t} = \sigma(U^{i}x_{t} +W^{i}h_{t−1})\]
+
+<p>The <b>input gate</b> then select information needed to be added to the current memory cell state via Candidate Memory Cell and is defined as</p>
+
+\[j_{t} = \tilde{C_{t}}\odot i_{t}\]
+
+<p>we now defined the current memory cell state \(C_{t}\) as</p>
+
+\[C_{t}=k_{t}+j_{t}=C_{t-1} \odot f_{t}  + \tilde{C_{t}}\odot i_{t}\]
+
+<p><b>NB :</b> This is the Cell state that stores information and is responsible for remembering information for long period of time</p>
+
+<p>Not all information stored in the current memory cell state is required for the current hidden state, so the <b>output gate</b> then decides information required for the current hidden state and is defined as</p>
+
+\[o_{t} = \sigma(U^{o}x_{t} +W^{o}h_{t−1})\]
+
+<p>The current hidden state $h_{t}$ is then defined as</p>
+
+\[h_{t}=o_{t} \odot tanh(C_{t})\]
+
+<h1 id="let-now-implement-the-model-using-keras">Let now implement the model using keras</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers.experimental.preprocessing</span> <span class="kn">import</span> <span class="n">TextVectorization</span>
+</code></pre></div></div>
+
+<p>Loading data</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batch_size</span><span class="o">=</span><span class="mi">124</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">train_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/stackoverflow/train'</span><span class="p">,</span>
+                                                 <span class="n">subset</span><span class="o">=</span><span class="s">'training'</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                       <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+                                                 <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">val_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/stackoverflow/train'</span><span class="p">,</span>
+                                                 <span class="n">subset</span><span class="o">=</span><span class="s">'validation'</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+                                                 <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">test_data</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">preprocessing</span><span class="p">.</span><span class="n">text_dataset_from_directory</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s">'./data/stackoverflow/test'</span><span class="p">,</span>
+                                             <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Found 8000 files belonging to 4 classes.
+Using 6000 files for training.
+Found 8000 files belonging to 4 classes.
+Using 2000 files for validation.
+Found 8000 files belonging to 4 classes.
+</code></pre></div></div>
+
+<p>From the above result, there are 8000 examples of which 75% representing 6000 is used as the training set and 25% (2000) as a validation set. The data has a label categorize into 4 classes</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="n">class_names</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'index'</span> <span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s">"corresponds to "</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index 0 corresponds to  csharp
+index 1 corresponds to  java
+index 2 corresponds to  javascript
+index 3 corresponds to  python
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">train_data</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="n">y</span><span class="p">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">],</span><span class="s">'--'</span><span class="p">,</span><span class="n">train_data</span><span class="p">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">i</span><span class="p">],)</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>b'"blank boolean expression for a string in do-while loop public class studentgrades {..    string studentid;.    integer numericgrade;..    scanner input = new scanner(system.in);..public void loadstudentgrades(){.    do{.        system.out.println(""please enter a student id, or enter \'end\' to exit: "");.        studentid = input.next();.        system.out.println(""please enter numeric grade for the id above: "");.        numericgrade = input.nextint();.        map.put(studentid, numericgrade);.        }.    while (studentid !string.equals(""end"")); //this is throwing an error. how is it possible to get this to work?.    }.}...i\'m working on this class and am finding it difficult to get the while part of my do-while loop to work the way i was expecting it to. i want to say while studentid is not equal to ""end"" to go through the loop."\n'
+
+ 1 -- csharp
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="n">val_data</span><span class="o">=</span><span class="n">val_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="n">test_data</span><span class="o">=</span><span class="n">test_data</span><span class="p">.</span><span class="n">cache</span><span class="p">().</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">lower_data</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">lower</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">lower_data</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="n">lower_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">regex_replace</span><span class="p">(</span><span class="n">lower_data</span><span class="p">,</span><span class="s">"&lt;b /&gt;"</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
+   
+<span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">encoder</span><span class="o">=</span><span class="n">TextVectorization</span><span class="p">(</span><span class="n">max_tokens</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">output_mode</span><span class="o">=</span><span class="s">'int'</span><span class="p">,</span><span class="n">standardize</span><span class="o">=</span><span class="n">process_data</span><span class="p">,</span>
+                          <span class="n">output_sequence_length</span><span class="o">=</span><span class="n">sequence_length</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encoder</span><span class="p">.</span><span class="n">adapt</span><span class="p">(</span><span class="n">train_data</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LSTM</span><span class="p">(</span><span class="n">K</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">input_encoder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LSTM</span><span class="p">,</span><span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">input_encoder</span><span class="o">=</span><span class="n">input_encoder</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embed</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">input_length</span><span class="o">=</span><span class="n">sequence_length</span><span class="p">,</span>
+                                      <span class="n">output_dim</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lstm_layer</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="n">recurrent_dropout</span><span class="o">=</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">flat</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">input_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embed</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">lstm_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+        
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="o">=</span><span class="n">LSTM</span><span class="p">(</span><span class="n">input_encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span> <span class="n">optimizer</span><span class="o">=</span><span class="s">'rmsprop'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'sparse_categorical_crossentropy'</span><span class="p">,</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'acc'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span><span class="n">validation_data</span><span class="o">=</span><span class="n">val_data</span><span class="p">,</span><span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/20
+49/49 [==============================] - 16s 231ms/step - loss: 1.3839 - acc: 0.2566 - val_loss: 1.3815 - val_acc: 0.2735
+Epoch 2/20
+49/49 [==============================] - 8s 162ms/step - loss: 1.3604 - acc: 0.3101 - val_loss: 1.2764 - val_acc: 0.4270
+Epoch 3/20
+49/49 [==============================] - 8s 157ms/step - loss: 1.2614 - acc: 0.4029 - val_loss: 1.1663 - val_acc: 0.4500
+Epoch 4/20
+49/49 [==============================] - 9s 182ms/step - loss: 1.1564 - acc: 0.4484 - val_loss: 1.1934 - val_acc: 0.4285
+Epoch 5/20
+49/49 [==============================] - 8s 155ms/step - loss: 1.1034 - acc: 0.4842 - val_loss: 1.0685 - val_acc: 0.4845
+Epoch 6/20
+49/49 [==============================] - 8s 161ms/step - loss: 1.0649 - acc: 0.4994 - val_loss: 1.0873 - val_acc: 0.4920
+Epoch 7/20
+49/49 [==============================] - 8s 163ms/step - loss: 1.0293 - acc: 0.5187 - val_loss: 1.0622 - val_acc: 0.5055
+Epoch 8/20
+49/49 [==============================] - 8s 169ms/step - loss: 1.0013 - acc: 0.5511 - val_loss: 1.0052 - val_acc: 0.5310
+Epoch 9/20
+49/49 [==============================] - 8s 160ms/step - loss: 0.9938 - acc: 0.5615 - val_loss: 1.0364 - val_acc: 0.5315
+Epoch 10/20
+49/49 [==============================] - 8s 157ms/step - loss: 0.9676 - acc: 0.5777 - val_loss: 1.0216 - val_acc: 0.5515
+Epoch 11/20
+49/49 [==============================] - 8s 159ms/step - loss: 0.9291 - acc: 0.5861 - val_loss: 1.0288 - val_acc: 0.5535
+Epoch 12/20
+49/49 [==============================] - 8s 159ms/step - loss: 0.8900 - acc: 0.6114 - val_loss: 1.0212 - val_acc: 0.5575
+Epoch 13/20
+49/49 [==============================] - 8s 163ms/step - loss: 0.8357 - acc: 0.6408 - val_loss: 1.1499 - val_acc: 0.5635
+Epoch 14/20
+49/49 [==============================] - 8s 159ms/step - loss: 0.8424 - acc: 0.6491 - val_loss: 1.0042 - val_acc: 0.5900
+Epoch 15/20
+49/49 [==============================] - 9s 174ms/step - loss: 0.7966 - acc: 0.6664 - val_loss: 0.8653 - val_acc: 0.6285
+Epoch 16/20
+49/49 [==============================] - 9s 176ms/step - loss: 0.7437 - acc: 0.6879 - val_loss: 0.9403 - val_acc: 0.6265
+Epoch 17/20
+49/49 [==============================] - 8s 171ms/step - loss: 0.7550 - acc: 0.6924 - val_loss: 0.9791 - val_acc: 0.6265
+Epoch 18/20
+49/49 [==============================] - 9s 183ms/step - loss: 0.7420 - acc: 0.7027 - val_loss: 0.9143 - val_acc: 0.6355
+Epoch 19/20
+49/49 [==============================] - 9s 176ms/step - loss: 0.7129 - acc: 0.7033 - val_loss: 0.9438 - val_acc: 0.6395
+Epoch 20/20
+49/49 [==============================] - 9s 185ms/step - loss: 0.7122 - acc: 0.7035 - val_loss: 1.0339 - val_acc: 0.6300
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x2cfc07b22e8&gt;
+</code></pre></div></div>
+
+<p>let evaluate our model on the test set</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>65/65 [==============================] - 13s 172ms/step - loss: 1.0457 - acc: 0.6405
+
+
+
+
+
+[1.0457446575164795, 0.640500009059906]
+</code></pre></div></div>
+
+<p>Let use the model to predict the sample below from the test set.</p>
+
+<p>according the text data the label for the samples are as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>sample</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sample 1</td>
+      <td>python</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>sample 2</td>
+      <td>javascript</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>sample 3</td>
+      <td>java</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>sample 4</td>
+      <td>python</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sample</span><span class="o">=</span><span class="p">[</span><span class="s">"variables keep changing back to their original value inside a while loop i am doing the mitx 6.00.01x course and i am on the second problem set on the 3rd problem and i am stuck. .my code:  ..    balance = 320000.    annualinterestrate = 0.2.    monthlyinterestrate = (annualinterestrate) / 12.0.    monthlyfixedpayment = 0.    empbalance = balance.    lowerbound = round((balance)/12,2).    upperbound = (balance*(1+monthlyinterestrate)**12)/12.    monthlyfixedpayment = round( ( (lowerbound+upperbound)/2) ,2).    while tempbalance != 0: .        monthlyfixedpayment = round( ( (lowerbound+upperbound)/2) ,2)  .        for m in range(12) :.            tempbalance -= monthlyfixedpayment .            tempbalance += (monthlyinterestrate)*(tempbalance).            tempbalance = round(tempbalance,2) .        if tempbalance &amp;gt; 0:.            lowerbound = round(monthlyfixedpayment,2).            tempbalance = balance.        elif tempbalance &amp;lt; 0: .            upperbound = round(monthlyfixedpayment,2).            tempbalance = balance..    print('lowest payment: ' + str(round(monthlyfixedpayment,2)))...my code uses bisection search to generate the monthlyfixedpayment but after i get to the lines at the end that changes the upperbound or lowerbound values and then start the loop again, the lowerbound and upperbound values reset to their values to the ones outside the loop. does anyone knows how to prevent this?"</span><span class="p">,</span>
+        <span class="s">"how pass window handler from one page to another? (blank) i have a very strange problem , please donâ€™t ask me why do i need thisâ€¦.i have a page1. page1 has a link which opens new window (page2) using  window.open function..chatwindow is a handler of child window with returns from window.open function..now i'm moving from page1 to page3 (by link &amp;lt;a href=""...."" target=""_self""&amp;gt;some text&amp;lt;/a&amp;gt;). and i need to check on the page3 if page2 is close or open..how to pass handler chatwindow from page1 to page3?..thank you in advance!"</span><span class="p">,</span>
+        <span class="s">"what is the difference between text and string? in going through the blankfx tutorial i've run into the text, and it's being used where i would have thought a string would be used. is the only difference between..string foo = new string(""bat"");...and..text bar = new text(""bat"");...that bar cannot be edited, or are there other differences that i haven't been able to find in my research?"</span><span class="p">,</span>
+        <span class="s">"idiomatic blank iterating and adding to a dict i'm running through a string, creating all substrings of size 10, and adding them to a dict. this is my code,..sequence_map = {}.for i in range(len(s)):.    sub = s[i:i+10].    if sub in sequence_map:.       sequence_map[sub] += 1.    else:.       sequence_map[sub] = 1...is there a way to do this more blankically?..also how do i do the reverse blankically, as in interating through the dict and composing a list where value is equal to something?..[k for k, v in sequence_map.items()]"</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">lstm_model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample</span><span class="p">)).</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">result</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([2, 2, 1, 3], dtype=int64)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pred</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'csharp'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'java'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'javascript'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'python'</span><span class="p">)</span>
+<span class="n">pred</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javascript
+javascript
+java
+python
+</code></pre></div></div>
+
+<p>Reference</p>
+
+<p><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf">Deep Learning Architectures
+for Sequence Processing</a><br /></p>
+
+<p><a href="https://www.deeplearningbook.org/contents/rnn.html">
+Ian Goodfellow, Yoshua Bengio and Aaron Courville (2016). Deep Learning. MIT Press,pp.389-413
+</a></p>
+
+<p><a href="https://link.springer.com/article/10.1007/BF00114844">Elman, J. L. (1991). Distributed representations, simple recurrent networks, and grammatical structure. Machine learning, 7(2), 195-225.</a><br /></p>
+
+<p><a href="https://arxiv.org/pdf/1412.7753.pdf">Mikolov, T., Joulin, A., Chopra, S., Mathieu, M., &amp; Ranzato, M. A. (2014). Learning longer memory in recurrent neural networks. arXiv preprint arXiv:1412.7753.</a><br /></p>
+
+<p><a href="https://www.morganclaypool.com/doi/abs/10.2200/S00762ED1V01Y201703HLT037">
+Neural Network Methods for Natural Language Processing Synthesis Lectures on Human Language Technologies</a><br /></p>
+
+<p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a><br /></p>
+
+<p><a href=""></a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+</span>
+            </div><a class="u-url" href="/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended ML-Python-Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+    
+    
+    
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html">Introduction to LSTMs
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html">Introduction to Recurrent Neural Networks (RNNs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/03/22/BOWS.html">Feature Extraction with Bag of Words (BOWs)
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/10/Dropout.html">Dropout Regularization
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/02/05/ml-django.html">Deploying A Machine Learning Model Using Django
+          </li>
+  
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression.html">Logistic Regression
+          </li>
+  
+    
+    
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-python/2021/01/14/cross-validation.html">Cross-Validation (ML-python)
+          </li>
+  
+    
+   
+
+
+    </ul>
+  </div>
+
+  </div>
+  <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

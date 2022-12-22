@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Basics of DAX TREATAS Function | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Basics of DAX TREATAS Function" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. Using the TREATAS function we can create a virtual relationship between two tables and can also used to simplify filtering expression. In the first section of this tutorial I will use the TREATAS function to create a virtual relationship between two tables and then used it in the last section to simplify a filtering expression." />
+<meta property="og:description" content="In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. Using the TREATAS function we can create a virtual relationship between two tables and can also used to simplify filtering expression. In the first section of this tutorial I will use the TREATAS function to create a virtual relationship between two tables and then used it in the last section to simplify a filtering expression." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-21T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Basics of DAX TREATAS Function" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2022-10-21T00:00:00+01:00","datePublished":"2022-10-21T00:00:00+01:00","description":"In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. Using the TREATAS function we can create a virtual relationship between two tables and can also used to simplify filtering expression. In the first section of this tutorial I will use the TREATAS function to create a virtual relationship between two tables and then used it in the last section to simplify a filtering expression.","headline":"Basics of DAX TREATAS Function","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"},"url":"http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-bar w3-gray">
+        <!--         
+        <a href="/arizeblog/" class="w3-bar-item w3-button">Home</a> -->
+
+
+
+        <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with Python </b></a>
+
+        <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>ML. with R </b></a>
+
+
+
+        <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black"> 
+            <b>Power Bi (DAX & M) </b></a>
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+        <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b> </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>  </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>  </a>
+        
+        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+            <b>VBA</b> </a>
+
+        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+        <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script><br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <br style="margin-top:10px;">
+<div class="w3-row">
+    <!-- Blog entries -->
+    <!-- Blog entries -->
+    <div class="w3-white" style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Basics of DAX TREATAS Function</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2022-10-21T00:00:00+01:00" itemprop="datePublished">Oct 21, 2022
+                    </time></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. Using the TREATAS function we can create a virtual relationship between two tables  and can also used  to simplify filtering expression. In the first section of this tutorial I will use the TREATAS function to create a virtual relationship between two tables and then used it in the last section to simplify a filtering expression.</p>
+
+<h4 id="virtual-relationship">Virtual Relationship</h4>
+<p>The Best practice to move a filter from one table to another is to create a physical relationship between the two tables.
+What if the relationship doesn’t exist, is there a way to create virtual relationship between these two tables to mimic a physical
+relationship so that the user thinks the is relationship in place, even if there is none?. Using DAX functions we can create virtual relationship between tables that mimic the physical relationship and in this tutorial I will show how to create a virtual relationship using the TREATAS function. In order to show how we can create a virtual relationship between the Reseller and Sales tables, I have deleted the relationship between these two tables which can be seen from the data model below</p>
+
+<p><br /><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas1.jpg" /></p>
+
+<p><br /><br /></p>
+
+<p>Without any physical established relationship between the Reseller and Sales tables, let look at the amount of sales by country using <a href="https://daxstudio.org" target="_blank"> DAX Studio</a></p>
+
+<pre><code class="language-{DAX}">EVALUATE
+	SUMMARIZECOLUMNS(
+              Reseller[Country],
+             "Sales Amount",[Sales Amt]
+	)
+</code></pre>
+
+<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas2.jpg" /></p>
+
+<p>From the preceding figure we see that the result for sales amount is the same for all the countries involved because there no relationship between the two tables.</p>
+
+<p><a href="https://learn.microsoft.com/en-us/dax/treatas-function"> TREATAS</a> Applies the result of a table expression as filters to columns from an unrelated table and is define as</p>
+
+<pre><code class="language-{dax}">TREATAS(table_expression, &lt;column&gt;[, &lt;column&gt;[, &lt;column&gt;[,…]]]} )
+</code></pre>
+
+<p>With this definition let now create a virtual relationship between the two tables to filter the amount of sales by Country using  the TREATAS function. <br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas3.jpg" /></p>
+
+<p>We connected the two tables using the ResellerKey, and the preceding figure shows that the amount of sales is filtered by Country, even though there is no physical relationship between the two tables.</p>
+
+<p>Let now create a relationship between the Reseller and Sales tables using ResellerKey in power BI as  below</p>
+
+<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas4.jpg" /></p>
+
+<p>With an established relationship between the tables let check if we will get the same result
+for the amount of sales filtered by country as that of the virtual relationship</p>
+
+<p>Result of the Data model with physical relationship.<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas05.jpg" />
+<br /></p>
+
+<p>Result of the Data model with virtual relationship.<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas6.jpg" /></p>
+
+<h2 id="filtering-values-using-treatas">Filtering Values Using TREATAS</h2>
+<p>In this section of the tutorial we will be filtering values using the TREATAS function</p>
+</span>
+            </div><a class="u-url" href="/arizeblog/power-bi/2022/10/21/Treatas.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended Power-BI (DAX) Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/power-bi/2022/10/21/Treatas.html">Basics of DAX TREATAS Function
+                </li>
+                
+                 
+                 
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/power-bi/2022/10/20/Filter.html">Measures
+                </li>
+                
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                
+
+
+            </ul>
+        </div>
+    </div>
+    <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/%20/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>
