@@ -36,39 +36,46 @@
 <body class="w3-light-grey"><!-- Sidebar -->
 <div class="w3-top">
 
-    <div class="w3-bar w3-gray">
-        <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+    <div class="w3-container w3-bar w3-gray ">
+        <div style="padding-left: 100px">
 
-        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
-            <b>ML. with Python </b></a>
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
 
-        <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
-            <b>ML. with R </b></a>
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power Bi (DAX & M) </b>
+            </a>
+            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
 
 
-
-        <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black"> 
-            <b>Power Bi (DAX & M) </b></a>
-        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
-        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
-
-
-        <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+            <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+        </div>
     </div>
 
     <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
         <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
-            <b>Machine Learning Python</b> </a>
+            <b>Machine Learning Python</b>
+        </a>
 
         <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
-            <b>Machine Learning R</b>  </a>
+            <b>Machine Learning R</b>
+        </a>
 
         <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
-            <b>Power BI (DAX & M)</b>  </a>
-        
+            <b>Power BI (DAX & M)</b>
+        </a>
+
         <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
-            <b>VBA</b> </a>
+            <b>VBA</b>
+        </a>
 
         <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
         <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
@@ -84,29 +91,42 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
-</script><br>
+</script>
+<br>
     <br style="margin-top:10px;">
     <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
-        <br style="margin-top:10px;">
-<div class="w3-row" >
-<!-- Blog entries -->
-<!-- Blog entries -->
-<div class="w3-white" style="margin-right:80px;margin-left: 80px; background-color:white;">
+        <style media="screen">
+    .pad {
+        padding-top: 50px;
+        padding-right: 80px;
+        padding-bottom: 50px;
+        padding-left: 80px
+    }
+</style>
 
-<article class="post h-entry"
- itemscope itemtype="http://schema.org/BlogPosting">
+<br style="margin-top:10px;">
+<div class="w3-row pad">
+    <div class="w3-white" style="margin-right:80px;margin-left: 80px; background-color:white;">
 
-  <header class="post-header">
-    <h2 class="post-title p-name" itemprop="name headline">Cross-Validation(R)</h2>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2021-01-14T03:02:23+01:00"
-       itemprop="datePublished">Jan 14, 2021
-      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">
-          By Arize Emmanuel</span></span></p>
-  </header>
+        <article class="post h-entry"
+                 itemscope itemtype="http://schema.org/BlogPosting">
 
-  <div class="post-content e-content" itemprop="articleBody">
-   <span class="w3-container" > <p>One of the finest techniques to check the generalization power of a machine learning model is to use <strong><em>Cross-validation techniques</em></strong>. <strong>Cross-validation</strong> refers to a set of methods for measuring the performance of a given predictive model. It can be computationally expensive, because they involve fitting the same model multiple times using different subsets of the training data. Cross-validation techniques generally involves the following process:</p>
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">
+                    Cross-Validation(R)
+                </h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2021-01-14T03:02:23+01:00"
+                          itemprop="datePublished">Jan 14, 2021
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Arize Emmanuel
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>One of the finest techniques to check the generalization power of a machine learning model is to use <strong><em>Cross-validation techniques</em></strong>. <strong>Cross-validation</strong> refers to a set of methods for measuring the performance of a given predictive model. It can be computationally expensive, because they involve fitting the same model multiple times using different subsets of the training data. Cross-validation techniques generally involves the following process:</p>
 
 <ol>
   <li>
@@ -245,63 +265,59 @@ cv_model
 Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. An Introduction to Statistical Learning  with Applications in R.</a><br /></li>
 </ul>
 </span>
-  </div><a class="u-url" href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html" hidden></a>
+            </div><a class="u-url" href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html" hidden></a>
 
-</article>
-<hr>
+        </article>
+        <hr>
 
-<!-- Posts -->
-<br>
-<div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
-  <!-- About Card -->
-  <div class=" w3-margin">
-      <h4><b>Recommended ML-R-Posts</b></h4>
-    </div>
-    <ul class="w3-hoverable ">
+        <!-- Posts -->
+        <br>
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended ML-R-Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
 
                 
- 
-   
- 
-   
- 
-   
- 
-   
- 
- <li class="w3-padding-16">
-          <a href="/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html">Data Manipulation in R
-          </li>
-  
-   
- 
-   
- 
-   
- 
-   
- 
-   
- 
-   
- 
-   
- 
-   
- 
-   
- 
- <li class="w3-padding-16">
-          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R)
-          </li>
-  
-   
+                
+                
+                
+                
+                
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html">Data Manipulation in R
+                </li>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R)
+                </li>
+                
+                
 
 
-    </ul>
-  </div>
-  </div>
-  <hr>
+            </ul>
+        </div>
+    </div>
+    <hr>
 
 </div>
 <!--
@@ -348,11 +364,11 @@ Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. An Introducti
 </body>
 
 </html>
-<link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
-<link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css">
-<script id="MathJax-script" async src="/arizeblog/%20/assets/js/tex-mml-chtml.js"></script>
-<script id="MathJax-script" async src="/arizeblog/%20/assets/js/w3.js"></script>
-<script id="MathJax-script" async src="/arizeblog/%20/assets/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
 </script>
