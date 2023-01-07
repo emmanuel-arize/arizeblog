@@ -49,15 +49,17 @@
                 <b>ML. with R </b>
             </a>
             <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
-                <b>Power Bi (DAX & M) </b>
-            </a>
-            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
-            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query</b>
+                </a>
+                <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
 
 
-            <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
-        </div>
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+</div>
     </div>
 
     <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
@@ -70,15 +72,18 @@
         </a>
 
         <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
-            <b>Power BI (DAX & M)</b>
+            <b>Power BI (DAX)</b>
         </a>
 
-        <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
-            <b>VBA</b>
-        </a>
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
 
-        <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
-        <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+                <b>VBA</b>
+            </a>
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
     </div>
 </div>
 
@@ -129,6 +134,41 @@
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FILTER ( &lt;table&gt;, &lt;condition&gt; )
 </code></pre></div></div>
 <p>Using this syntax FILTER receives a table and a logical condition as parameters. In order to return a result, it iterates the table evaluating the condition on a row-by-row basis and returns all rows satisfying the condition.</p>
+
+<p>Let now create a measure <strong>Canada Sales</strong> that finds the amount of sales from Canada</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada Sales = CALCULATE(
+                        Sales[Sales Amt],
+                        FILTER(
+                                Customer,
+                                Customer[Country-Region]="Canada"
+                              )
+                      )
+
+</code></pre></div></div>
+<p>Result from the <strong>Canada Sales</strong> measure shows only sales where Customers are from or in Canada
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/filter1.jpg" />
+<br /></p>
+
+<p>Let create another measure <strong>Canada USA Sales</strong> that filter the table to return sales where a customer is either from Canada or United States,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada USA Sales = CALCULATE(
+                            Sales[Sales Amt],
+                            FILTER(
+                                    Customer,
+                                    Customer[Country-Region]="Canada" || Customer[Country-Region]="United States"
+                                    )
+                            )
+</code></pre></div></div>
+
+<p>Result from the <strong>Canada USA Sales</strong> measure shows only sales where Customers are from either Canada OR United States
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/filter2.jpg" />
+<br /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>The filter function is a simple Power BI function that allows you to iterate table on a row-by-row basis and returns all rows satisfying the condition specified.</p>
 </span>
             </div><a class="u-url" href="/arizeblog/power-bi/2022/10/20/Filter.html" hidden></a>
 
@@ -145,15 +185,18 @@
             <ul class="w3-hoverable ">
 
                  
+                 
                 <li class="w3-padding-16">
                     <a href="/arizeblog/power-bi/2022/10/21/Treatas.html">Basics of DAX TREATAS Function
                 </li>
                 
                  
+                 
                 <li class="w3-padding-16">
                     <a href="/arizeblog/power-bi/2022/10/20/Filter.html">DAX FILTER Function
                 </li>
                 
+                 
                  
                  
                  

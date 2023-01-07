@@ -1,4 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2022-12-27T06:32:19+01:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Basics of DAX TREATAS Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" rel="alternate" type="text/html" title="Basics of DAX TREATAS Function" /><published>2022-10-21T00:00:00+01:00</published><updated>2022-10-21T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"><![CDATA[<p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables  and then move on to show how we can simplify filtering expression using the TREATAS function.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-01-07T09:02:48+01:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Bullet Chart</title><link href="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html" rel="alternate" type="text/html" title="Bullet Chart" /><published>2023-01-05T00:00:00+01:00</published><updated>2023-01-05T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html"><![CDATA[<p>In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.</p>
+
+<h2 id="how-do-you-read-a-bullet-chart">How do you read a bullet chart?</h2>
+<p>A bullet chart usually encodes three different data elements:</p>
+<ol>
+  <li>An observed value known as <strong>Feature or performance Measure</strong> (performance score or the bullet). This is the primary data and is usually encoded as a bar, like the bar on a bar chart (encoded as black bar in the chart below) and centered in the plot area.</li>
+  <li>A target value known as <strong>Comparative Measure</strong> used as a target marker to compare against the Feature Measure value.  This is shown in the chart below as a short red line marker that runs perpendicular to the orientation of the chart. Whenever the <strong>Feature Measure</strong> hit or intersect the target, you know you’ve hit your target.</li>
+  <li>A qualitative Range of values used for grading. These ranges do  not only communicate the qualitative state of the featured measure but also the degree to which it resides within that state. If for instance the feature measure extends into a range that represents good, the distance that it travels into this range indicates how good it is.</li>
+</ol>
+
+<p>For example in the chart below, we are measuring the year to date (YTD) revenue rating for the year. Using this chart, we can see that the YTD rating is 80% and it is shown as a black bar. Using this rating you can easily see that your YTD rating could not hit the target value 90%  which is represented as a red line perpendicular to the black bar. Although your performance came close the target value, you could not archive your set goal or target  which is 90%.</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet1.jpg" />
+<br /></p>
+
+<h3 id="steps-to-create-a-bullet-chart-in-excel">Steps to Create a Bullet Chart in Excel</h3>
+
+<p>Using the table below we have the three different data elements namely</p>
+
+<ol>
+  <li>First four values are the qualitative range of values used for grading.</li>
+  <li>Performance score (feature measure) is the revenue rating for year.</li>
+  <li>Target value is the target that we set and wanted to archive for the year.</li>
+</ol>
+
+<p>to create the bullet chart.</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet2.jpg" />
+<br /></p>
+
+<p>With this data now</p>
+
+<ol>
+  <li>Select the needed data (in our case the entire table). After selecting the data click on the <strong>insert tab</strong> and select <strong>recommended Charts</strong>  then <strong>ALL Charts</strong>. From all Charts select Column chart and then a stacked column chart as below</li>
+</ol>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet3.jpg" />
+<br /></p>
+
+<p>and click on <strong>ok</strong> to get a chart as below</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet4.jpg" />
+<br /></p>
+<p>
+2. The  range of values on the y-axis is from 0% to 300%, let change it to have values from 0% to 100% by clicking on the
+stacked column chart then from <b>Series Options </b> under <b>Format Data Series </b> select <b>vertical (Axis) value</b> .
+After selecting vertical (Axis) value, now select <b>Axis Options</b> and click on the <b>Axis Options</b> to change the <b>maximum </b> value from 3.0 in
+</p>
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet5.jpg" />
+<br /></p>
+
+<p>to 1.0 as below</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet6.jpg" />
+<br /></p>
+<p>
+3. Right-click the stacked column chart and choose Change Series Chart Type. Use the Change Chart
+Type dialog box to change the Target series to a Stacked Line with Markers and check the checkbox under the secondary axis and click ok.
+</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet7.jpg" />
+<br /></p>
+
+<p>After clicking ok to the change, the Target series will show on the chart as a single dot as below.</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet71.jpg" />
+<br /></p>
+
+<p>
+4. Right-click on the chart and select Format Data Series, then from the <b>Series Options</b> under <b>Format Data Series</b> select <b>series "Target"</b> .
+
+Now under the <b>Fill &amp; Line </b> click on the Marker option and adjust the marker to look like a line and change the size to 20. </p>
+<p>Expand the Fill section, select <strong>solid line</strong> and change the color of the solid line to red. Expand the Border section and set the Border to No Line.
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet8.jpg" />
+<br /></p>
+
+<p>After making changes to the maker click on the <strong>Line option</strong> and expand the line section, select <strong>solid line</strong> and change the color of the solid line to red.</p>
+
+<p> 5. Right click on the new secondary axis that was added to the right side of the chart and the delete it to have a chart as below.
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet9.jpg" />
+<br />
+
+<p>
+6. Now right-click on the chart and select Format Data Series, then from the <b>Series Options</b> under <b>Format Data Series</b> select <b>series "Performance score"</b>. </p>
+
+<p> 7. In the Format Data Series dialog box, select Secondary Axis. </p>
+
+<p> 8. Still in the Format Data Series dialog box under Series Options, adjust the Gap Width property so that the Performance score series is slightly narrower than the other columns in the chart —here you are using 400% as below.
+</p>
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet10.jpg" />
+<br />
+
+<p>
+9. Still in the Format Data Series dialog box , under  the <b> Fill &amp; Line option</b>, expand the Fill section, and then select the Solid fill option to set the color of the Performance score series to black as below</p>
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet11.jpg" />
+<br />
+
+
+<p>10. At this point all that’s left to do is change the color for each qualitative range to incrementally lighter
+hues.</p>
+
+<p> 11. After changing the qualitative range to incrementally lighter hues let also change the title to YTD revenue Rating</p>
+
+The final bullet chart is given below
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet12.jpg" />
+<br />
+</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.]]></summary></entry><entry><title type="html">Basics of DAX TREATAS Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" rel="alternate" type="text/html" title="Basics of DAX TREATAS Function" /><published>2022-10-21T00:00:00+01:00</published><updated>2022-10-21T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"><![CDATA[<p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables  and then move on to show how we can simplify filtering expression using the TREATAS function.</p>
 
 <h3 id="virtual-relationship-using-treatas">Virtual Relationship using TREATAS</h3>
 <p>The Best practice to move a filter from one table to another is to create a physical relationship between the two tables
@@ -95,12 +218,127 @@ involved. What if the relationship doesn’t exist, is there a way to create vir
 <br /></p>
 
 <p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas12.jpg" />
-<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function.]]></summary></entry><entry><title type="html">DAX FILTER Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html" rel="alternate" type="text/html" title="DAX FILTER Function" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html"><![CDATA[<p>This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table  reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.</p>
+<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function.]]></summary></entry><entry><title type="html">Excel IF Function</title><link href="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Excel IF Function" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=IF(logical_test, [value_if_true], [value_if_false])
+</code></pre></div></div>
+
+<p>For example, =IF(A2=100,”High”,”Low”) says IF(A2= 100, then return High, otherwise return Low).</p>
+
+<p>Let now look at the worksheet below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/Excel/if1.jpg" />
+<br />
+Using the preceding the figure above let now rate the sales amount as <strong>high</strong> if sales amount is equal or greater than 100 or low using if less than 100 using the if function.</p>
+
+<p>Let name cell C1 AS <strong>Sales Rating</strong>,</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/Excel/if2.jpg" />
+<br /></p>
+
+<ol>
+  <li>Select the cell <strong>C2</strong></li>
+  <li>Type <strong>=IF</strong></li>
+  <li>Double click the IF command</li>
+</ol>
+
+<p><br />
+ <img class="w3-center" src="/arizeblog/assets/images/Excel/if3.jpg" />
+ <br /></p>
+
+<ol>
+  <li>Specify the condition B2&gt;=100</li>
+  <li>Type ,</li>
+  <li>Specify the value “High” for when the condition is TRUE</li>
+  <li>Type ,</li>
+  <li>Specify the value “Low” for when the condition is FALSE</li>
+  <li>Type )</li>
+  <li>Hit enter</li>
+</ol>
+
+<p><br />
+ <img class="w3-center" src="/arizeblog/assets/images/Excel/if4.jpg" />
+ <br /></p>
+
+<p>Since the value in cell B2 is greater than 100, the condition is true so the function returns “High”.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/Excel/if5.jpg" />
+<br /></p>
+
+<p>Click on cell C2 and drag it down to populate the other cells as shown below,
+<br />
+<img class="w3-center" src="/arizeblog/assets/images/Excel/if6.jpg" />
+<br /></p>
+
+<h3 id="nested-if-function">Nested IF Function</h3>
+<p>Using the IF function it is also possible to use an IF statement as a TRUE or FALSE value inside another IF function and in this way you can test for more than one condition within one function and return more than two results. Let illustrate this with an example.</p>
+
+<p>In this example we are rating the sales amount as <strong>high</strong> if THE amount is equal or greater than 150 and <strong>Medium</strong> if greater than or equal 100 but less than 150 and <strong>low</strong> otherwise using nested if function.</p>
+
+<p>Let name cell D1 AS <strong>Sales Rating 2</strong> and in cell D2 type,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=IF( B2&gt;=150, "High",
+     IF(B2&gt;=100,"Medium","Low")
+    )
+</code></pre></div></div>
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/Excel/if7.jpg" />
+<br /></p>
+
+<p>Click on cell D2 and drag it down to populate the other cells as shown below,
+<br />
+<img class="w3-center" src="/arizeblog/assets/images/Excel/if8.jpg" />
+<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a true or false condition.The condition here is referred to as logical_test and the function has the following syntax.]]></summary></entry><entry><title type="html">Power Query</title><link href="http://localhost:4000/arizeblog/power-query/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Power Query" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-query/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-query/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=IF(logical_test, [value_if_true], [value_if_false])
+</code></pre></div></div>
+
+<p>For example, =IF(A2=100,”High”,”Low”) says IF(A2= 100, then return High, otherwise return Low).</p>
+
+<p>Let now look at the worksheet below</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-Query" /><summary type="html"><![CDATA[In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a true or false condition.The condition here is referred to as logical_test and the function has the following syntax.]]></summary></entry><entry><title type="html">DAX FILTER Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html" rel="alternate" type="text/html" title="DAX FILTER Function" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html"><![CDATA[<p>This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table  reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.</p>
 
 <p>The syntax of FILTER is given as:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FILTER ( &lt;table&gt;, &lt;condition&gt; )
 </code></pre></div></div>
-<p>Using this syntax FILTER receives a table and a logical condition as parameters. In order to return a result, it iterates the table evaluating the condition on a row-by-row basis and returns all rows satisfying the condition.</p>]]></content><author><name>Arize Emmanuel</name></author><category term="Power-BI" /><summary type="html"><![CDATA[This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.]]></summary></entry><entry><title type="html">Data Manipulation in R</title><link href="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" rel="alternate" type="text/html" title="Data Manipulation in R" /><published>2022-05-06T00:00:00+01:00</published><updated>2022-05-06T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html"><![CDATA[<p>This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves</p>
+<p>Using this syntax FILTER receives a table and a logical condition as parameters. In order to return a result, it iterates the table evaluating the condition on a row-by-row basis and returns all rows satisfying the condition.</p>
+
+<p>Let now create a measure <strong>Canada Sales</strong> that finds the amount of sales from Canada</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada Sales = CALCULATE(
+                        Sales[Sales Amt],
+                        FILTER(
+                                Customer,
+                                Customer[Country-Region]="Canada"
+                              )
+                      )
+
+</code></pre></div></div>
+<p>Result from the <strong>Canada Sales</strong> measure shows only sales where Customers are from or in Canada
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/filter1.jpg" />
+<br /></p>
+
+<p>Let create another measure <strong>Canada USA Sales</strong> that filter the table to return sales where a customer is either from Canada or United States,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada USA Sales = CALCULATE(
+                            Sales[Sales Amt],
+                            FILTER(
+                                    Customer,
+                                    Customer[Country-Region]="Canada" || Customer[Country-Region]="United States"
+                                    )
+                            )
+</code></pre></div></div>
+
+<p>Result from the <strong>Canada USA Sales</strong> measure shows only sales where Customers are from either Canada OR United States
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/filter2.jpg" />
+<br /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>The filter function is a simple Power BI function that allows you to iterate table on a row-by-row basis and returns all rows satisfying the condition specified.</p>]]></content><author><name>Arize Emmanuel</name></author><category term="Power-BI" /><summary type="html"><![CDATA[This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.]]></summary></entry><entry><title type="html">Data Manipulation in R</title><link href="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" rel="alternate" type="text/html" title="Data Manipulation in R" /><published>2022-05-06T00:00:00+01:00</published><updated>2022-05-06T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html"><![CDATA[<p>This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves</p>
 
 <ul>
   <li>
@@ -1426,1374 +1664,4 @@ Using CountVectorize the text is preprocessed, tokenize and stopwords are filter
 
 <p>The term <b>“dropout”</b> refers to dropping out units in a neural network. It is a technique for addressing overfitting. It consists of randomly dropping out some fraction of the nodes (setting fraction of the units to zero (injecting noise)) in each layer before calculating subsequent layer during training and has become a standard technique for training neural networks. When dropout is applied, during training its zeros out some fraction of the nodes with probability p in each layer before calculating the subsequent layer and the resulting network can be viewed as a subset of the original network. Because the fraction of the nodes that are drop out are chosen randomly on every pass, the representations in each layer can’t depend on the exact values taken by nodes in the previous layer.</p>
 
-<p><b> Dropout rate</b> is the fraction of the nodes in a layer that are zeroed out and it’s usually set between 0 and 1</p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this article, we will learn about , what it is, how it works and we will implement it sampling using Python]]></summary></entry><entry><title type="html">Deploying A Machine Learning Model Using Django</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html" rel="alternate" type="text/html" title="Deploying A Machine Learning Model Using Django" /><published>2021-02-05T00:00:00+01:00</published><updated>2021-02-05T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/02/05/ml-django.html"><![CDATA[<p>This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code.</p>
-
-<h3><b>Lines of Code Used To Train The Model</b></h3>
-
-<p> packages needed for performing the analysis</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span><span class="p">,</span><span class="n">roc_curve</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">,</span><span class="n">confusion_matrix</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
-<span class="kn">import</span> <span class="nn">joblib</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pandas.api.types</span> <span class="kn">import</span> <span class="n">is_string_dtype</span><span class="p">,</span> <span class="n">is_numeric_dtype</span><span class="p">,</span><span class="n">is_categorical_dtype</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-</code></pre></div></div>
-<p>Loading the iris data and scaling the input variables</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iris_data</span><span class="o">=</span><span class="n">load_iris</span><span class="p">()</span>
-<span class="n">scalar</span><span class="o">=</span><span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">iris_feat</span><span class="o">=</span><span class="n">scalar</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>Splitting the dataset into training and testing sets</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span> <span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris_data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span>
-                                             <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<p>Training the model</p>
-
-<pre><code class="language-Python">xgbd=XGBClassifier(n_estimators=100,criterion='entropy', max_delta_step=6,
-                     min_samples_split=45,colsample_bytree=.4,max_depth=13,
-                     gama=10,max_features=11,min_child_weight=.4)
-xgbd.fit(X_train,y_train)
-
-</code></pre>
-
-<p>Testing the model on the test data</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_predict</span>  <span class="o">=</span> <span class="n">xgbd</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
-</code></pre></div></div>
-<p>Determining the impact of each variable on the prediction of the species</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># converting the data into a  data frame
-</span><span class="n">features</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris_data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">iris_data</span><span class="p">.</span><span class="n">feature_names</span><span class="p">)</span>
-
-<span class="c1"># RENAMING THE FEACTURES
-</span><span class="n">features</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s">"sepal length (cm)"</span><span class="p">:</span><span class="s">"sepal_length(cm)"</span><span class="p">,</span><span class="s">"sepal width (cm)"</span><span class="p">:</span><span class="s">"sepal_width(cm)"</span><span class="p">,</span>
-                         <span class="s">"petal length (cm)"</span><span class="p">:</span><span class="s">"petal_length(cm)"</span><span class="p">,</span><span class="s">"petal width (cm)"</span><span class="p">:</span><span class="s">"petal_width_(cm)"</span>
-<span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">features_impt</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">xgbd</span><span class="p">.</span><span class="n">feature_importances_</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">features</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Importances of Features'</span><span class="p">)</span>
-<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">fea</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">features_impt</span><span class="p">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/importance.jpg" /></p>
-
-<p>Creating a Confusion Matrix</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conf_mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">()</span>
-<span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_mat</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Predicted'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Actual Values'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Confusion Matrix'</span><span class="p">)</span>
-</code></pre></div></div>
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/confusion.jpg" /></p>
-
-<p>Saving the trained model</p>
-
-<pre><code class="language-Python"># create a directory named models
-os.makedirs('models')
-# SAVE THE MODEL
-joblib.dump(xgbd,'models/iris_model.pkl')
-</code></pre>
-<p>Example of how to load a saved model</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># loading the saved model
-</span><span class="n">model</span><span class="o">=</span><span class="n">joblib</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s">'models/iris_model.pkl'</span><span class="p">)</span>
-<span class="n">model</span>
-</code></pre></div></div>
-<p>After training and saving the model, we will now deploy the trained model to predict new species of iris based on users inputs using Django framework.</p>
-
-<h3><b> The Django Project (ml_django project)</b></h3>
-<p>A project is a collection of configuration which can contain multiple apps. Before creating the Django project which will be named ml_django, we need to first install Django, so from the command line run:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">Django</span>
-</code></pre></div></div>
-<p>After installing Django, cd (change directory) into a directory where you’d like to store your project and run the following command:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="err">$</span> <span class="n">django</span><span class="o">-</span><span class="n">admin</span> <span class="n">startproject</span> <span class="n">ml_django</span>
-</code></pre></div></div>
-
-<p>to create the ml_django project in your current directory. Since the ml_django project has been created let’s look at what the ml_django project contains</p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/ml_django.jpg" /></p>
-
-<p>The files are:</p>
-
-<ul>
-  <li>
-    <p>The outer <b>ml_django/ </b> root directory is just a container for the project.</p>
-  </li>
-  <li>
-    <p><b>manage.py</b> is a command-line utility that lets you interact with the ml_django project.</p>
-  </li>
-  <li>
-    <p>The inner <b>ml_django/ </b> directory is the actual Python package for the project.</p>
-  </li>
-  <li>
-    <p><b>ml_django/<strong>init</strong>.py </b> is an empty file that tells Python to treat ml_django directory as a Python module</p>
-  </li>
-  <li>
-    <p><b>ml_django/settings.py:</b> is the main configuration file for the ml_django project containing initial default settings.</p>
-  </li>
-  <li>
-    <p><b>ml_django/urls.py</b> is the URL declarations for the ml_django project. Each URL defined here is mapped to a view and it tells the project how to handle each view.</p>
-  </li>
-  <li>
-    <p><b>ml_django/wsgi.py </b> is an entry-point for WSGI-compatible web servers to serve your project.</p>
-  </li>
-</ul>
-
-<h3><b>The development server </b></h3>
-<p>Change into the outer ml_django directory and start the development server by running the following command:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
-</code></pre></div></div>
-<p><br />
-After running the command, open a Web browser and  visit http://127.0.0.1:8000/ and you will see something similar to the one below</p>
-
-<p><img src="/arizeblog/assets/images/python/ml_django/server.jpg" style="width:600px;height:300px;" />
-  <br />
- with everything working we are now set to create the iris app</p>
-<h3><b>Creating the iris app</b></h3>
-<p>An app is a Web application that does something. In our case the app will be predicting new instances of the iris species based on a user input. Let create the iris app by running the command:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-   <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">startapp</span> <span class="n">iris</span>
-</code></pre></div></div>
-
-<h3><b>Managing Static Files</b></h3>
-
-<p>Websites generally need to serve additional files such as  JavaScript files and CSS files. In Django these files are known as <strong>static files</strong>.  These static files are import factor in web development and are used in designing the UI. Django provides django.contrib.staticfiles to help you manage them. In the outer ml_django/ root directory create a
-directory/folder named <b>static</b> which will contain all our static files. Your static folder should be similar to the one below depending on the sub-folders</p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/static.jpg" /></p>
-
-<p>For us to be able use these static files we need to edit the settings file, so in your settings file move to the bottom and define STATIC_URL to be</p>
-
-<pre><code class="language-Python">   STATIC_URL = '/static/'
-</code></pre>
-<p>STATIC_URL is the base url of which the static files in the STATIC_ROOT are served</p>
-
-<p>Create another folder in the outer ml_django/ root directory named <b>static_dir</b> and beneath STATIC_URL in the settings file define</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="n">STATIC_ROOT</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span><span class="s">"/static_dir"</span><span class="p">)</span>
-</code></pre></div></div>
-<p>We have set STATIC_ROOT to the static_dir directory and this is where we’d like to serve the static files when we run</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">collectstatic</span>
-</code></pre></div></div>
-
-<p>Let now define a list of directories (STATICFILES_DIRS) in the settings file where django will look for the static files</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  STATICFILES_DIRS=('static','C:/Users/USER/Music/ml_django/static')
-</code></pre></div></div>
-
-<p>where C:/Users/USER/Music/ml_django/static is the absolute path to the static directory containing the static files. From the command-line run</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   $ python manage.py collectstatic
-</code></pre></div></div>
-<p>to copy all files from your static folders into the STATIC_ROOT directory</p>
-
-<h3><b>The Model For The Iris App </b></h3>
-<p>Since the application will be accepting input from users, we need a database to store users inputs. The model is essentially our database layout, with additional metadata. Edit the <b>iris/models.py </b> file and add the following  lines code to it</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-
-<span class="c1"># Create your models here.
-</span><span class="k">class</span> <span class="nc">IrisData</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">sepal_length</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
-    <span class="n">sepal_width</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
-    <span class="n">petal_length</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
-    <span class="n">petal_width</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">FloatField</span><span class="p">()</span>
-    <span class="n">species</span><span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">db_table</span> <span class="o">=</span> <span class="s">'IrisData'</span>
-        <span class="c1">#managed = True
-</span>        <span class="n">verbose_name</span> <span class="o">=</span> <span class="s">'data'</span>
-        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s">'Data From Users'</span>
-
-</code></pre></div></div>
-<p>which will define the models for the iris application.</p>
-
-<h3><b>Activating the Iris application</b></h3>
-<p>To keep track of our application and be able to create database tables for the model created above, we need to activate the iris app. To do so, edit the settings.py file and add under INSTALLED_APPS add <b> ‘iris.apps.IrisConfig’</b></p>
-
-<pre><code class="language-Python"># Application definition
-
-INSTALLED_APPS = [
-     'iris.apps.IrisConfig',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
-
-</code></pre>
-
-<p>Since we’ve installed the iris application into our project let run</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">makemigrations</span>
-</code></pre></div></div>
-<p>which tells Django that we’ve made some changes to the models (in this case, we’ve create a new one) and that we’d like the changes to be stored as a migration and then run</p>
-
-<pre><code class="language-Python"> $ python manage.py migrate
-</code></pre>
-<p>for it to run the migrations and manage the database schema automatically.</p>
-
-<h3><b> Django Admin Interface</b></h3>
-
-<p><b>iris/admin.py </b> contains the configuration necessary to connect our iris app to the administration interface. Let’s add the model IrisData we created to the administration site and customize the way model is displayed by editing  <b>iris/admin.py </b> as below:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
- <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
- <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">IrisData</span>
- <span class="c1"># Register your models here.
-</span>
- <span class="o">@</span><span class="n">admin</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">IrisData</span><span class="p">)</span>
-
- <span class="k">class</span> <span class="nc">IrisDataAdmin</span><span class="p">(</span><span class="n">admin</span><span class="p">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-     <span class="n">list_display</span><span class="o">=</span><span class="p">(</span><span class="s">'sepal_length'</span><span class="p">,</span><span class="s">'sepal_width'</span><span class="p">,</span><span class="s">'petal_length'</span><span class="p">,</span><span class="s">'petal_width'</span><span class="p">,</span><span class="s">'species'</span><span class="p">)</span>
-
-</code></pre></div></div>
-
-<p>For us to get access to the admin interface, we’ll need to create a user who can login to the admin site by Running the following command:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
-</code></pre></div></div>
-<p>enter the desired username and press enter.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Username:
-</code></pre></div></div>
-<p>You will then be prompted for your desired email address:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Email address:
-</code></pre></div></div>
-<p>then</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Password: **********
-Password (again): *********
-Superuser created successfully
-
-</code></pre></div></div>
-<p><br /></p>
-
-<p>Let run the development server again by running</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
-
-</code></pre></div></div>
-<p>In your browser enter <b>localhost:8000/admin</b></p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/admin1.jpg" /></p>
-
-<p>fill in your particulars to get access to the admin interface which should be like the figure below <br /></p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/admin2.jpg" /></p>
-
-<h3><b>Creating The Views Of The iris Application</b></h3>
-
-<p>In Django, web pages and other content are delivered by views. Each view is represented by a simple Python function
-(or method, in the case of class-based views). Django will choose a view base on the requested URL. So let’s first
-create our application views and define a URL pattern for these views.</p>
-
-<p>Before creating the views, create a sub-directory named model which resides in the iris folder and copy the saved model into that folder (<b>iris/models/iris_model.pkl</b>). Let now create the views by editing the iris/views.py
-to have</p>
-<pre><code class="language-Python">
-from datetime import datetime
-from django.shortcuts import render
-from xgboost import XGBClassifier
-import numpy as np
-from xgboost import XGBClassifier
-import joblib
-import os
-from .models import IrisData
-import posixpath
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# loading the saved model
-model=joblib.load(os.path.join(BASE_DIR,'iris/models/iris_model.pkl'))
-#,{'title':'Home Page','year':datetime.now().year,}
-def home(request):
-    return render(request,'iris/form.html')
-
-def SpeciesPrediction(request):
-    if request.method=='POST':
-
-      # receive the values entered by the user
-
-        sepal_l=request.POST['sepal_length']
-        sepal_w=request.POST['sepal_width']
-        petal_l=request.POST['petal_length']
-        petal_w=request.POST['petal_width']
-
-        """ saving the received data as a list according to the position of the features
-        in the dataset used to train the model which can be known by calling iris_data.feature_names
-        and is giving below as  
-         ['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']
-          """
-
-        data=[sepal_l,sepal_w,petal_l,petal_w]
-
-        # converting the data into array
-        data=np.array(data).reshape(-1,4)
-
-        # the expected prediction by the model based on the user input
-
-        result=model.predict(data)
-        Species = ['Setosa', 'versicolor', 'virginica']
-        result = Species[result[0]]
-
-        # saving the data into the database
-
-        save_data=IrisData(sepal_length=sepal_l,sepal_width=sepal_w,petal_width=petal_w,
-                           petal_length=petal_l,species=result )
-        save_data.save()
-        context={"result":result}
-        return render(request, 'iris/irispredict.html', context)
-
-</code></pre>
-
-<h3><b>Defining A URL Patterns For The Iris Application Views</b></h3>
-<p>Let define the urls and map them to the views created so that when a user request a url Django runs through
-each URL pattern and stops at the first one that matches the requested URL.  Django then import the view of the matching
-URL pattern and executes it. Let Define our urls by editing <b>ml_django/urls.py</b></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"""
-Definition of urls for IrisPrediction.
-"""
-
-from datetime import datetime
-from django.urls import path
-from django.contrib import admin
-from iris import  views
-
-
-urlpatterns = [
-    path('', views.home, name='home'),
-    path('SpeciesPrediction',views.SpeciesPrediction,name='SpeciesPrediction'),
-    path('admin/', admin.site.urls),
-]
-
-</code></pre></div></div>
-
-<p>and finally, we will create the HTML files for the views created.</p>
-
-<h3><b>Templates Configuration</b></h3>
-
-<p>In Django, templates engines are configured under the TEMPLATES setting in the settings file so in the settings file under TEMPLATES set “DIRS” to</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s">'DIRS'</span><span class="p">:</span> <span class="p">[</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span><span class="s">'templates'</span><span class="p">)],</span>
-
-       <span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div></div>
-<p>and in the outer ml_django/ root directory create a directory/folder named <b>templates</b>  and then a sub-directory named <b> iris</b>. Within the iris sub-directory in the templates directory let create an HTML form name form.html that accept inputs from users  and then send that information back to the server, an irispredict.html that render the result generated by the views and layout.thml to serve as the base layout for the project.Click
- on <b><a style="color:blue" href="/arizeblog/assets/images/python/ml_django/layout.text" target="_blank">layout.html</a>,
- <a style="color:blue" href="/arizeblog/assets/images/python/ml_django/form.text" target="_blank">form.html</a>
-<a style="color:blue" href="/arizeblog/assets/images/python/ml_django/irispredict.text">irispredict.html</a>
-</b> to copy the files to their respective files in the templates/iris folder. The templates directory should be similar to the figure below</p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/templates.jpg" /></p>
-
-<p>After copy the html files, Let now test our application on new instance from users by running</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py runserver
-
-</code></pre></div></div>
-<p>After running the command, open a Web browser and  visit http://127.0.0.1:8000/ and you will see something similar to the one below</p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues.jpg" /></p>
-
-<p>Now enter the values for the features</p>
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues2.jpg" /></p>
-
-<p> and click on Predict Species for the model to predict the species based on the
-values entered </p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/entervalues3.jpg" /></p>
-
-<p>  visit http://127.0.0.1:8000/admin to accesses the admin interface and then click on <b> Data
-From Users </b> to look at the saved data from users in the database
-</p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/python/ml_django/database.jpg" /></p>
-
-<p> <b>References:</b></p>
-<p>-<a href="https://docs.djangoproject.com/en/3.1/">
-Django documentation
-</a></p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[This is a tutorial on how to deploy a machine learning model using Django, by first training the model, save the trained model and then deploy it using Django. The deployed model will then predict new instances of inputs from users. After prediction based on the user input, the received user input and the predicted outcome will be saved into the project database. The model to be deployed was trained on the famous (Fisher’s or Anderson’s) iris data which has four features namely sepal length and width and petal length and width measured in centimeters and a label named species which has three iris species (categories), namely Iris setosa, versicolor, and virginica. Since this tutorial is about how to deploy a machine learning model, instead of giving a detailed explanation of the model, I will only give the lines of code used to train the mode and a heading describing the functions of the code.]]></summary></entry><entry><title type="html">Logistic Regression</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression.html" rel="alternate" type="text/html" title="Logistic Regression" /><published>2021-01-24T00:00:00+01:00</published><updated>2021-01-24T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/01/24/Logistic-Regression.html"><![CDATA[<p>In the previous section [<a href="/arizeblog/deeplearning/deep-learning/2021/01/16/Linear-Regression.html">Linear Regression</a>], we talked about linear regression which deals with quantitative target variable, answering the questions how much? such as predicting the price of a house and  the salary of an employee. In practice, we are more often interested in making categorical assignments by mapping an instance to a category of the target variable which may contain two or more different categories. Classification problems ask the question not how much? but which one (group or class) does an instance belongs to such as a boy or a girl. Classification problems include Spam e-mail filtering in which spam is taken as the positive class and ham as the negative class, comments classification where comments are classified as either positive or negative,  medical diagnosis where having a particular disease is assigned the positive class and credit card fraud detection. We consider a problem to be a classification problem when dealing with qualitative (categorical) target variable with the aim of assigning an input described by vector \(X_{i}\) to one of the n discrete categories (classes) \(C_{i}\)  where \(i = 1,2 \cdots,n\).</p>
-
-<p>A classifier is a map \(f(X_{i}) \rightarrow C_{i}\)</p>
-
-<p>There are numerous classification methods that can be used to predict categorical outcomes including support vector machines (SVM) and decision trees  but this tutorial is based on logistic regression (neural network).</p>
-
-<p> Before describing logistic regression since we need some packages for the implementation of the model, the code below imports the needed packages for this tutorials </p>
-<div class="w3-container">
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-from sklearn.datasets import load_iris
-import torch
-import torch.nn as nn
-import pandas as pd
-from torch.utils.data import DataLoader,TensorDataset
-import numpy as np
-</code></pre>
-</details>
-<br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-from sklearn.datasets import load_iris
-import pandas as pd
-import mxnet
-from mxnet import autograd,np,npx,gluon,nd
-from mxnet.gluon import nn
-npx.set_np()</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-from sklearn.datasets import load_iris
-import pandas as pd
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras import layers,Model
-from tensorflow import keras</code></pre>
-</details>
-</div>
-<p><br /></p>
-
-<blockquote>
-  <p>NOTE:    In this tutorial the famous iris dataset will be used.
-     <strong>Description of the dataset</strong> . –
-     The famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica</p>
-</blockquote>
-
-<p>Let now load the dataset and display the first three rows of the input features</p>
-<p><br /></p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span><span class="o">=</span><span class="n">load_iris</span><span class="p">()</span>
-<span class="n">data</span><span class="p">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
-</code></pre></div></div>
-<p><img class="w3-center" src="/arizeblog/assets/images/deep/logistic/threerows.jpg" />
-<br /></p>
-<p> The code below convert the arrays into a dataframe, concatenate both the target and the input features into a single dataframe and display the last five rows.
-</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># converting the input features into a dataframe
-</span><span class="n">train_data</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="p">.</span><span class="n">feature_names</span><span class="p">)</span>
-<span class="c1"># converting the target variable into a dataframe
-</span><span class="n">y_data</span><span class="o">=</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">target</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'species'</span><span class="p">])</span>
-<span class="c1"># concatinating both the target and the input features into a
-#single dataframe
-</span><span class="n">train_data</span><span class="p">[[</span><span class="s">'species'</span><span class="p">]]</span><span class="o">=</span><span class="n">y_data</span><span class="p">[[</span><span class="s">'species'</span><span class="p">]]</span>
-<span class="n">train_data</span><span class="p">.</span><span class="n">tail</span><span class="p">()</span>
-</code></pre></div></div>
-<p><br />
-<img class="w3-center" src="/arizeblog/assets/images/deep/logistic/last5rows.jpg" />
-<br /></p>
-
-<p>Since the target variable has 3 species (three classes) of iris namely Iris setosa (0), versicolor(1), and virginica (2), the code below convert the data into a binary problem by dropping all virginica (2) observations</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">[</span><span class="n">train_data</span><span class="p">[</span><span class="s">'species'</span><span class="p">]</span> <span class="o">&lt;</span><span class="mi">2</span><span class="p">]</span>
-</code></pre></div></div>
-<p><br /></p>
-
-<h3><b> Logistic Regression</b></h3>
-<p>Logistic regression is one of the most popular classification methods.
-Although it’s named regression and has the same underlying method as that of linear regression, it is not a regression method but rather a classification method. The simplest classification problem involves problems in which the target variable contain only two categories which are usually labeled <b>1</b> for the positive class (y=1|x) and  <b>O</b> for negative class (y=0|x) and are often called <b>binary classification</b>.</p>
-
-<p><b>Logistic regression</b> is a probabilistic binary classifier which estimates, for each data point, the conditional probability that it belongs to one of the categories of the target variable. It can be used to classify an observation into one of the two categories from a set of both continuous or categorical predictor variables. By setting a threshold <b>r</b>, we classified output with probability greater than the threshold as one class usually the class labelled <b>1</b> and values below the threshold as belonging to the class labelled <b>0</b>.</p>
-
-<p>Recall from linear regression</p>
-
-\[\hat{y}= w^{T}x+b\]
-
-<p><br />
-Since we are interested in mapping an instance to a class which is either 0 or 1, we want the model to predict the probability of a instance as either belonging to class 0 or 1, so instead of output from the linear regression model which can have values less than \(0\) or greater than \(1\), we will modify the output by running the output from the linear function through a logistic sigmoid activation function \(\sigma\) to output values within the range of [0,1]. Using the sigmoid function, it first computes the real-valued score from \(w^{T}x+b\) and then squashes it between [0,1] to turn the score into a probability score.</p>
-
-<blockquote>
-  <p>Note:   The sigmoid function \(\sigma\) is sometimes called  logistic function</p>
-</blockquote>
-
-<p>Logistic function is defined as</p>
-
-\[\hat{y} =\sigma(z)\]
-
-<p><br />
-where</p>
-
-\[\sigma(z)=\frac{1}{1+\exp(-z)}\]
-
-<p>and z is the linear function consisting of the input data and their associated weights and bias. Thus</p>
-
-\[z=\sum_{i=1}^{n}W_{i}^{T}X_{i} +b_{i}\]
-
-<p><br />
-Setting the threshold at r, the decision rule is of the form</p>
-
-\[\hat y =
-  \begin{cases}
-    1       &amp; \quad \text{if } \sigma(z)  \text{ } \geq \text{r}\\
-    0  &amp; \quad \text{if } \sigma(z) \text{} &lt; \text{r}
-  \end{cases}\]
-
-<p><br />
-The model then uses the learned parameters (weights and bias) from the training data, to make a classification on newly unseen instance or example. Each input feature has an associated weight.</p>
-
-<p><br />
-Let now define the logistic model and initialized it parameters
-<br /></p>
-
-<div class="w3-container">
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-def sigmoid(z):
-    return 1/(1+torch.exp(-z))
-
-class Logistic_Regression1(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.layer1=nn.Linear(4,1)
-
-    def forward(self,x):
-        linear=self.layer1(x)
-        return sigmoid(linear)
-model=Logistic_Regression1()
-</code></pre>
-</details>
-<br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-def sigmoid(z):
-    return 1/(1+np.exp(-z))
-
-class Logistic_Regression(nn.Block):
-    def __init__(self):
-        super().__init__()
-        with self.name_scope():
-            self.w=self.params.get('weight',
-                   init=mxnet.init.Normal(sigma=0.5),shape=(4,1))
-            self.b=self.params.get("bias",
-                    init=mxnet.init.Normal(sigma=0.5),shape=(1))
-    def forward(self,x):
-        linear=np.dot(x,self.w.data())+self.b.data()
-        return sigmoid(linear)
-model=Logistic_Regression()
-model.initialize()
-        </code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-def sigmoid(z):
-    return 1/(1+tf.exp(-z))
-
-class Linear(layers.Layer):
-    def __init__(self):
-        super().__init__()
-        self.w=self.add_weight(shape=(4,1),
-                               initializer="random_normal",
-                               trainable=True)
-        self.b=self.add_weight(shape=(1,),
-                               initializer="zeros",
-                               trainable=True)
-    def call(self,x):
-        return tf.matmul(x,self.w)+self.b
-
-class Logistic_Regression(Model):
-    def __init__(self):
-        super().__init__()
-        self.linear=Linear()
-    def call(self,inputs):
-        linear=self.linear(inputs)
-        return sigmoid(linear)
-
-model=Logistic_Regression()
-</code></pre>
-</details>
-</div>
-<p><br /></p>
-
-<p>To determine how good or bad the model is generalizing, we need a performance measure to evaluate the model.</p>
-
-<h3><b> Loss (Cost or Objective) Function</b></h3>
-<p>In classification problem where we are interested in assigning an observation to a class label and as such we need a loss function to measure the difference between the model’s predicted class and the actual class. Since only two discrete outcomes (categories) are involved, using the maximum likelihood principle, the optimal model parameters w and b are those that maximize the likelihood of the entire dataset. For a dataset of \((x_{i},y_{i})\) where  \(y_{i} \in \{0,1\}\) the likelihood function can be written as</p>
-
-\[P(y|x,w)=\prod_{i}^{n} \hat y^{y_{i}} (1-\hat y)^{1-y_{i}}\]
-
-<p><br />
-Maximizing the product of the exponential function, might look difficult so without changing the loss function we can simplify things by maximizing the log  likelihood of \(P(y|x,w)\) which requires taking the log on both sides of the equation <br /></p>
-
-\[\log{P(y|x,w)}=log ( \hat y^{y_{i}} (1-\hat y)^{1-y_{i}}) =y_{i}log \hat y + (1-y_{i})log(1 -\hat y)\]
-
-<p><br /></p>
-
-<p>Since maximization problem is equivalent to minimizing the  negative log likelihood (NLL) and Obtaining optimal model parameters involves minimizing the loss function, so instead of maximizing, we will minimize the loss function (cost or objective)
- by negating the log likelihood defined by<br /></p>
-
-\[\ell(w)=-\sum_{i}^{n}(y_{i}log \hat y + (1-y_{i})log(1 -\hat y))\]
-
-<p><br />
-and is known as the <b> binary cross entropy</b></p>
-
-<p><b>Binary cross entropy</b> will be our lost function and is defined as</p>
-
-\[L(y,\hat{y})=-\frac{1}{n}\sum_{i=1}^{n}(y_{i}log \hat y + (1-y_{i})log(1 -\hat y) )\]
-
-<p> The code below defines binary cross entropy loss function</p>
-
-<div class="w3-container">
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-loss=nn.BCELoss()
-</code></pre>
-</details>
-<br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-loss=gluon.loss.SigmoidBCELoss()
-        </code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-loss=keras.losses.BinaryCrossentropy()
-</code></pre>
-</details>
-</div>
-<p><br /></p>
-
-<h3><b>Updating Model Parameters</b></h3>
-<h4><b> Gradient Descent</b></h4>
-<p>Gradient Descent is a generic optimization algorithm capable of finding the optimal solutions to a wide range of problems with the goal of iteratively reducing the error by tweaking (updating) the parameters in the direction that incrementally lowers the loss function. During training we want to automatically update the model parameters in order to the find the best parameters that minimize the error. With</p>
-
-\[\hat{y}=\frac{1}{1+\exp(-z)}\]
-
-<p><br /> where  \(z=XW+b\) and the loss function defined to be</p>
-
-\[L(y,\hat{y})=-\frac{1}{n}\sum_{i=1}^{n}(y_{i}log \hat y + (1-y_{i})log(1 -\hat y) )\]
-
-<p><br /></p>
-
-<p>updating the parameter W using stochastic gradient descent(SGD) will be
-<br /></p>
-
-\[W_{i+1}=W_{i}- \frac{\beta \frac{\partial L}{\partial W}}{n}\]
-
-<p>where
-<br /></p>
-
-\[\frac{\partial{L}}{\partial{W}}=\frac{\partial{L}}{\partial \hat y} \frac{\partial \hat y}{\partial z} \frac{\partial z}{\partial W}\]
-
-<p><br />
- <br /></p>
-
-<p>\(\frac{\partial L}{\partial \hat y}= -y \frac{1}{\hat y}-(1-y)\frac{1}{(1-\hat y)}\),    \(\frac{\partial \hat y}{\partial z}=\frac{exp(-z)}{(1+exp(-z))^{2}}=\hat y(1- \hat y)\)</p>
-
-<p>,        \(\frac{\partial z}{\partial W}=x\)</p>
-
-<p><br /></p>
-<p>The code below defines SGD with the learning rate as 0.05</p>
-
-<div class="w3-container">
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-optimizer=torch.optim.SGD(model.parameters(),lr = 0.05 )
-</code></pre>
-</details>
-<br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-optimizer=gluon.Trainer(model.collect_params(),"sgd",
-                      {'learning_rate':0.05})
-        </code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-optimizer=keras.optimizers.SGD(learning_rate=0.05))
-</code></pre>
-</details>
-</div>
-<p><br /></p>
-
-<h3><b>Feature Scaling or transformation</b></h3>
-<p>Numerical features are often measured on different scales and this variation in scale may pose problems to modelling the data correctly. With few exceptions, variations in scales of numerical features often lead to machine Learning algorithms not performing well. When features have different scales, features with higher magnitude are likely to have higher weights and this affects the performance of the model.</p>
-
-<p><em>Feature scaling is a technique applied as part of the data preparation process in machine learning to put the numerical features on a common scale without distorting the differences in the range of values.</em>
-There are many feature scaling techniques but We will only discuss <b>Standardization(Z-score)</b></p>
-
-<h4><b>  Standardization(Z-score)</b></h4>
-<p>When Z-score is applied to a input feature makes the  feature have a zero mean by subtracting the mean of the feature from the data points and then it divides by the standard deviation so that the resulting distribution has unit variance.</p>
-
-\[x_{z-score}= \frac{x-\bar{x}}{ \sigma}\]
-
-<p>since all features in our dataset are numerical we are going to scale them using Z-score</p>
-
-<p><b>Note: the target values is generally not scaled</b></p>
-<p> The code below scaled the data, shuffle it and convert it to tensors</p>
-
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-train_data.iloc[:,:-1]=train_data.iloc[:,:-1].apply(lambda x:
-                           (x-np.mean(x))/np.std(x))
-train_data=np.array(train_data)
-np.random.shuffle(train_data)
-input_features=train_data[:,:4]
-labels=train_data[:,4]
-input_features=torch.FloatTensor(input_features)
-labels=torch.FloatTensor(labels)
-</code>
-</pre>
-</details>
-<p><br /></p>
-
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-train_data.iloc[:,:-1]=train_data.iloc[:,:-1].apply(lambda x:
-                                  (x-x.mean())/x.std())
-train_data=np.array(train_data)
-np.random.shuffle(train_data)
-input_features=train_data[:,:4]
-labels=train_data[:,4]</code>
-</pre>
-</details>
-<p><br /></p>
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-train_data.iloc[:,:-1]=train_data.iloc[:,:-1].apply(lambda x:
-                                    (x-np.mean(x))/np.std(x))
-train_data=np.array(train_data)
-np.random.shuffle(train_data)
-input_features=train_data[:,:4]
-labels=train_data[:,4]
-</code></pre></details>
-<p><br /></p>
-
-<h3><b> Data iterators</b></h3>
-<p>To update parameters we need to iterate through our data points and grab batches of size 30 of the data points at a time and used these batches to update the parameters<br /></p>
-
-<div>
-<br />
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code>
-def data_iter(features,labels,batch_size):
-    dataset=TensorDataset(*(features,labels))
-    dataloader=DataLoader(dataset=dataset,batch_size=batch_size,
-                           shuffle=True)
-    return dataloader
-batch_size=30
-data_iter=data_iter(input_features,labels,batch_size)
-</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code>
-def data_iter(data_arrays, batch_size):
-    dataset=gluon.data.ArrayDataset(*data_arrays)
-    dataloader=gluon.data.DataLoader(dataset,batch_size,shuffle=True)
-    return dataloader
-batch_size=30
-data_iter = data_iter((input_features,labels), batch_size)</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code>
-def data_iter(features,labels, batch_size):
-    dataset=tf.data.Dataset.from_tensor_slices((features,labels))
-    dataloader=dataset.shuffle(buffer_size=500).batch(batch_size)
-    return dataloader
-batch_size=30
-data_iter = data_iter(input_features,labels, batch_size)</code></pre>
-</details><br />
- </div>
-
-<p> We finally train the logistic regression model</p>
-<div class="w3-container">
-<br /><details>
-<summary class="w3-button">PYTORCH</summary>
-<img class="w3-center" src="/arizeblog/assets/images/deep/logistic/pytorch.jpg" />
-</details><br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<img class="w3-border" src="/arizeblog/assets/images/deep/logistic/mxnet.jpg" />
-</details>
-<br />
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-num_epochs = 20
-for epoch in range(num_epochs+1):
-    for X,y in data_iter:
-        with tf.GradientTape() as tape:
-            y_hat=model(X)
-            loss_value=loss(y_hat,y)
-        gradient=tape.gradient(loss_value,model.trainable_weights)
-        optimizer.apply_gradients(zip(gradient, model.trainable_weights))
-    if epoch %5==0:
-        print('epoch %d, loss %f'%(epoch,loss_value))
-
-
-<img class=" w3-border" src="/arizeblog/assets/images/deep/logistic/keras.jpg" />
-
-</code></pre>
-</details>
-<br />
-</div>
-
-<h2> References:</h2>
-
-<ul>
-  <li>
-    <p><a href="https://www.amazon.com/Machine-Learning-Optimization-Perspective-Developers/dp/0128015225" target="_blank"> Sergios Theodoridis.
-Machine Learning: A Bayesian
-and Optimization Perspective.</a><br /></p>
-  </li>
-  <li><a href="https://mitpress.mit.edu/books/machine-learning-1" target="_blank">Kevin P. Murphy. Machine Learning A Probabilistic Perspective.</a><br /></li>
-  <li><a href="http://d2l.ai/chapter_linear-networks/linear-regression.html" target="_blank">Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola.   Dive into Deep Learning.</a><br /></li>
-  <li><a href="https://www.springer.com/series/417" target="_blank">
-Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. An Introduction to Statistical Learning  with Applications in R.</a><br /></li>
-  <li><a href="https://www.tensorflow.org/tutorials" target="_blank">Tensorflow.</a><br /></li>
-  <li><a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" target="_blank"> LEARNING PYTORCH WITH EXAMPLES.</a><br /></li>
-</ul>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In the previous section [Linear Regression], we talked about linear regression which deals with quantitative target variable, answering the questions how much? such as predicting the price of a house and the salary of an employee. In practice, we are more often interested in making categorical assignments by mapping an instance to a category of the target variable which may contain two or more different categories. Classification problems ask the question not how much? but which one (group or class) does an instance belongs to such as a boy or a girl. Classification problems include Spam e-mail filtering in which spam is taken as the positive class and ham as the negative class, comments classification where comments are classified as either positive or negative, medical diagnosis where having a particular disease is assigned the positive class and credit card fraud detection. We consider a problem to be a classification problem when dealing with qualitative (categorical) target variable with the aim of assigning an input described by vector \(X_{i}\) to one of the n discrete categories (classes) \(C_{i}\) where \(i = 1,2 \cdots,n\).]]></summary></entry><entry><title type="html">Linear Regression</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/01/16/Linear-Regression.html" rel="alternate" type="text/html" title="Linear Regression" /><published>2021-01-16T00:00:00+01:00</published><updated>2021-01-16T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/01/16/Linear-Regression</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/01/16/Linear-Regression.html"><![CDATA[<hr />
-<p>layout: python-post
-title: Linear Regression
-category: machine-learning-python
-author: Arize Emmanuel
-#tag: Linear Regresion with mxnet,keras and pytorch
-comments: true
-editor_options:
-  markdown:
-    wrap: 72
-—</p>
-
-<p>This tutorial is an introduction to linear regression analysis with an implementation in pytorch, mxnet and keras.<br /></p>
-<h3><b>Introduction</b></h3>
-<p><b>linear regression</b> is a supervised learning algorithm and one of the most widely used model for regression analysis. In regression, we are interested in predicting a quantitative (continuous) target (response) variable represented by \(Y\) from one or more predictors(features, inputs, explanatory variables) represented by \(X\). It asserts that the target variable is a linear function of the predictors.</p>
-
-<p><b>Suppose</b> as a data scientist in your company, you are tasked to predict
-the impact of three advertising media ( YouTube, Facebook and newspaper) on sales, because your company wants to know whether to invest in these media or not and if yes, which of these media has the highest impact on sales. Using machine learning techniques, our goal is to be able to generalized well on newly unseen data points and since the data which will be used in testing the model are usually not available, the available dataset are usually divided into training data or training set (usually 70-80% of the dataset) which will be used in training the model and the rest as testing set on which the trained model will be tested to determine the predicting power of the model because after the model has trained and deployed, it will be predicting similar (new) but unseen inputs. The rows of the dataset are called instances (observations or examples) and what we want to predict is called a target (label or dependent variable or response). The variables upon which the predictions are based are called features (covariates or independent variables).</p>
-
-<p> As a data scientist you may first ask</p>
-<ul>
-  <li>
-    <p>Whether there is a relationship between the media and sales, and If there is a relationship, is it negative (negative in the sense that when one increases the other decreases and vice versa) or positive (when one increases the other increases).</p>
-  </li>
-  <li>
-    <p>Does these advertising media have high or low impact on sales and vice versa. How strong is the relationship between these features and sales. Which of these features has the highest contribution to sales increment.</p>
-  </li>
-  <li>
-    <p>Is the relationship linear?</p>
-  </li>
-</ul>
-
-<p> Since we need some packages for the implementation of the model the code below imports the needed packages for this tutorials </p>
-<div class="w3-container">
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-import torch
-import numpy as np
-from torch.utils.data import DataLoader,TensorDataset
-import pandas as pd
-from pandas.plotting import scatter_matrix
-import matplotlib.pyplot as plt
-torch.manual_seed(100)
-%matplotlib inline
-</code></pre>
-</details>
-<br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-%matplotlib inline
-import d2l
-from mxnet import autograd, np, npx,gluon
-import mxnet
-from pandas.plotting import scatter_matrix
-import pandas as pd
-import matplotlib.pyplot as plt
-npx.set_np()
-mxnet.random.seed(100)</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-%matplotlib inline
-import numpy as np
-import pandas as pd
-from pandas.plotting import scatter_matrix
-import tensorflow as tf
-import matplotlib.pyplot as plt
-tf.random.set_seed(100)
-</code></pre>
-</details>
-</div>
-<p><br /></p>
-
-<p>To determine the impact of the media on sales, we need data collected based on the previous amount of money invested into these media and their corresponding sales. In this tutorials the marketing dataset to used can be download here [<a href="/arizeblog/assets/data/marketing.csv">Marketing Data</a>]. After downloading the dataset placed it in a folder named data.</p>
-<p>Let now load the data and display the first four rows.</p>
-
-<pre><code class="language-{python},">
-marketing=pd.read_csv("data/marketing.csv",
-                       index_col=0)
-marketing.head(4)
-</code></pre>
-<p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/deep/pytorch/marketing4row.jpg" /></p>
-
-<p>With the dataset, let now explore the relationship between the media and sales through graphs.</p>
-<p>The graph between YouTube and sales shows a strong positive relationship and for the company to increase sales it seems reasonably right to increase YouTube advertisement</p>
-<pre><code class="language-{python},">
-
-plt.scatter(marketing.iloc[:, 0],
-                  marketing.iloc[:, 3], 2)
-plt.xlabel("Youtude")
-plt.ylabel("Sales")
-plt.title("Youtude vrs Sales")
-</code></pre>
-<p><br /></p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/youtude.jpg" /></p>
-
-<p> The graph between Facebook and sales shows a positive relationship which is not all that strong. Although the relationship is not strong but looking at the graph Facebook advertisement is still likely to increase (the impact may not be high) sales </p>
-<pre><code class="language-{python},">
-
-plt.scatter(marketing.iloc[:, 1],
-                     marketing.iloc[:, 3],s=3);
-plt.xlabel("Facebook")
-plt.ylabel("Sales")
-plt.title("Facebook vrs Sales"))
-</code></pre>
-<p><br /></p>
-
-<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/facebook.jpg" /></p>
-
-<p>There seems to be no relationship between newspaper and sales and that newspaper advertisement is likely to be a waste of money</p>
-
-<pre><code class="language-{python},">
-
-plt.scatter(marketing.iloc[:, 2],
-               marketing.iloc[:, 3],s=1)
-plt.xlabel("News Paper")
-plt.ylabel("Sales")
-plt.title("News paper vrs Sales"))
-</code></pre>
-<p><br /></p>
-
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/deep/keras/newspaper.jpg" /></p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">marketing</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
-<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/marketgrp.jpg" /></p>
-
-<p>The relationship between the features and sales can be confirmed through a correlation matrix</p>
-<pre><code class="language-{python},">
-marketing.corr()
-</code></pre>
-<p><br /></p>
-<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/marketcorr.jpg" /></p>
-
-<h3><b>Linear Model</b></h3>
-<p>Using a linear model, it assert there is a linear relationship between the response denoted by <b>y</b> and the features denoted by <b>X</b> and that y can be expressed as a linear combination (weighted sum) of X  defined by:
-<br /></p>
-
-\[\hat{y} = XW+ \epsilon =\sum_{i=1}^{D}x_{i}w_{i}+ \epsilon\]
-
-<p>where \(XW\) is the matrix-vector product (dot product) between X and W with <b>X</b> representing the input vector, <b>W</b> the model’s weight vector  and \(\epsilon\) the residual error between the model predictions and the true y values. <b> \(\epsilon\) </b> is often assumed to be normally distributed and is denoted by \(\epsilon ∼N(\mu, \sigma^{2})\) where \(\mu\) is the mean and \(\sigma^{2}\) is the variance.</p>
-
-<p>Connecting linear regression and normal distribution, we can rewrite the model in the form:<br /></p>
-
-\[p(y|x,\theta)=N(y|u(x),\sigma^{2}(x) )\]
-
-<p><br /></p>
-
-<p>and in the linear form \(u(x)\) can be expressed as
-<br /></p>
-
-\[\hat{y}=p(y|u(x),w)=u(x)=xw+b\]
-
-<p><br />
-  where <b>b</b> is the bias term
-<br />
-Using the marketing dataset in connection with the model we can express sales as a linear combination of the advertising media and is defined as:</p>
-
-<p><br /></p>
-
-\[Sales = w_{youtude} *youtude+ w_{facebook} * facebook + w_{newspaper}*newspaper + b\]
-
-<p><br />
-<br />
-where \(w_{i}\) , i=youtude, facebook, newspaper represent weights associated with each advertising media and these weights determine the influence or impact of the media on sales. The bias or intercept b, gives us the expected predicted amount of sales when no adverts are made. With \(X \in R^{n*3}\)  representing the data points (media), \(y \in R^{n}\) the corresponding sales, \(W \in R^{3}\) the weight vector  and \(b \in R^{1}\) the bias term, the expected predicted sales (y)  can be expressed compactly via the matrix-vector product as</p>
-
-\[\hat{y} = XW+ b\]
-
-<p>
-Let now define the linear model and initialized it parameters w and b
-</p>
-<p><br /></p>
-<div class="w3-container">
-<details> <summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-def linreg(X, w, b):
-    return torch.matmul(X.double(), w.double()) + b.double())
-w=torch.normal(0,0.01,(3,1)).requires_grad_(True)
-b= torch.zeros(size=(1,)).requires_grad_(True))
-</code></pre>
-</details><br />
-
-<details> <summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-def linreg(X, w, b):
-    return np.dot(X, w) + b
-def init_params():
-    w=np.random.normal(0,0.01,(3,1))
-    b= np.zeros((1,))
-    w.attach_grad()
-    b.attach_grad()
-    return [w,b]
-w,b=init_params()</code></pre>
-</details><br />
-
-<details> <summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-def linreg(X, w, b):
-    X=tf.dtypes.cast(X,dtype=tf.double)
-    w=tf.dtypes.cast(w,dtype=tf.double)
-    b=tf.dtypes.cast(b,dtype=tf.double)
-    return tf.matmul(X, w) + b
-w = tf.Variable(tf.random.normal(shape=(3, 1),
-             mean=0, stddev=0.01),trainable=True)
-b = tf.Variable(tf.zeros(1), trainable=True))
-</code></pre>
-</details><br />
-</div>
-<p>To determine how good or bad the model is generalizing, we need a performance measure to evaluate the model.</p>
-
-<h3><b> Loss Function</b></h3>
-<p>Our next step is to select a performance measure that will determine how good the model fit the data points by measuring the closeness of the predicted values to their real values. The loss function quantifies the distance between the actual or real and predicted value with a goal to minimize the prediction error. We will use mean square error will as loss function.</p>
-
-<h4><b>Mean Squared Error (MSE)</b></h4>
-<p>MSE Measures the average of the squares of the errors. It tells us how close a
-fitted line (estimated values or predicted points) is to a set of data points (actual data points used in fitting the line) by calculating the distances between these data points and the fitted line. The distances’ calculated are known as the errors and MSE removes negative signs from the errors by squaring them, then find the average of these squared errors and is defined as<br /></p>
-
-\[\ell(w,b)=\frac{1}{n} \sum_{1}^{n}( X_{i}W+b -y_{i})^{2}\]
-
-<p><br /></p>
-
-\[\ell(w,b) = \frac{1}{n}\sum_{i=1}^n (\hat{y}_i-y_i)^2.\]
-
-<p><br />
-during training we want to find the best parameters \((w∗,b∗)\) that minimize the total loss across all training samples:<br /></p>
-
-\[w∗, b∗ = argmin_{w,b}L(w, b)\]
-
-<p><br /></p>
-<p>Let define the mean squared error function</p>
-<div class="w3-container">
-<br />
-<details><summary class="w3-button">PYTORCH</summary>
-def Mean_squared_loss(y_hat, y):
-    squared_def=(y_hat - y.reshape(y_hat.shape)) ** 2
-    return squared_def.mean()
-&lt;/code&gt;&lt;/pre&gt;</details><br />
-
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-def Mean_squared_loss(y_hat, y):
-    squared_def=(y_hat - y.reshape(y_hat.shape)) ** 2
-    return squared_def.mean()
-</code></pre></details><br />
-
-<details><summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-def Mean_squared_loss(y_hat, y):
-    y_hat=tf.dtypes.cast(y_hat,dtype=tf.double)
-    y=tf.dtypes.cast(y,dtype=tf.double)
-    squared_def=(y_hat - tf.reshape(y,y_hat.shape)) ** 2
-    return tf.reduce_mean(squared_def)
-</code></pre></details><br />
-</div>
-
-<h3><b> Updating the Model Parameters</b></h3>
-<p>During training we want to automatically update the model parameters in order to the find the best parameters that minimize the error and hence We will use Gradient descent in updating the parameters.</p>
-
-<h4><b> Gradient Descent</b></h4>
-<p>Gradient Descent is a generic optimization algorithm capable of finding the optimal solutions to a wide range of problems with the goal of iteratively reducing the error by tweaking (updating) the parameters in the direction that incrementally lowers the loss value.</p>
-
-<h4><b> The Delta Rule</b></h4>
-<p>Now suppose we have \(\hat y=u=w_{1}x\)</p>
-
-<p>then the error is given as</p>
-
-\[E=y- \hat y\]
-
-<p>and the square error \(\epsilon\) for an input is given as</p>
-
-\[\epsilon =\frac{1}{2}E^{2}=\frac{1}{2}(y- \hat y)^{2}\]
-
-<p>The fraction 1⁄2 is arbitrary, and is used for mathematical convenience</p>
-
-<p>To find the gradient at a particular weight we differentiate the square error function with respect to that particular weight, yielding</p>
-
-\[\frac{d \epsilon}{dw_{1}} =\frac{2}{2}(y- w_{1}x)(-x)=-Ex\]
-
-<p><b>Using the delta rule</b>, a change in weight is proportional to the negative of the error gradient because it is necessary to go down the error curve in order to minimize the error; therefore, the weight change is given by:</p>
-
-\[\Delta w_{1}\propto -Ex\]
-
-<p>where \(\propto\) denotes proportionality, which can be replaced with the learning rate \(\beta\). The learning rate is a tuning parameter which determines how big or small a step is taking along the gradient in order to find a better weight. A too high value for \(\beta\) will make the learning jump over the minima and smaller values slow it down and will take too long to converge. Using \(\beta\) the equation becomes</p>
-
-\[\Delta w_{1}=-\beta Ex\]
-
-<p>The new weight after the ith iteration can be expressed as</p>
-
-\[W_{1}^{i+1}=W_{1}^{i}- \Delta w_{1}=W_{1}^{i}-\beta Ex\]
-
-<p>using the same idea we can extend to <br /></p>
-
-\[W_{j}^{i+1}=W_{j}^{i}-\Delta w_{j}^{i}=W_{j}^{i}-\beta Ex_{j}\]
-
-<p><br /></p>
-
-\[W_{0}^{i+1}=W_{0}^{i}-\beta E\]
-
-<p><br />
-where \(W_{0}\) is the bias</p>
-
-<h3><b> stochastic gradient descent(SGD)</b></h3>
-<p>When training the model, it is preferable to use the whole training set to compute the gradients at every step and this is known as <b>Batch Gradient Descent</b>  but this can slow the training process of the model when the training set is large so instead we mostly used a random sample of the training set in updating the parameters and this method is known as <b>stochastic gradient descent</b>.</p>
-
-<p><b>stochastic gradient descent</b> is a stochastic approximation proximation of the gradient descent with the fact that the gradient is precisely not know, but instead we make a rough approximation to the gradient in order to minimize the objective function which is written as a sum of differentiable functions</p>
-
-\[\Delta w_{1}=\beta (\frac{1}{n} \sum^{n}Ex_{i})\]
-
-<p><br /></p>
-
-<p>where n is the batch size</p>
-
-<p>The code below defines SGD and this will be used in updating the model the parameters</p>
-
-<div>
-<br />
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code>
-def sgd(params,lr,batch_size):
-    for param in params:
-        param.data.sub_(lr*param.grad/batch_size)
-        param.grad.data.zero_()
-</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code>
-def sgd(params,lr,batch_size):
-    for param in params:
-        param[:]=param-lr*param.grad/batch_size
-</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code>
-def sgd(params,grads,lr,batch_size):
-    for param ,grad in zip(params,grads):
-        param.assign_sub(lr*grad/batch_size)
-</code></pre>
-</details><br />
- </div>
-
-<h3><b>Feature Scaling or transformation</b></h3>
-<p>Numerical features are often measured on different scales and this variation in scale may pose problems to modelling the data correctly. With few exceptions, variations in scales of numerical features often lead to machine Learning algorithms not performing well. When features have different scales, features with higher magnitude are likely to have higher weights and this affects the performance of the model.</p>
-
-<p><em>Feature scaling is a technique applied as part of the data preparation process in machine learning to put the numerical features on a common scale without distorting the differences in the range of values.</em>
-There are many feature scaling techniques such as</p>
-<h3>
-       <b> Min-max scaling (normalization)</b><h3>
-
-$$ x_{unit-interval}= \frac{x-min(x)}{max(x)-min(x)}$$
-
-
-<h3>
-       <b>Box-Cox transformation.</b></h3>
-
-$$ x_{box-cox}= \frac{x^{\lambda}-1}{ \lambda }$$
-
-
-<h3>
-       <b>Mean normalization.</b></h3>
-
-$$ x_{mean-normalization}= \frac{x-\bar{x}}{max(x)-min(x)}$$
-
-
-  etc. We will discuss only <b>Standardization(Z-score)</b>
-
- <h3>  Standardization(Z-score)</h3>
-When Z-score is applied to a input feature makes the  feature have a zero mean by subtracting the mean of the feature from the data points and then it divides by the standard deviation so that the resulting distribution has unit variance.
-
-<h3>
-       <b>Standardization.</b></h3>
-$$ x_{z-score}= \frac{x-\bar{x}}{ \sigma}$$
-
-
-since all features (advertising media) in our dataset are numerical we are going to scale them using Z-score
-
-<p><b>Note: the target values is generally not scaled</b></p>
-
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code class="language-{python},">
-features=marketing.iloc[:,0:3]
-features=features.apply(lambda x: (x-np.mean(x))/np.std(x))
-</code>
-</pre>
-</details>
-<br />
-
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code class="language-{python},">
-features=marketing.iloc[:,0:3]
-</code>
-features=features.apply(lambda x: (x-x.mean())/x.std())
-</pre>
-</details>
-<br />
-
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code class="language-{python},">
-features=marketing.iloc[:,0:3]
-features=features.apply(lambda x: (x-np.mean(x))/np.std(x))
-</code>
-</pre>
-</details>
-<br />
-<p>  The code below display the first three rows of the scaled input features</p>
-```python
-features.head(3)
-```
-<p><img class="w3-center" src="/arizeblog/assets/images/deep/keras/scaledmarket.jpg" /></p>
-
-
-<h3><b> Data iterators</b></h3>
- To update parameters we need to iterate through our data points and grab batches of the data points at a time and these batches are used to update the parameters<br />
-
-<div>
-<br />
-<details>
-<summary class="w3-button">PYTORCH</summary>
-<pre><code>
-def data_iter(features,labels,batch_size):
-    dataset=TensorDataset(*(features,labels))
-    dataloader=DataLoader(dataset=dataset,batch_size=batch_size,
-                          shuffle=True)
-    return dataloader
-features=torch.from_numpy(np.array(features,dtype=np.float32))
-sales=torch.from_numpy(np.array(marketing.iloc[:, 3],dtype=np.float32))
-batch_size=10
-data_iter=data_iter(features, sales,batch_size))
-</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">MXNET</summary>
-<pre><code>
-def data_iter(data_arrays, batch_size):
-    dataset=gluon.data.ArrayDataset(*data_arrays)
-    dataloader=gluon.data.DataLoader(dataset,batch_size,shuffle=True)
-    return dataloader
-features=np.array(features)
-sales=np.array(marketing.iloc[:, 3])
-batch_size = 10
-data_iter = data_iter((features,sales), batch_size)
-</code></pre>
-</details><br />
-
-<details>
-<summary class="w3-button">KERAS</summary>
-<pre><code>
-batch_size=10
-def data_iter(features,labels, batch_size):
-    dataset=tf.data.Dataset.from_tensor_slices((features,labels))
-    dataloader=dataset.shuffle(buffer_size=500).batch(batch_size)
-    return dataloader
-features=tf.convert_to_tensor(np.array(marketing.iloc[:,0:3]))
-data_iter = data_iter(features,sales, batch_size))
-</code></pre>
-</details><br />
- </div>
-
-
-<p> Let now train the model</p>
-<div class="w3-container">
-<br /><details>
-<summary class="w3-button">PYTORCH</summary>
-<img class="w3-center" src="/arizeblog/assets/images/deep/linear/pytorch.jpg" />
-</details><br />
-<details>
-<summary class="w3-button">MXNET</summary>
-<img class="w3-center" src="/arizeblog/assets/images/deep/linear/mxnet.jpg" />
-</details>
-<br />
-<details>
-<summary class="w3-button">KERAS</summary>
-<img class="w3-center" src="/arizeblog/assets/images/deep/linear/keras.jpg" />
-</details>
-<br />
-</div>
-
-<h3><b>Conclusion</b></h3>
-In this we looked at Linear regression and when to perform linear regression analysis. Before training the model on the dataset, the numerical features have to be scaled for them to fall within a common range and lastly we need to pick a lost function which will quantify how good or bad the model is.
-
-
-<h2> References:</h2>
-
-- <a href="https://www.amazon.com/Machine-Learning-Optimization-Perspective-Developers/dp/0128015225" target="_blank"> Sergios Theodoridis.
-Machine Learning: A Bayesian
-and Optimization Perspective.
-</a><br />
-
-
-
-- <a href="https://mitpress.mit.edu/books/machine-learning-1" target="_blank">Kevin P. Murphy. Machine Learning A Probabilistic Perspective.</a><br />
-- <a href="http://d2l.ai/chapter_linear-networks/linear-regression.html" target="_blank">Aston Zhang, Zachary C. Lipton, Mu Li, and Alexander J. Smola.   Dive into Deep Learning.</a><br />
-- <a href="https://www.springer.com/series/417" target="_blank">
-Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. An Introduction to Statistical Learning  with Applications in R.</a><br />
-- <a href="https://www.tensorflow.org/tutorials" target="_blank">Tensorflow.</a><br />
-- <a href="https://pytorch.org/tutorials/beginner/pytorch_with_examples.html" target="_blank"> LEARNING PYTORCH WITH EXAMPLES.</a><br />
-</h3></h3>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[layout: python-post title: Linear Regression category: machine-learning-python author: Arize Emmanuel #tag: Linear Regresion with mxnet,keras and pytorch comments: true editor_options: markdown: wrap: 72 —]]></summary></entry></feed>
+<p><b> Dropout rate</b> is the fraction of the nodes in a layer that are zeroed out and it’s usually set between 0 and 1</p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this article, we will learn about , what it is, how it works and we will implement it sampling using Python]]></summary></entry></feed>

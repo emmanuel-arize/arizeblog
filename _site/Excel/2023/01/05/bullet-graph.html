@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bullet Chart | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Bullet Chart" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target." />
+<meta property="og:description" content="In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-05T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bullet Chart" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2023-01-05T00:00:00+01:00","datePublished":"2023-01-05T00:00:00+01:00","description":"In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.","headline":"Bullet Chart","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html"},"url":"http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-container w3-bar w3-gray ">
+        <div style="padding-left: 100px">
+
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query</b>
+                </a>
+                <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+</div>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b>
+        </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>
+        </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX)</b>
+        </a>
+
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
+
+            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+                <b>VBA</b>
+            </a>
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <style media="screen">
+    .pad {
+        padding-top: 50px;
+        padding-right: 80px;
+        padding-bottom: 50px;
+        padding-left: 80px
+    }
+</style>
+
+<br style="margin-top:10px;">
+<div class="w3-row pad">
+    <!-- Blog entries -->
+    <div class="w3-white" style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Bullet Chart</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2023-01-05T00:00:00+01:00" itemprop="datePublished">Jan 5, 2023
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Emmanuel Arize
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.</p>
+
+<h2 id="how-do-you-read-a-bullet-chart">How do you read a bullet chart?</h2>
+<p>A bullet chart usually encodes three different data elements:</p>
+<ol>
+  <li>An observed value known as <strong>Feature or performance Measure</strong> (performance score or the bullet). This is the primary data and is usually encoded as a bar, like the bar on a bar chart (encoded as black bar in the chart below) and centered in the plot area.</li>
+  <li>A target value known as <strong>Comparative Measure</strong> used as a target marker to compare against the Feature Measure value.  This is shown in the chart below as a short red line marker that runs perpendicular to the orientation of the chart. Whenever the <strong>Feature Measure</strong> hit or intersect the target, you know you’ve hit your target.</li>
+  <li>A qualitative Range of values used for grading. These ranges do  not only communicate the qualitative state of the featured measure but also the degree to which it resides within that state. If for instance the feature measure extends into a range that represents good, the distance that it travels into this range indicates how good it is.</li>
+</ol>
+
+<p>For example in the chart below, we are measuring the year to date (YTD) revenue rating for the year. Using this chart, we can see that the YTD rating is 80% and it is shown as a black bar. Using this rating you can easily see that your YTD rating could not hit the target value 90%  which is represented as a red line perpendicular to the black bar. Although your performance came close the target value, you could not archive your set goal or target  which is 90%.</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet1.jpg" />
+<br /></p>
+
+<h3 id="steps-to-create-a-bullet-chart-in-excel">Steps to Create a Bullet Chart in Excel</h3>
+
+<p>Using the table below we have the three different data elements namely</p>
+
+<ol>
+  <li>First four values are the qualitative range of values used for grading.</li>
+  <li>Performance score (feature measure) is the revenue rating for year.</li>
+  <li>Target value is the target that we set and wanted to archive for the year.</li>
+</ol>
+
+<p>to create the bullet chart.</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet2.jpg" />
+<br /></p>
+
+<p>With this data now</p>
+
+<ol>
+  <li>Select the needed data (in our case the entire table). After selecting the data click on the <strong>insert tab</strong> and select <strong>recommended Charts</strong>  then <strong>ALL Charts</strong>. From all Charts select Column chart and then a stacked column chart as below</li>
+</ol>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet3.jpg" />
+<br /></p>
+
+<p>and click on <strong>ok</strong> to get a chart as below</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet4.jpg" />
+<br /></p>
+<p>
+2. The  range of values on the y-axis is from 0% to 300%, let change it to have values from 0% to 100% by clicking on the
+stacked column chart then from <b>Series Options </b> under <b>Format Data Series </b> select <b>vertical (Axis) value</b> .
+After selecting vertical (Axis) value, now select <b>Axis Options</b> and click on the <b>Axis Options</b> to change the <b>maximum </b> value from 3.0 in
+</p>
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet5.jpg" />
+<br /></p>
+
+<p>to 1.0 as below</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet6.jpg" />
+<br /></p>
+<p>
+3. Right-click the stacked column chart and choose Change Series Chart Type. Use the Change Chart
+Type dialog box to change the Target series to a Stacked Line with Markers and check the checkbox under the secondary axis and click ok.
+</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet7.jpg" />
+<br /></p>
+
+<p>After clicking ok to the change, the Target series will show on the chart as a single dot as below.</p>
+
+<p><br />
+<img src="/arizeblog/assets/images/Excel/bullet71.jpg" />
+<br /></p>
+
+<p>
+4. Right-click on the chart and select Format Data Series, then from the <b>Series Options</b> under <b>Format Data Series</b> select <b>series "Target"</b> .
+
+Now under the <b>Fill &amp; Line </b> click on the Marker option and adjust the marker to look like a line and change the size to 20. </p>
+<p>Expand the Fill section, select <strong>solid line</strong> and change the color of the solid line to red. Expand the Border section and set the Border to No Line.
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet8.jpg" />
+<br /></p>
+
+<p>After making changes to the maker click on the <strong>Line option</strong> and expand the line section, select <strong>solid line</strong> and change the color of the solid line to red.</p>
+
+<p> 5. Right click on the new secondary axis that was added to the right side of the chart and the delete it to have a chart as below.
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet9.jpg" />
+<br />
+
+<p>
+6. Now right-click on the chart and select Format Data Series, then from the <b>Series Options</b> under <b>Format Data Series</b> select <b>series "Performance score"</b>. </p>
+
+<p> 7. In the Format Data Series dialog box, select Secondary Axis. </p>
+
+<p> 8. Still in the Format Data Series dialog box under Series Options, adjust the Gap Width property so that the Performance score series is slightly narrower than the other columns in the chart —here you are using 400% as below.
+</p>
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet10.jpg" />
+<br />
+
+<p>
+9. Still in the Format Data Series dialog box , under  the <b> Fill &amp; Line option</b>, expand the Fill section, and then select the Solid fill option to set the color of the Performance score series to black as below</p>
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet11.jpg" />
+<br />
+
+
+<p>10. At this point all that’s left to do is change the color for each qualitative range to incrementally lighter
+hues.</p>
+
+<p> 11. After changing the qualitative range to incrementally lighter hues let also change the title to YTD revenue Rating</p>
+
+The final bullet chart is given below
+
+<br />
+<img src="/arizeblog/assets/images/Excel/bullet12.jpg" />
+<br />
+</p>
+</span>
+            </div><a class="u-url" href="/arizeblog/excel/2023/01/05/bullet-graph.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended Excel Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/excel/2023/01/05/bullet-graph.html">Bullet Chart
+                </li>
+                
+                 
+                 
+                 
+                 
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/excel/2022/10/20/IF-Statement.html">Excel IF Function
+                </li>
+                
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                
+
+
+            </ul>
+        </div>
+    </div>
+    <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize-277270134"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize-277270134</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>
