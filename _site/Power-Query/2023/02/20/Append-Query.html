@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        background-color: white;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Shape and Append Queries | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Shape and Append Queries" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this tutorial I will be illustrating how to append queries in Power Query. Appending two or more queries in Power Query is one of the most basic and essential tasks that you may need to do in most data preparation scenarios because as a data analyst you may have multiple queries of which you may need to combine to form a single query. Using power query append operation, you can create a single query by adding the contents of one or more queries to another." />
+<meta property="og:description" content="In this tutorial I will be illustrating how to append queries in Power Query. Appending two or more queries in Power Query is one of the most basic and essential tasks that you may need to do in most data preparation scenarios because as a data analyst you may have multiple queries of which you may need to combine to form a single query. Using power query append operation, you can create a single query by adding the contents of one or more queries to another." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Shape and Append Queries" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2023-02-20T00:00:00+00:00","datePublished":"2023-02-20T00:00:00+00:00","description":"In this tutorial I will be illustrating how to append queries in Power Query. Appending two or more queries in Power Query is one of the most basic and essential tasks that you may need to do in most data preparation scenarios because as a data analyst you may have multiple queries of which you may need to combine to form a single query. Using power query append operation, you can create a single query by adding the contents of one or more queries to another.","headline":"Shape and Append Queries","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query.html"},"url":"http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-container w3-bar w3-gray ">
+        <div style="padding-left: 100px">
+
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query</b>
+                </a>
+                <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+</div>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b>
+        </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>
+        </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX)</b>
+        </a>
+
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
+
+            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
+                <b>VBA</b>
+            </a>
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<br>
+    <br style="margin-top:10px;">
+    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+        <style media="screen">
+    .pad {
+        padding-top: 50px;
+        padding-right: 80px;
+        padding-bottom: 50px;
+        padding-left: 80px
+    }
+</style>
+
+<br style="margin-top:10px;">
+<div class="w3-row pad">
+    <!-- Blog entries -->
+    <div class="w3-white" style="margin-right:80px;margin-left: 80px; background-color:white;">
+
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Shape and Append Queries</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2023-02-20T00:00:00+00:00" itemprop="datePublished">Feb 20, 2023
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Emmanuel Arize
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In this tutorial I will be illustrating how to append queries in Power Query. Appending two or more queries in Power Query is one of the most basic and essential tasks that you may need to do in most data preparation scenarios because as a data analyst you may have multiple queries of which you may need to combine to form a single query. Using power query append operation, you can create a single query by adding the contents of one or more queries to another.</p>
+
+<p>When queries are appended the rows from one query are appended (or added) ) at the end of the rows in another query where the column values match.  When a query with 30 rows is appended with another query with 20 rows, this will return a resulting query with 50 rows. In the case of two queries that do not have the same column headers, all column headers from all queries are appended to the resulting query. To append two queries we need data so let now load the data November_2019 and December_2019 below using Power BI.</p>
+
+<p><br />
+November_2019
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_001.jpg" /></p>
+
+<p><br /></p>
+
+<p><br />
+December_2019
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_01.jpg" /></p>
+
+<p><br /></p>
+<h2 id="preprocessing-the-data">Preprocessing the Data</h2>
+<p>From the November_2019 data above the first fours rows contain data not relevant to our analysis so we need to remove them.</p>
+
+<p>To remove the first four rows in power query</p>
+<ol>
+  <li>click on the home tab.</li>
+  <li>Under the Reduce Row group click on <strong>Remove Rows</strong> as below.</li>
+</ol>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_02.jpg" /></p>
+
+<p style="margin-left: 50px;">3. From the drop down list select <b>Remove Top Rows</b>.</p>
+<p style="margin-left: 50px;">4. In the Remove top rows window, enter 4 in the Number of rows box as below.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_3.jpg" />
+<br /></p>
+
+<p>After clicking ok the operation leaves the headers of the table as the first row shown below.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_04.jpg" />
+<br /></p>
+
+<h3 id="promote-headers-operation">Promote Headers Operation</h3>
+<p>The promote headers operation promotes the first row of values as the new column headers.
+There are a number of places where we can select the promote headers  operation (<strong>Use First Row as Headers</strong> )</p>
+
+<p>Click on the Home tab then in the Transform group</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_5.jpg" />
+<br /></p>
+
+<p>Or On the Transform tab, in the Table group.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_6.jpg" />
+<br /></p>
+
+<p>After clicking on Use First Row as Headers, the first row in the query is used as the column headers of the query and we get the table below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_7.jpg" />
+<br /></p>
+
+<p>For simplicity we will sort the data based on Date column in ascending order and use only the last 5 rows in the table.</p>
+
+<h3 id="sorting--data">Sorting  Data</h3>
+<p>to sort the data based on the date column click on the drop down arrow in date column and select <strong>Sort Ascending</strong> as below</p>
+
+<p><br />
+ <img class="w3-center" src="/arizeblog/assets/images/power_query/append_8.jpg" />
+ <br /></p>
+
+<h3 id="filtering-the-data">Filtering the Data</h3>
+<p>To filter the data to contain only the last five rows</p>
+
+<ol>
+  <li>click on the home tab.</li>
+  <li>Under the Reduce Row group click on <strong>Keep Rows</strong> as below.</li>
+  <li>From the drop down list select <strong>Keep Bottom Rows.</strong></li>
+  <li>In the Keep Bottom rows window, enter 5 in the Number of rows box as below.</li>
+</ol>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_9.jpg" />
+<br /></p>
+
+<p>to get the table below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_10.jpg" />
+<br /></p>
+
+<h3 id="processing-the-second-table-december_2019">Processing the Second table (December_2019)</h3>
+
+<p>In the second table we will apply the same steps used in preprocessing the first table but instead of keeping the last five rows we will keep the top five rows which will give us the table below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_11.jpg" />
+<br /></p>
+
+<h3 id="appending-queries">Appending Queries</h3>
+<p>The append operation requires at least two tables. The Append queries command can be found on the Home tab in the Combine group.
+<br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_12.jpg" />
+<br /></p>
+
+<p>On the drop-down menu, you’ll see two options:</p>
+<ol>
+  <li><strong>Append queries</strong>: which displays the Append dialog box to add additional tables to the
+current query.</li>
+  <li><strong>Append queries as new</strong> : displays the Append dialog box to create a new query by
+appending multiple tables</li>
+</ol>
+
+<p>The Append dialog box has two modes:</p>
+<ol>
+  <li><strong>Two tables</strong>: Combine two table queries together. This mode is the default mode.</li>
+  <li><strong>Three or more tables</strong>: Allow an arbitrary number of table queries to be combined.</li>
+</ol>
+
+<p>Now let append the November_2019 and December_2019 data as a new query. To append these tables, first select the November_2019 table and on the Home tab, select <strong>Append queries as new</strong>.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_13.jpg" />
+<br /></p>
+
+<p>In the Second table dialog box select the December 2019 data and click ok. After clicking ok a new query named Append1
+which contain the total number of rows in December_2019 appended to that of November_2019 as below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_14.jpg" />
+<br /></p>
+
+<p><strong>Note:</strong> In the event that one table doesn’t have columns found in another table, null values will appear in the corresponding column</p>
+</span>
+            </div><a class="u-url" href="/arizeblog/power-query/2023/02/20/Append-Query.html" hidden></a>
+
+        </article>
+        <hr>
+
+        <!-- Posts -->
+        <br>
+        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
+            <!-- About Card -->
+            <div class=" w3-margin">
+                <h4><b>Recommended Power-Query Posts</b></h4>
+            </div>
+            <ul class="w3-hoverable ">
+
+                 
+                <li class="w3-padding-16">
+                    <a href="/arizeblog/power-query/2023/02/20/Append-Query.html">Shape and Append Queries
+                </li>
+                
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                
+
+
+            </ul>
+        </div>
+    </div>
+    <hr>
+
+</div>
+<!--
+<div class="w3-card w3-margin">
+    <div class="w3-container "><h4>Tags</h4></div>
+    <div class="w3-container w3-white">
+ 
+        <span>very good tutorials</span>
+         
+          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
+          
+
+
+ 
+
+  </div>
+-->
+
+
+    </div><footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize-277270134"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize-277270134</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

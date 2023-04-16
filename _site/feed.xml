@@ -1,4 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-01-07T09:02:48+01:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Bullet Chart</title><link href="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html" rel="alternate" type="text/html" title="Bullet Chart" /><published>2023-01-05T00:00:00+01:00</published><updated>2023-01-05T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html"><![CDATA[<p>In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-03-14T12:57:05+00:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Shape and Append Queries</title><link href="http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query.html" rel="alternate" type="text/html" title="Shape and Append Queries" /><published>2023-02-20T00:00:00+00:00</published><updated>2023-02-20T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-query/2023/02/20/Append-Query.html"><![CDATA[<p>In this tutorial I will be illustrating how to append queries in Power Query. Appending two or more queries in Power Query is one of the most basic and essential tasks that you may need to do in most data preparation scenarios because as a data analyst you may have multiple queries of which you may need to combine to form a single query. Using power query append operation, you can create a single query by adding the contents of one or more queries to another.</p>
+
+<p>When queries are appended the rows from one query are appended (or added) ) at the end of the rows in another query where the column values match.  When a query with 30 rows is appended with another query with 20 rows, this will return a resulting query with 50 rows. In the case of two queries that do not have the same column headers, all column headers from all queries are appended to the resulting query. To append two queries we need data so let now load the data November_2019 and December_2019 below using Power BI.</p>
+
+<p><br />
+November_2019
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_001.jpg" /></p>
+
+<p><br /></p>
+
+<p><br />
+December_2019
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_01.jpg" /></p>
+
+<p><br /></p>
+<h2 id="preprocessing-the-data">Preprocessing the Data</h2>
+<p>From the November_2019 data above the first fours rows contain data not relevant to our analysis so we need to remove them.</p>
+
+<p>To remove the first four rows in power query</p>
+<ol>
+  <li>click on the home tab.</li>
+  <li>Under the Reduce Row group click on <strong>Remove Rows</strong> as below.</li>
+</ol>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_02.jpg" /></p>
+
+<p style="margin-left: 50px;">3. From the drop down list select <b>Remove Top Rows</b>.</p>
+<p style="margin-left: 50px;">4. In the Remove top rows window, enter 4 in the Number of rows box as below.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_3.jpg" />
+<br /></p>
+
+<p>After clicking ok the operation leaves the headers of the table as the first row shown below.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_04.jpg" />
+<br /></p>
+
+<h3 id="promote-headers-operation">Promote Headers Operation</h3>
+<p>The promote headers operation promotes the first row of values as the new column headers.
+There are a number of places where we can select the promote headers  operation (<strong>Use First Row as Headers</strong> )</p>
+
+<p>Click on the Home tab then in the Transform group</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_5.jpg" />
+<br /></p>
+
+<p>Or On the Transform tab, in the Table group.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_6.jpg" />
+<br /></p>
+
+<p>After clicking on Use First Row as Headers, the first row in the query is used as the column headers of the query and we get the table below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_7.jpg" />
+<br /></p>
+
+<p>For simplicity we will sort the data based on Date column in ascending order and use only the last 5 rows in the table.</p>
+
+<h3 id="sorting--data">Sorting  Data</h3>
+<p>to sort the data based on the date column click on the drop down arrow in date column and select <strong>Sort Ascending</strong> as below</p>
+
+<p><br />
+ <img class="w3-center" src="/arizeblog/assets/images/power_query/append_8.jpg" />
+ <br /></p>
+
+<h3 id="filtering-the-data">Filtering the Data</h3>
+<p>To filter the data to contain only the last five rows</p>
+
+<ol>
+  <li>click on the home tab.</li>
+  <li>Under the Reduce Row group click on <strong>Keep Rows</strong> as below.</li>
+  <li>From the drop down list select <strong>Keep Bottom Rows.</strong></li>
+  <li>In the Keep Bottom rows window, enter 5 in the Number of rows box as below.</li>
+</ol>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_9.jpg" />
+<br /></p>
+
+<p>to get the table below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_10.jpg" />
+<br /></p>
+
+<h3 id="processing-the-second-table-december_2019">Processing the Second table (December_2019)</h3>
+
+<p>In the second table we will apply the same steps used in preprocessing the first table but instead of keeping the last five rows we will keep the top five rows which will give us the table below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_11.jpg" />
+<br /></p>
+
+<h3 id="appending-queries">Appending Queries</h3>
+<p>The append operation requires at least two tables. The Append queries command can be found on the Home tab in the Combine group.
+<br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_12.jpg" />
+<br /></p>
+
+<p>On the drop-down menu, you’ll see two options:</p>
+<ol>
+  <li><strong>Append queries</strong>: which displays the Append dialog box to add additional tables to the
+current query.</li>
+  <li><strong>Append queries as new</strong> : displays the Append dialog box to create a new query by
+appending multiple tables</li>
+</ol>
+
+<p>The Append dialog box has two modes:</p>
+<ol>
+  <li><strong>Two tables</strong>: Combine two table queries together. This mode is the default mode.</li>
+  <li><strong>Three or more tables</strong>: Allow an arbitrary number of table queries to be combined.</li>
+</ol>
+
+<p>Now let append the November_2019 and December_2019 data as a new query. To append these tables, first select the November_2019 table and on the Home tab, select <strong>Append queries as new</strong>.</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_13.jpg" />
+<br /></p>
+
+<p>In the Second table dialog box select the December 2019 data and click ok. After clicking ok a new query named Append1
+which contain the total number of rows in December_2019 appended to that of November_2019 as below</p>
+
+<p><br />
+<img class="w3-center" src="/arizeblog/assets/images/power_query/append_14.jpg" />
+<br /></p>
+
+<p><strong>Note:</strong> In the event that one table doesn’t have columns found in another table, null values will appear in the corresponding column</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-Query" /><summary type="html"><![CDATA[In this tutorial I will be illustrating how to append queries in Power Query. Appending two or more queries in Power Query is one of the most basic and essential tasks that you may need to do in most data preparation scenarios because as a data analyst you may have multiple queries of which you may need to combine to form a single query. Using power query append operation, you can create a single query by adding the contents of one or more queries to another.]]></summary></entry><entry><title type="html">Bullet Chart</title><link href="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html" rel="alternate" type="text/html" title="Bullet Chart" /><published>2023-01-05T00:00:00+00:00</published><updated>2023-01-05T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2023/01/05/bullet-graph.html"><![CDATA[<p>In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.</p>
 
 <h2 id="how-do-you-read-a-bullet-chart">How do you read a bullet chart?</h2>
 <p>A bullet chart usually encodes three different data elements:</p>
@@ -121,7 +253,7 @@ The final bullet chart is given below
 <br />
 <img src="/arizeblog/assets/images/Excel/bullet12.jpg" />
 <br />
-</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.]]></summary></entry><entry><title type="html">Basics of DAX TREATAS Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" rel="alternate" type="text/html" title="Basics of DAX TREATAS Function" /><published>2022-10-21T00:00:00+01:00</published><updated>2022-10-21T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"><![CDATA[<p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables  and then move on to show how we can simplify filtering expression using the TREATAS function.</p>
+</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In the business world, no matter the industry you found yourself, you always have targets and goals that you want to archive. In order to know how you are progressing, you tend to find effective ways to represent your performance against the set target. Using bullet charts you can effectively represent your performance against the target. Bullet charts are variation of bar charts, used for making comparisons such as showing performance metrics against a target.]]></summary></entry><entry><title type="html">Basics of DAX TREATAS Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" rel="alternate" type="text/html" title="Basics of DAX TREATAS Function" /><published>2022-10-21T00:00:00+00:00</published><updated>2022-10-21T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"><![CDATA[<p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables  and then move on to show how we can simplify filtering expression using the TREATAS function.</p>
 
 <h3 id="virtual-relationship-using-treatas">Virtual Relationship using TREATAS</h3>
 <p>The Best practice to move a filter from one table to another is to create a physical relationship between the two tables
@@ -218,7 +350,7 @@ involved. What if the relationship doesn’t exist, is there a way to create vir
 <br /></p>
 
 <p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas12.jpg" />
-<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function.]]></summary></entry><entry><title type="html">Excel IF Function</title><link href="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Excel IF Function" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
+<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function.]]></summary></entry><entry><title type="html">Excel IF Function</title><link href="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Excel IF Function" /><published>2022-10-20T00:00:00+00:00</published><updated>2022-10-20T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=IF(logical_test, [value_if_true], [value_if_false])
 </code></pre></div></div>
@@ -291,14 +423,7 @@ Using the preceding the figure above let now rate the sales amount as <strong>hi
 <p>Click on cell D2 and drag it down to populate the other cells as shown below,
 <br />
 <img class="w3-center" src="/arizeblog/assets/images/Excel/if8.jpg" />
-<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a true or false condition.The condition here is referred to as logical_test and the function has the following syntax.]]></summary></entry><entry><title type="html">Power Query</title><link href="http://localhost:4000/arizeblog/power-query/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Power Query" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-query/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-query/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=IF(logical_test, [value_if_true], [value_if_false])
-</code></pre></div></div>
-
-<p>For example, =IF(A2=100,”High”,”Low”) says IF(A2= 100, then return High, otherwise return Low).</p>
-
-<p>Let now look at the worksheet below</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-Query" /><summary type="html"><![CDATA[In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a true or false condition.The condition here is referred to as logical_test and the function has the following syntax.]]></summary></entry><entry><title type="html">DAX FILTER Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html" rel="alternate" type="text/html" title="DAX FILTER Function" /><published>2022-10-20T00:00:00+01:00</published><updated>2022-10-20T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html"><![CDATA[<p>This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table  reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.</p>
+<br /></p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a true or false condition.The condition here is referred to as logical_test and the function has the following syntax.]]></summary></entry><entry><title type="html">DAX FILTER Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html" rel="alternate" type="text/html" title="DAX FILTER Function" /><published>2022-10-20T00:00:00+00:00</published><updated>2022-10-20T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html"><![CDATA[<p>This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table  reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.</p>
 
 <p>The syntax of FILTER is given as:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FILTER ( &lt;table&gt;, &lt;condition&gt; )
@@ -338,7 +463,7 @@ Using the preceding the figure above let now rate the sales amount as <strong>hi
 <br /></p>
 
 <h3 id="conclusion">Conclusion</h3>
-<p>The filter function is a simple Power BI function that allows you to iterate table on a row-by-row basis and returns all rows satisfying the condition specified.</p>]]></content><author><name>Arize Emmanuel</name></author><category term="Power-BI" /><summary type="html"><![CDATA[This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.]]></summary></entry><entry><title type="html">Data Manipulation in R</title><link href="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" rel="alternate" type="text/html" title="Data Manipulation in R" /><published>2022-05-06T00:00:00+01:00</published><updated>2022-05-06T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html"><![CDATA[<p>This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves</p>
+<p>The filter function is a simple Power BI function that allows you to iterate table on a row-by-row basis and returns all rows satisfying the condition specified.</p>]]></content><author><name>Arize Emmanuel</name></author><category term="Power-BI" /><summary type="html"><![CDATA[This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.]]></summary></entry><entry><title type="html">Data Manipulation in R</title><link href="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" rel="alternate" type="text/html" title="Data Manipulation in R" /><published>2022-05-06T00:00:00+00:00</published><updated>2022-05-06T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html"><![CDATA[<p>This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves</p>
 
 <ul>
   <li>
@@ -947,7 +1072,7 @@ summarise_if(is.numeric, mean, na.rm = TRUE)
 </table>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-R" /><summary type="html"><![CDATA[This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves]]></summary></entry><entry><title type="html">Introduction to LSTMs</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" rel="alternate" type="text/html" title="Introduction to LSTMs" /><published>2021-05-07T00:00:00+01:00</published><updated>2021-05-07T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"><![CDATA[<hr />
+</code></pre></div></div>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-R" /><summary type="html"><![CDATA[This tutorial introduces how to easily manipulate data in R using the tidyverse package. Data manipulation usually involves]]></summary></entry><entry><title type="html">Introduction to LSTMs</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" rel="alternate" type="text/html" title="Introduction to LSTMs" /><published>2021-05-07T00:00:00+00:00</published><updated>2021-05-07T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"><![CDATA[<hr />
 <p>In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.</p>
 
 <blockquote>
@@ -1273,7 +1398,7 @@ Neural Network Methods for Natural Language Processing Synthesis Lectures on Hum
 <p><a href=""></a></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.]]></summary></entry><entry><title type="html">Introduction to Recurrent Neural Networks (RNNs)</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html" rel="alternate" type="text/html" title="Introduction to Recurrent Neural Networks (RNNs)" /><published>2021-05-06T00:00:00+01:00</published><updated>2021-05-06T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html"><![CDATA[<p>A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.</p>
+</code></pre></div></div>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.]]></summary></entry><entry><title type="html">Introduction to Recurrent Neural Networks (RNNs)</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html" rel="alternate" type="text/html" title="Introduction to Recurrent Neural Networks (RNNs)" /><published>2021-05-06T00:00:00+00:00</published><updated>2021-05-06T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/05/06/SIMPLE_RNN.html"><![CDATA[<p>A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.</p>
 
 <p><b style="text-decoration:underline;font-size: 20px;text-transform: uppercase;">Recurrent neural networks or RNNs</b> are networks containing recurrent connections within their network connections and are often used for processing sequential data.</p>
 
@@ -1528,7 +1653,7 @@ negative review
 <p><a href="https://link.springer.com/article/10.1007/BF00114844" title="Elman, J. L. (1991)." target="_blank">Distributed representations, simple recurrent networks, and grammatical structure. 
 Machine learning, 7(2), 195-225.</a></p>
 
-<p><a href="https://arxiv.org/pdf/1412.7753.pdf" title="Mikolov, T., Joulin, A., Chopra, S., Mathieu, M., &amp; Ranzato, M. A. (2014)." target="_blank">Learning longer memory in recurrent neural networks. arXiv preprint arXiv:1412.7753.</a></p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.]]></summary></entry><entry><title type="html">Feature Extraction with Bag of Words (BOWs)</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html" rel="alternate" type="text/html" title="Feature Extraction with Bag of Words (BOWs)" /><published>2021-03-22T00:00:00+01:00</published><updated>2021-03-22T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html"><![CDATA[<p>In this tutorial, we will learn about Bag of Words  (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.</p>
+<p><a href="https://arxiv.org/pdf/1412.7753.pdf" title="Mikolov, T., Joulin, A., Chopra, S., Mathieu, M., &amp; Ranzato, M. A. (2014)." target="_blank">Learning longer memory in recurrent neural networks. arXiv preprint arXiv:1412.7753.</a></p>]]></content><author><name>Arize Emmanuel</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[A major characteristic of feedforward networks is that these networks take in arbitrary feature vectors with fixed, predetermined input sizes, along with their associated weights and had no hidden state. With feedforward networks, in order to process a sequence of data points, the entire sequence is considered as a single input for the network to process and capture all relevant information at once in a single step. This makes it difficult to deal with sequences of varying length and fails to capture important information. Sequential data usually involve variable lenght inputs, so instead of processing the data point in just a single step, we need a model that will still consider a sequence as a single input to the network but instead of processing it in a single step, ita will internally loop over the sequence elements taking each element as an input and maintaining a state containing information relative to what it has seen so far and this is the idea behind RNNS.]]></summary></entry><entry><title type="html">Feature Extraction with Bag of Words (BOWs)</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html" rel="alternate" type="text/html" title="Feature Extraction with Bag of Words (BOWs)" /><published>2021-03-22T00:00:00+00:00</published><updated>2021-03-22T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/03/22/BOWS.html"><![CDATA[<p>In this tutorial, we will learn about Bag of Words  (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.</p>
 
 <p>In order to model a text documents, the raw text cannot be fed directly to the algorithm as these algorithms expect numerical feature vectors so instead we need to turn the text content into numerical feature vectors.</p>
 
@@ -1660,7 +1785,7 @@ Using CountVectorize the text is preprocessed, tokenize and stopwords are filter
     <p><a href="https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984/ref=as_li_ss_tl?ie=UTF8&amp;qid=1502062931&amp;sr=8-1&amp;keywords=Neural+Network+Methods+in+Natural+Language+Processing&amp;linkCode=sl1&amp;tag=inspiredalgor-20&amp;linkId=d63df073fea3ebe2d405820570b3ff03" target="_blank">Yoav Goldberg (2017). Neural Network Methods in Natural Language Processing</a><br /></p>
   </li>
   <li><a href="https://scikit-learn.org/stable/modules/feature_extraction.html" target="_blank">Feature extraction-scikit-learn documentation</a><br /></li>
-</ul>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this tutorial, we will learn about Bag of Words (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.]]></summary></entry><entry><title type="html">Dropout Regularization</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout.html" rel="alternate" type="text/html" title="Dropout Regularization" /><published>2021-02-10T00:00:00+01:00</published><updated>2021-02-10T00:00:00+01:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout.html"><![CDATA[<p>In this article, we will learn about , what it is, how it works and  we will implement it sampling using Python</p>
+</ul>]]></content><author><name>Emmanuel Arize</name></author><category term="machine-learning-python" /><summary type="html"><![CDATA[In this tutorial, we will learn about Bag of Words (BOWs), how BOWs is used as a feature extractor, then build a classifier using the features extracted.]]></summary></entry><entry><title type="html">Dropout Regularization</title><link href="http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout.html" rel="alternate" type="text/html" title="Dropout Regularization" /><published>2021-02-10T00:00:00+00:00</published><updated>2021-02-10T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout</id><content type="html" xml:base="http://localhost:4000/arizeblog/machine-learning-python/2021/02/10/Dropout.html"><![CDATA[<p>In this article, we will learn about , what it is, how it works and  we will implement it sampling using Python</p>
 
 <p>The term <b>“dropout”</b> refers to dropping out units in a neural network. It is a technique for addressing overfitting. It consists of randomly dropping out some fraction of the nodes (setting fraction of the units to zero (injecting noise)) in each layer before calculating subsequent layer during training and has become a standard technique for training neural networks. When dropout is applied, during training its zeros out some fraction of the nodes with probability p in each layer before calculating the subsequent layer and the resulting network can be viewed as a subset of the original network. Because the fraction of the nodes that are drop out are chosen randomly on every pass, the representations in each layer can’t depend on the exact values taken by nodes in the previous layer.</p>
 
