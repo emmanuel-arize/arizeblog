@@ -3,11 +3,11 @@
 <style>
     #ma {
         margin-right: 150px;
-        background-color: white;
+        /* background-color: white; */
     }
-    
+
     body {
-        font-size: 20px;
+        font-size: 15px;
     }
 </style>
 
@@ -16,13 +16,13 @@
 <body class="w3-light-grey">
 
     {%- include navigation.html -%}
-    <br>
-    <br style="margin-top:10px;">
-    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+
+    <br style="margin-top:2px;">
+    <div class="w3-container">
         {{ content }}
 
     </div>
-    {%- include footer.html -%}
+    <!-- {%- include footer.html -%} -->
 </body>
 
 </html>

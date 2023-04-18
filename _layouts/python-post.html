@@ -2,20 +2,11 @@
 layout: default
 ---
 
-<style media="screen">
-    .pad {
-        padding-top: 50px;
-        padding-right: 80px;
-        padding-bottom: 50px;
-        padding-left: 80px
-    }
-</style>
 
-<br style="margin-top:10px;">
-<div class="w3-row pad">
-    <div style="margin-right:80px;margin-left: 80px; background-color:white;">
+<div class="w3-row  w3-white">
 
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class=" w3-col w3-container w3-margin w3-round-large" style="width:84%;left:0;">
+
 
             <header class="post-header">
                 <h2 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h2>
@@ -40,47 +31,28 @@ layout: default
 
             <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 
-        </article>
-        <hr>
-
-        <!-- Posts -->
-        <br>
-
-        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
-            <!-- About Card -->
-            <div class=" w3-margin">
-                <h4><b>Recommended ML-Python-Posts</b></h4>
-            </div>
-            <ul class="w3-hoverable ">
-
-                {% for post in site.posts %} {% if post.category=="machine-learning-python" %}
-                <li class="w3-padding-16">
-                    <a href="{{ post.url | relative_url}}">{{ post.title}}
-                </li>
-                {% endif %}
-                {% endfor %}
-
-
-            </ul>
+        <!-- </article> -->
         </div>
 
+    		<div class="w3-sidebar w3-light-gray w3-card w3-round-xlarge w3-margin-left" style="width:15%;right:0;
+                   margin-top: 25px;">
+              		<div class="w3-container">
+              		<h5><b>Related Posts</b></h5>
+              		</div>
+
+                    <ul class="w3-hoverable ">
+
+                              {% for post in site.posts %} {% if post.category=="machine-learning-python" %}
+                              <li class="w3-padding-16">
+                                  <a href="{{ post.url | relative_url}}">{{ post.title}}
+                              </li>
+                              {% endif %}
+                              {% endfor %}
+
+
+                          </ul>
+
+            </div>
+
+
     </div>
-    <hr>
-
-</div>
-<!--
-<div class="w3-card w3-margin">
-    <div class="w3-container "><h4>Tags</h4></div>
-    <div class="w3-container w3-white">
- {% for tag in site.tags  %}
-        <span>{{ tag[0] }}</span>
-         {% for post in tag[1] %}
-          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
-          <a href="{{ post.url | relative_url}}">{{ post.title}} </span>
-          {% endfor %}
-
-
- {% endfor %}
-
-  </div>
--->
