@@ -112,7 +112,7 @@ QTD Sales = CALCULATE(Sales[Sales Amt],DATESQTD('Date'[Date]))
 Using a matrix visual the QTD calculation will produce the result below
 
 <br>
-<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_7.jpg' |relative_url}}" />
+<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_71.jpg' |relative_url}}" />
 <br>
 
 From the above matrix visual we can see that **QTD Sales** display the QTD total sales of the fourth quarter as the total sales for the year. To remove this inaccurate results from the matrix visual I will write a conditional expression using the IF function together with **ISINSCOPE** to avoid showing a value at the year level. Using these functions the QTD total sales will be as follows
@@ -128,7 +128,7 @@ and will produce the result below
 
 
 <br>
-<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_8.jpg' |relative_url}}" />
+<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_81.jpg' |relative_url}}" />
 <br>
 
 
