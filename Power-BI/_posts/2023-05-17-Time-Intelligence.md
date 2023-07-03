@@ -112,7 +112,7 @@ QTD Sales = CALCULATE(Sales[Sales Amt],DATESQTD('Date'[Date]))
 Using a matrix visual the QTD calculation will produce the result below
 
 <br>
-<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_7.jpg' |relative_url}}" />
+<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_71.jpg' |relative_url}}" />
 <br>
 
 From the above matrix visual we can see that **QTD Sales** display the QTD total sales of the fourth quarter as the total sales for the year. To remove this inaccurate results from the matrix visual I will write a conditional expression using the IF function together with **ISINSCOPE** to avoid showing a value at the year level. Using these functions the QTD total sales will be as follows
@@ -128,7 +128,7 @@ and will produce the result below
 
 
 <br>
-<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_8.jpg' |relative_url}}" />
+<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_81.jpg' |relative_url}}" />
 <br>
 
 
@@ -190,7 +190,7 @@ Substracting the PY Sales from the  Sales Amount (YTD Sales)  and using the PY S
 Using a matrix visual the PY Sales, YOY Sales and YOY Sales % will produce the result below
 
 <br>
-<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_13.jpg' |relative_url}}" />
+<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_131.jpg' |relative_url}}" />
 <br>
 
 ### Quarter-Over-Quarter calculation
@@ -211,7 +211,7 @@ Similar to YOY calculation, Quarter-over-quarter calculation compares the value 
 Using a matrix visual the PQ Sales, QOQ Sales and QOQ Sales % will produce the result below
 
 <br>
-<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_17.jpg' |relative_url}}" />
+<img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_171.jpg' |relative_url}}" />
 <br>
 
 ### Month-Over-Month calculation
@@ -230,7 +230,7 @@ A similar approach can be used for the **month-over-month** calculation which co
 <img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_20.jpg' |relative_url}}" />
 <br>
 
-With these calculation let now compares the sales in each month (MTD Sales) of 2020 with the sales of the month before (PM Sales). Note the 2020 fiscal year start on July 1, 2019.
+With these calculation let now compares the sales in each month (MTD Sales) of 2020 with the sales of the month before (PM Sales). **Note the 2020 fiscal year start on July 1, 2019**.
 
 <br>
 <img class="w3-center w3-brown" src="{{'/assets/images/power_bi/time_int_21.jpg' |relative_url}}" />

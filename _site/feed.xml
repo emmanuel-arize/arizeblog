@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-07-03T07:26:36+00:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Introduction to RANKX</title><link href="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html" rel="alternate" type="text/html" title="Introduction to RANKX" /><published>2023-05-23T00:00:00+00:00</published><updated>2023-05-23T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html"><![CDATA[<p>In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-07-03T07:46:12+00:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Introduction to RANKX</title><link href="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html" rel="alternate" type="text/html" title="Introduction to RANKX" /><published>2023-05-23T00:00:00+00:00</published><updated>2023-05-23T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html"><![CDATA[<p>In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking.</p>
 
 <p><strong>RANKX</strong> function is an iterator that is used to show the ranking value of an element according to a specific sort
 order. It returns the ranking of a number in a list of numbers for each row in the table argument. As and iterator it requires at least two parameters, the table that it scans and an expression that is evaluated for each row of the table. It has the syntax below,</p>
@@ -196,7 +196,7 @@ Let create a measure named <strong>QTD Sales</strong> for the QTD total sales  a
 <p>Using a matrix visual the QTD calculation will produce the result below</p>
 
 <p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_7.jpg" />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_71.jpg" />
 <br /></p>
 
 <p>From the above matrix visual we can see that <strong>QTD Sales</strong> display the QTD total sales of the fourth quarter as the total sales for the year. To remove this inaccurate results from the matrix visual I will write a conditional expression using the IF function together with <strong>ISINSCOPE</strong> to avoid showing a value at the year level. Using these functions the QTD total sales will be as follows</p>
@@ -210,7 +210,7 @@ Let create a measure named <strong>QTD Sales</strong> for the QTD total sales  a
 <p>and will produce the result below</p>
 
 <p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_8.jpg" />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_81.jpg" />
 <br /></p>
 
 <p>The QTD total calculation can also be simplified using TOTALQTD function which is given as</p>
@@ -262,7 +262,7 @@ Substracting the PY Sales from the  Sales Amount (YTD Sales)  and using the PY S
 <p>Using a matrix visual the PY Sales, YOY Sales and YOY Sales % will produce the result below</p>
 
 <p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_13.jpg" />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_131.jpg" />
 <br /></p>
 
 <h3 id="quarter-over-quarter-calculation">Quarter-Over-Quarter calculation</h3>
@@ -283,7 +283,7 @@ Substracting the PY Sales from the  Sales Amount (YTD Sales)  and using the PY S
 <p>Using a matrix visual the PQ Sales, QOQ Sales and QOQ Sales % will produce the result below</p>
 
 <p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_17.jpg" />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_171.jpg" />
 <br /></p>
 
 <h3 id="month-over-month-calculation">Month-Over-Month calculation</h3>
@@ -301,7 +301,7 @@ Substracting the PY Sales from the  Sales Amount (YTD Sales)  and using the PY S
 <img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_20.jpg" />
 <br /></p>
 
-<p>With these calculation let now compares the sales in each month (MTD Sales) of 2020 with the sales of the month before (PM Sales). Note the 2020 fiscal year start on July 1, 2019.</p>
+<p>With these calculation let now compares the sales in each month (MTD Sales) of 2020 with the sales of the month before (PM Sales). <strong>Note the 2020 fiscal year start on July 1, 2019</strong>.</p>
 
 <p><br />
 <img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_21.jpg" />
