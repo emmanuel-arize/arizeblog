@@ -40,7 +40,9 @@ Or On the Transform tab, in the Table group.
 <img class="w3-card" src="{{'/assets/images/power_query/append_6.jpg' |relative_url}}">
 <br>
 
-After clicking on Use First Row as Headers, the first row in the query is used as the column headers of the query but instead of clicking it I will write the M code using the Advanced Editor which can be located on the Home tab of the query editor. To open the Advanced Editor Click on the home tab then Advanced Editor as below
+
+After clicking on Use First Row as Headers, the first row in the query is used as the column headers of the query but instead of clicking on it I will write the M code using the Advanced Editor which can be located on the Home tab of the query editor. To open the Advanced Editor Click on the home tab then Advanced Editor as below
+
 
 
 <br>
@@ -53,7 +55,7 @@ When the Advanced Editor is clicked it will opened an editor similar to one belo
 <img class="w3-card" src="{{'/assets/images/power_query/append_6_2.jpg' |relative_url}}">
 <br>
 
-Using this editor I will use the M table function **Table.PromoteHeaders**  to write a code named **FirstRowAsHeaders** promote the first row as Headers
+Using this editor I will use the M table function **Table.PromoteHeaders**  to write the code below named **FirstRowAsHeaders** to promote the first row as Headers
 
 <br>
 <img class="w3-card" src="{{'/assets/images/power_query/append_6_3.jpg' |relative_url}}">
@@ -68,7 +70,7 @@ and we get the table below
 
 ### Remove columns
 
-Remove columns is an operations that help you define what columns your table needs to remove. From the data the columns named Indicator Name and Indicator Code contain data not relevant to our analysis so we need to remove them. To remove these columns select the columns to remove, in our case the column Indicator Name and Indicator Code as below
+Remove columns is an operation that help you define what columns your table needs to remove. From the data the columns named Indicator Name and Indicator Code contain data not relevant to our analysis so we need to remove them. To remove these columns select the columns to remove, in our case the column Indicator Name and Indicator Code as below
 
 <br>
 <img class="w3-card" src="{{'/assets/images/power_query/trans_3.jpg' |relative_url}}">
@@ -91,7 +93,7 @@ Instead of using the approach described above, let use the M table function **Ta
 
 
 ### Renaming Columns
-To rename a column heading you can double click on the column heading start typing the new name but since we are writing the code, let use the **Table.RenameColumns** function to write the code named **ColumnRenamed** to rename the column Country Name to Country.
+To rename a column heading you can double click on the column heading and start typing the new name but since we are performing these operations writing the M code oursleves, let use the **Table.RenameColumns** function to write the code below named **ColumnRenamed** to rename the column named Country Name to Country.
 
 
 <br>
@@ -107,14 +109,12 @@ To rename a column heading you can double click on the column heading start typi
 
 ### Unpivot columns
 
-given a table like the one above, where the rows of the country and the date columns create a matrix of values, it's difficult to analyze the data in a scalable way. In such cases we might want to unpivot or flatten the data, to put it in a matrix format where all similar values are in one column. To unpivot the table to have country, country code ,year and life Expectancy at birth as columns select the country and country code columns as below, then right click on the selected columns and select **Unpivot Other Columns**.
+Given a table like the one above, where the rows of the country and the date columns create a matrix of values, it's difficult to analyze the data in a scalable way. In such cases we might want to unpivot or flatten the data, to put it in a matrix format where all similar values are in one column. To unpivot the table to have country, country code ,year and life Expectancy at birth as columns select the country and country code columns as below, then right click on the selected columns and select **Unpivot Other Columns**.
 
 <br>
 <img class="w3-card" src="{{'/assets/images/power_query/trans_8.jpg' |relative_url}}">
 <br>
-
-Instead of unpivoting using the approach described above, let use the m **Table.UnpivotOtherColumns** to write a code named **UnpivotOtherColumns** to unpivot other columns.
-
+Instead of unpivoting using the approach described above, let use the m Table.UnpivotOtherColumns to write a code named UnpivotOtherColumns to unpivot the other columns.
 <br>
 <img class="w3-card" src="{{'/assets/images/power_query/trans_8_1.jpg' |relative_url}}">
 <br>
@@ -126,14 +126,14 @@ Instead of unpivoting using the approach described above, let use the m **Table.
 <br>
 
 
-### Transform Column Date Type
+### Transforming Column Date Type
 When using data for analysis you have to make sure the data type of the various columns are correct.
 
 <br>
 <img class="w3-card" src="{{'/assets/images/power_query/trans_8_21.jpg' |relative_url}}">
 <br>
 
- For instance we know that the Life Expectancy at birth (Life_Expentancy_At_Birth) column is a numerical column when we look at the data type of Life_Expentancy_At_Birth above, it is given as a text which is not correct so we need to change it to a numerical data type. Using the **Table.TransformColumnTypes** function the code below named **ChangeDataType** change the Life_Expentancy_At_Birth data type from text to a numerical data type
+ For instance we know that the Life Expectancy at birth (Life_Expentancy_At_Birth) column is a numerical column but when we look at the data type of Life_Expentancy_At_Birth above, it is given as a text which is not correct so we need to change it to a numerical data type. Using the **Table.TransformColumnTypes** function the code below named **ChangeDataType** changes the Life_Expentancy_At_Birth data type from text to a numerical data type
 
 
  <br>
@@ -160,8 +160,8 @@ Let sort the data in ascending order based on the Year column. The sorting is gi
 
 ### Filtering the Data
 
-From the data some countries such as **Andorra, American Samoa** etc, contain null values throughout, so we need to filter out such rows from the data. Since these nulls values are under the Life_Expectancy_At_Birth column, let filter the rows containing null under the Life_Expectancy_At_Birth column using **Table.RemoveMatchingRows** function to remove rows containing null
-
+Filtering the Data
+From the data some countries such as Andorra, American Samoa etc, contain null values under the Life_Expectancy_At_Birth column so let remove rows containing null values under the Life_Expectancy_At_Birth column using the Table.RemoveMatchingRows function
 <br>
 <img class="w3-card" src="{{'/assets/images/power_query/trans_5_1.jpg' |relative_url}}">
 <br>
