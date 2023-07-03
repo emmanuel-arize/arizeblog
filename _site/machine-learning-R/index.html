@@ -3,11 +3,12 @@
 <style>
     #ma {
         margin-right: 150px;
-        background-color: white;
+        /* background-color: white; */
     }
-    
+
     body {
-        font-size: 20px;
+        font-size: 15px;
+        padding: 75px;
     }
 </style><head>
     <meta charset="utf-8">
@@ -33,7 +34,7 @@
 <body class="w3-light-grey"><!-- Sidebar -->
 <div class="w3-top">
 
-    <div class="w3-container w3-bar w3-gray ">
+    <div class="w3-container w3-bar w3-teal ">
         <div style="padding-left: 100px">
 
             <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
@@ -48,14 +49,18 @@
             <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
                 <b>Power BI (DAX) </b>
                 <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
-                    <b>Power Query</b>
+                    <b>Power Query (M)</b>
                 </a>
-                <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
                 <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
 
 
                 <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
 </div>
     </div>
 
@@ -69,18 +74,18 @@
         </a>
 
         <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
-            <b>Power BI (DAX)</b>
+            <b>Power BI (DAX & M)</b>
         </a>
 
         <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
             <b>Power Query</b>
 
-            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
-                <b>VBA</b>
-            </a>
 
             <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
             <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
     </div>
 </div>
 
@@ -94,21 +99,21 @@
         }
     }
 </script>
-<br>
-    <br style="margin-top:10px;">
-    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+<br style="margin-top:2px;">
+    <div class="w3-container">
         <style>
-    #ma {
-        margin-top: 20px;
-        margin-left: 70px;
-    }
+    /* #ma {
+        margin-top: 10px;
+        margin-left: 10px;
+    } */
 </style>
 
-<div class="home" id="ma">
+<div class="home w3-white w3-margin-top">
 
     
 <h2 class="post-list-heading ">
-        <b></b></h2>
+        <b></b>
+    </h2>
     <ul class="post-list">
         <ul class="post-list">
             <li><article class="post">
@@ -120,8 +125,12 @@
 
                     </div>
                     <p>
-                        <a href="/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" class="read-more w3-button w3-circle w3-blue w3-border"><b>READ MORE »
-      </b></a></p>
+                        <a href="/arizeblog/machine-learning-r/2022/05/06/data_manipulation.html" class="read-more w3-button w3-circle w3-blue w3-border">
+                            <b>
+                                READ MORE »
+                            </b>
+                        </a>
+                    </p>
                 </article>
 
                 
@@ -133,15 +142,21 @@
                         <p>One of the finest techniques to check the generalization power of a machine learning model is to use <strong><em>Cross-validation techniques</em></strong>. <strong>Cross-validation</strong> refers to a set of methods for measuring the...
                     </div>
                     <p>
-                        <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html" class="read-more w3-button w3-circle w3-blue w3-border"><b>READ MORE »
-      </b></a></p>
+                        <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html" class="read-more w3-button w3-circle w3-blue w3-border">
+                            <b>
+                                READ MORE »
+                            </b>
+                        </a>
+                    </p>
                 </article>
 
                 </ul>
 
         <p class="rss-subscribe">subscribe <a href="/arizeblog/%20/feed.xml">via RSS</a></p></div>
 
-    </div><footer class="site-footer h-card">
+
+    </div>
+    <!--<footer class="site-footer h-card">
   <data class="u-url" href="/arizeblog/"></data>
 
   <div class="wrapper">
@@ -164,9 +179,11 @@
   </div>
 
 </footer>
+-->
 </body>
 
 </html>
+<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
 <script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>

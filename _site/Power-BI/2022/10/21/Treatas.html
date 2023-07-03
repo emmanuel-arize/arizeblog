@@ -3,32 +3,33 @@
 <style>
     #ma {
         margin-right: 150px;
-        background-color: white;
+        /* background-color: white; */
     }
-    
+
     body {
-        font-size: 20px;
+        font-size: 15px;
+        padding: 75px;
     }
 </style><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Basics of DAX TREATAS Function | ARIZE-BLOG</title>
+<title>DAX TREATAS Function | ARIZE-BLOG</title>
 <meta name="generator" content="Jekyll v4.3.1" />
-<meta property="og:title" content="Basics of DAX TREATAS Function" />
+<meta property="og:title" content="DAX TREATAS Function" />
 <meta name="author" content="Emmanuel Arize" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function." />
-<meta property="og:description" content="In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function." />
+<meta name="description" content="In this blog post, I’ll dive into the DAX TREATAS function by first showing how to create a virtual relationship between two tables using TREATAS and then move on to show how we can simplify a filtering expression using the TREATAS function." />
+<meta property="og:description" content="In this blog post, I’ll dive into the DAX TREATAS function by first showing how to create a virtual relationship between two tables using TREATAS and then move on to show how we can simplify a filtering expression using the TREATAS function." />
 <link rel="canonical" href="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" />
 <meta property="og:url" content="http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html" />
 <meta property="og:site_name" content="ARIZE-BLOG" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-10-21T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Basics of DAX TREATAS Function" />
+<meta property="twitter:title" content="DAX TREATAS Function" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2022-10-21T00:00:00+00:00","datePublished":"2022-10-21T00:00:00+00:00","description":"In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables and then move on to show how we can simplify filtering expression using the TREATAS function.","headline":"Basics of DAX TREATAS Function","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"},"url":"http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2022-10-21T00:00:00+00:00","datePublished":"2022-10-21T00:00:00+00:00","description":"In this blog post, I’ll dive into the DAX TREATAS function by first showing how to create a virtual relationship between two tables using TREATAS and then move on to show how we can simplify a filtering expression using the TREATAS function.","headline":"DAX TREATAS Function","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"},"url":"http://localhost:4000/arizeblog/power-bi/2022/10/21/Treatas.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/arizeblog/assets/main.css">
     <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
@@ -36,7 +37,7 @@
 <body class="w3-light-grey"><!-- Sidebar -->
 <div class="w3-top">
 
-    <div class="w3-container w3-bar w3-gray ">
+    <div class="w3-container w3-bar w3-teal ">
         <div style="padding-left: 100px">
 
             <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
@@ -51,14 +52,18 @@
             <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
                 <b>Power BI (DAX) </b>
                 <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
-                    <b>Power Query</b>
+                    <b>Power Query (M)</b>
                 </a>
-                <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
                 <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
 
 
                 <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
 </div>
     </div>
 
@@ -72,18 +77,18 @@
         </a>
 
         <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
-            <b>Power BI (DAX)</b>
+            <b>Power BI (DAX & M)</b>
         </a>
 
         <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
             <b>Power Query</b>
 
-            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
-                <b>VBA</b>
-            </a>
 
             <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
             <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
     </div>
 </div>
 
@@ -97,45 +102,40 @@
         }
     }
 </script>
-<br>
-    <br style="margin-top:10px;">
-    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
-        <style media="screen">
-    .pad {
-        padding-top: 50px;
-        padding-right: 80px;
-        padding-bottom: 50px;
-        padding-left: 80px
-    }
+<br style="margin-top:2px;">
+    <div class="w3-container">
+        <style>
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding:10px; */
+}
+
 </style>
+<div class="w3-row  w3-white">
 
-<br style="margin-top:10px;">
-<div class="w3-row pad">
-    <!-- Blog entries -->
-    <div class="w3-white" style="margin-right:80px;margin-left: 80px; background-color:white;">
+        <div class=" w3-col w3-container w3-margin w3-round-large" style="width:79%;left:0;">
 
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
             <header class="post-header">
-                <h2 class="post-title p-name" itemprop="name headline">Basics of DAX TREATAS Function</h2>
+                <h2 class="post-title p-name" itemprop="name headline">DAX TREATAS Function</h2>
                 <p class="post-meta">
                     <time class="dt-published" datetime="2022-10-21T00:00:00+00:00" itemprop="datePublished">Oct 21, 2022
                     </time></p>
             </header>
 
             <div class="post-content e-content" itemprop="articleBody">
-                <span class="w3-container"> <p>In this tutorial, we’ll dive into the DAX TREATAS function in Power BI. I will in the first section of this tutorial show how to create a virtual relationship between two tables  and then move on to show how we can simplify filtering expression using the TREATAS function.</p>
+                <span class="w3-container"> <p>In this blog post, I’ll dive into the DAX TREATAS function by first showing how to create a virtual relationship between two tables using TREATAS and then move on to show how we can simplify a filtering expression using the TREATAS function.</p>
 
 <h3 id="virtual-relationship-using-treatas">Virtual Relationship using TREATAS</h3>
 <p>The Best practice to move a filter from one table to another is to create a physical relationship between the two tables
-involved. What if the relationship doesn’t exist, is there a way to create virtual relationship between these two tables to
- mimic a physical relationship so that the user thinks the is relationship in place, even if there is none? Using DAX functions 
- I will create virtual relationship between tables that mimic physical relationship. This technique is useful whenever a relationship does not exist. 
- In order to show how we can create a virtual relationship between the Reseller and Sales tables, I have deleted the physical relationship 
- existing between these two tables using data from <a href="https://github.com/microsoft/powerbi-desktop-samples/blob/main/DAX/Adventure%20Works%20DW%202020.pbix">Adventure Works DW 2020<a></a> which can be seen from the data model below</a></p>
+involved. What if the relationship doesn’t exist, is there a way to create virtual relationship between these two tables to  mimic physical relationship so that the user thinks there is a relationship in place, even if there is none? Using DAX TREATAS function, you can create  a virtual relationship between tables that mimic physical relationship. This technique is useful whenever a relationship does not exist between the tables involved.</p>
+
+<p>In order to show how to create a virtual relationship between two tables such the Reseller and Sales tables, I have deleted the physical relationship existing between these two tables using data from <a href="https://github.com/microsoft/powerbi-desktop-samples/blob/main/DAX/Adventure%20Works%20DW%202020.pbix">Adventure Works DW 2020<a></a> which can be seen from the data model below</a></p>
 
 <p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas1.jpg" />
+<img class="w3-card" src="/arizeblog/assets/images/power_bi/treatas1.jpg" />
 <br /></p>
 
 <p>Without any physical relationship between the Reseller and Sales tables, let look at the amount of sales by country using <a href="https://daxstudio.org" target="_blank"> DAX Studio</a></p>
@@ -147,39 +147,41 @@ involved. What if the relationship doesn’t exist, is there a way to create vir
 	)
 </code></pre>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas2.jpg" /></p>
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas2.jpg" /></p>
 
-<p>From the preceding figure we see that the result for the sum of sales amount is the same for all the countries involved because there no relationship between the two tables.</p>
+<p>From the preceding figure we see that the sum of sales amount is the same for all the countries involved because there no relationship between the two tables.</p>
 
-<p>Using <a href="https://learn.microsoft.com/en-us/dax/treatas-function"> TREATAS</a> which apply the result of a table expression as filters to columns from an unrelated table and define as</p>
+<p>Using <a href="https://learn.microsoft.com/en-us/dax/treatas-function"> TREATAS</a>, it applies the result of a table expression as filters to columns from an unrelated table and is defined by the syntax below</p>
 
 <pre><code class="language-{dax}">TREATAS(table_expression, &lt;column&gt;[, &lt;column&gt;[, &lt;column&gt;[,…]]]} )
 </code></pre>
 
-<p>we can create a virtual relationship between the two tables to propagate the filter context from Reseller to Sales using the TREATAS function and is given by the code below.</p>
+<p>With the  TREATAS function, I can create a virtual relationship between the two tables to propagate the filter context from Reseller to Sales and it is given by the code below,
+ <br />
+<img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas3.jpg" /></p>
+
+<p>TREATAS connects the two tables using the ResellerKey column, and the preceding figure shows that the amount of sales is filtered by Country, even though there is no physical relationship existing between the two tables.</p>
+
+<p>Let now create a physical relationship between the Reseller and Sales tables using the ResellerKey column in power BI as below to see if it will produce the same result</p>
 
 <p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas3.jpg" /></p>
-
-<p>Using TREATAS we connected the two tables using the ResellerKey column, and the preceding figure shows that the amount of sales is filtered by Country, even though there is no physical relationship between the two tables.</p>
-
-<p>Let now create a physical relationship between the Reseller and Sales tables using the ResellerKey column in power BI as  below</p>
-
-<p><br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas4.jpg" />
+<img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas4.jpg" />
 <br /></p>
 
-<p>With a physical relationship between the tables let check if we will get the same result for the amount of sales filtered by country as that of the virtual relationship.</p>
+<p>With the physical relationship between the tables created, let check if we will get the same result for the amount of sales filtered by country as that of the virtual relationship.</p>
 
 <p>Result of the Data model with physical relationship.<br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas05.jpg" />
+<img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas05.jpg" />
 <br /></p>
 
 <p>Result of the Data model with virtual relationship.<br />
-<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas6.jpg" />
+<img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas6.jpg" />
 <br /></p>
+
+<p>We can see from the above figures that result of the Data model with physical relationship and that of Data model with virtual relationship produce the same results.</p>
+
 <h3 id="filtering-values-using-treatas">Filtering Values Using TREATAS</h3>
-<p>In this section of the tutorial we will be filtering values using the TREATAS function. Before we start using TREATAS to filter values, we need to create two calculated columns since TREATAS filters using columns and the columns needed for the filtering are not part of data model.</p>
+<p>In this section of the post I will be filtering values using the TREATAS function. Before we start using TREATAS to filter values, we need to create two calculated columns since the columns needed for the filtering are not part of data model.</p>
 
 <p>Let add two calculated two columns name <strong>Year</strong> and <strong>Month Num</strong> to the date table which contain the year and the number representing the month.
 <br /></p>
@@ -191,103 +193,109 @@ involved. What if the relationship doesn’t exist, is there a way to create vir
 </code></pre></div></div>
 <p><br /></p>
 
-<p>With these calculated columns let now create two measures <strong>2018/19 Sales</strong> and <strong>2018/19 Sales_T</strong> which filter the amount of sales for 2018 and 2019. Using the filter function and TREATAS function respectively.</p>
+<p>With the calculated columns created, let now create two measures <strong>2018/19 Sales</strong> and <strong>2018/19 Sales_T</strong> which filter the amount of sales for 2018 or 2019 using the FILTER and TREATAS function respectively.</p>
 
 <p><br /></p>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas7.jpg" />
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas7.jpg" />
 <br /></p>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas8.jpg" />
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas8.jpg" />
 <br /></p>
 
 <p>Let now use the report canvas to display the values for the two measures created
 <br /></p>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas9.jpg" />
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas9.jpg" />
 <br /></p>
 
-<p>Continuing the filtering examples let create additional two measures <strong>12-2018/1-2019 Sales</strong> and <strong>12-2018/1-2019 Sales_T</strong> which filter the amount of sales for 12/2018 and 1/2019, using the filter function and TREATAS function respectively and where 1 and 12 represent months. For instance 1=January.</p>
+<p>Continuing the filtering examples, let create additional two measures <strong>12-2018/1-2019 Sales</strong> and <strong>12-2018/1-2019 Sales_T</strong> which filter the amount of sales for 12/2018 or 1/2019, using the filter function and TREATAS function respectively and where 1 and 12 represent months. For instance 1=January.</p>
 
 <p><br /></p>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas10.jpg" />
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas10.jpg" />
 <br /></p>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas11.jpg" />
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas11.jpg" />
 <br /></p>
 
 <p>Let now use the report canvas to display the values for <strong>12-2018/1-2019 Sales</strong> and <strong>12-2018/1-2019 Sales_T</strong>
 <br /></p>
 
-<p><img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/treatas12.jpg" />
+<p><img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/treatas12.jpg" />
 <br /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>In this post we’ve seen that the TREATAS function is an important function which can be used to simplify filtering expressions and also used to create a virtual relationship between two tables.</p>
 </span>
             </div><a class="u-url" href="/arizeblog/power-bi/2022/10/21/Treatas.html" hidden></a>
 
-        </article>
-        <hr>
-
-        <!-- Posts -->
-        <br>
-        <div class="w3-container w3-light-grey  w3-round-xlarge w3-display-bottom">
-            <!-- About Card -->
-            <div class=" w3-margin">
-                <h4><b>Recommended Power-BI (DAX) Posts</b></h4>
-            </div>
-            <ul class="w3-hoverable ">
-
-                 
-                 
-                 
-                <li class="w3-padding-16">
-                    <a href="/arizeblog/power-bi/2022/10/21/Treatas.html">Basics of DAX TREATAS Function
-                </li>
-                
-                 
-                <li class="w3-padding-16">
-                    <a href="/arizeblog/power-bi/2022/10/20/Filter.html">DAX FILTER Function
-                </li>
-                
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                
-
-
-            </ul>
+        <!-- </article> -->
         </div>
+
+
+
+
+
+
+                      <!--<div class="w3-col w3-card w3-white w3-container w3-margin w3-round-xlarge" style="width:15%">-->
+              		<div class="w3-sidebar w3-light-gray w3-card w3-round-xlarge w3-margin-left" style="width:20%;right:0;
+                   margin-top: 25px;">
+              		<div class="w3-container">
+              		<h4><b>Related Posts</b></h4>
+              		</div>
+
+                    <ul class="w3-hoverable ">
+
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2023/05/23/Rankx.html">Introduction to RANKX
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2023/05/17/Time-Intelligence.html">DAX Time intelligence
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2022/10/21/Treatas.html">DAX TREATAS Function
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2022/10/20/Filter.html">DAX FILTER Function
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                              
+
+
+                          </ul>
+
+                      </div>
+
+
     </div>
-    <hr>
-
-</div>
-<!--
-<div class="w3-card w3-margin">
-    <div class="w3-container "><h4>Tags</h4></div>
-    <div class="w3-container w3-white">
- 
-        <span>very good tutorials</span>
-         
-          <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
-          <a href="/arizeblog/machine-learning-r/2021/01/14/cross-validation.html">Cross-Validation(R) </span>
-          
 
 
- 
-
-  </div>
--->
-
-
-    </div><footer class="site-footer h-card">
+    </div>
+    <!--<footer class="site-footer h-card">
   <data class="u-url" href="/arizeblog/"></data>
 
   <div class="wrapper">
@@ -310,9 +318,11 @@ involved. What if the relationship doesn’t exist, is there a way to create vir
   </div>
 
 </footer>
+-->
 </body>
 
 </html>
+<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
 <script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        /* background-color: white; */
+    }
+
+    body {
+        font-size: 15px;
+        padding: 75px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>DAX Time intelligence | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="DAX Time intelligence" />
+<meta name="author" content="Arize Emmanuel" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this blog, I’ll dive into time-related calculations in DAX with hands-on experience. Time intelligence relates to calculations over time. These calculations enable users to manipulate data using time periods such as weeks, months, quarters and years. They accumulate values from the beginning of a time period such as year, quarter, month and build and compare calculations over those periods. Time-intelligence functions modify the date filter context, and understanding these functions is very important to developing a range of date-related calculations that help in answering questions such us" />
+<meta property="og:description" content="In this blog, I’ll dive into time-related calculations in DAX with hands-on experience. Time intelligence relates to calculations over time. These calculations enable users to manipulate data using time periods such as weeks, months, quarters and years. They accumulate values from the beginning of a time period such as year, quarter, month and build and compare calculations over those periods. Time-intelligence functions modify the date filter context, and understanding these functions is very important to developing a range of date-related calculations that help in answering questions such us" />
+<link rel="canonical" href="http://localhost:4000/arizeblog/power-bi/2023/05/17/Time-Intelligence.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/power-bi/2023/05/17/Time-Intelligence.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="DAX Time intelligence" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arize Emmanuel"},"dateModified":"2023-05-17T00:00:00+00:00","datePublished":"2023-05-17T00:00:00+00:00","description":"In this blog, I’ll dive into time-related calculations in DAX with hands-on experience. Time intelligence relates to calculations over time. These calculations enable users to manipulate data using time periods such as weeks, months, quarters and years. They accumulate values from the beginning of a time period such as year, quarter, month and build and compare calculations over those periods. Time-intelligence functions modify the date filter context, and understanding these functions is very important to developing a range of date-related calculations that help in answering questions such us","headline":"DAX Time intelligence","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-bi/2023/05/17/Time-Intelligence.html"},"url":"http://localhost:4000/arizeblog/power-bi/2023/05/17/Time-Intelligence.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-container w3-bar w3-teal ">
+        <div style="padding-left: 100px">
+
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query (M)</b>
+                </a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
+</div>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b>
+        </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>
+        </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>
+        </a>
+
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
+
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<br style="margin-top:2px;">
+    <div class="w3-container">
+        <style>
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding:10px; */
+}
+
+</style>
+<div class="w3-row  w3-white">
+
+        <div class=" w3-col w3-container w3-margin w3-round-large" style="width:79%;left:0;">
+
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">DAX Time intelligence</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2023-05-17T00:00:00+00:00" itemprop="datePublished">May 17, 2023
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Arize Emmanuel
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In this blog, I’ll dive into time-related calculations in DAX with hands-on experience. Time intelligence relates to calculations over time. These calculations enable users to manipulate data using time periods such as weeks, months, quarters and years. They  accumulate values from the  beginning of a time period  such as year, quarter, month
+ and build and compare calculations over those periods. Time-intelligence  functions modify the date filter context, and understanding these functions is very important to developing a range of date-related calculations that help in answering questions such us</p>
+
+<ul>
+  <li>What is the accumulated sales for the year, quarter, or month?</li>
+  <li>Want to compare this month sales to that of last month?</li>
+  <li>Is there any increase or decrease in sales in the current month compared to sales of the same period (month) in  the previous year?</li>
+  <li>What is the year-to-date costs?</li>
+</ul>
+
+<p><a href="https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax" target="-_blank"> DAX </a> includes several time intelligence functions concerned with standard date periods, specifically years, quarters, and months to simplify such calculations but you can also write custom time intelligence formulas using the <strong>CALCULATE</strong> function. There are many different calculations that DAX has no predefined functions for your requirements so you cannot expressed these calculations by simply using standard DAX time intelligence functions. In this case you need to write custom time intelligence function to modify the  date filters.</p>
+
+<p>In order to use any time intelligence function, you need a date table satisfying the following requirements:</p>
+
+<ul>
+  <li>The date table in your model must contain a column with a Date/Time or Date data type known as the date column containing unique values.</li>
+  <li>The date column must not contain blanks or any missing dates. For a Gregorian calendar year the Date table must always start on January 1 and end on December31, including all the dates in this range. If the report only references fiscal years, then the date table must include all the dates from the first to the last day of a fiscal year.</li>
+</ul>
+
+<p>These requirements are useful to perform any time intelligence calculation.</p>
+
+<h3 id="sample-data">Sample Data</h3>
+<p>To work through the examples in this article, you’ll need to download the data from <a href="https://github.com/MicrosoftDocs/mslearn-dax-power-bi/raw/main/activities/Adventure%20Works%20DW%202020%20M07.pbix" target="_blank"> Adventure Works DW 2020 M07.pbix</a> as shown below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_1.jpg" />
+<br /></p>
+
+<p>With the data downloaded let now make our hands dirty by going through some examples. Time intelligence functions support calculations to aggregate and compare data so in this post I will look at two groups of DAX time intelligence functions namely a group concerned with</p>
+<ul>
+  <li>Summarizations over time.</li>
+  <li>Comparisons over time.</li>
+</ul>
+
+<p>Before exploring these functions let add a calculated column named <strong>Year</strong> to the date table using the code below</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Year = YEAR('Date'[Date])
+</code></pre></div></div>
+
+<h2 id="summarizations-over-time">Summarizations over time</h2>
+<p>This group of DAX time intelligence functions are concerned with summarizations or aggregation of data over time such as computing period-to-date totals.</p>
+
+<h3 id="exploring-year-to-date-total">exploring Year-to-date total</h3>
+<p>Let’s start the example with a simple function to calculate year to date. Year-to-date (YTD) total aggregates data starting on the first day of the fiscal or calendar year  up to the last date in the Specified date. To illustrate how YTD calculation works let create a YTD measure for the calendar year called <strong>YTD Sales C</strong> using CALCULATE and DATESYTD functions.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YTD Sales C = CALCULATE(Sales[Sales Amt],DATESYTD('Date'[Date]))
+</code></pre></div></div>
+<p>DATESYTD returns the set of dates for the year to date visible in the filter context and is given by</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DATESYTD(&lt;dates&gt; [,&lt;year_end_date&gt;])
+</code></pre></div></div>
+<p>where <strong>year_end_date</strong> is optional parameter that defines the year-end date with December 31 as it default
+date.  With the YTD total for the calendar year measure created, let now create a matrix visual with rows and values as below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_2.jpg" />
+<br /></p>
+
+<p>This will produce the result below for the calendar years.
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_3.jpg" />
+<br /></p>
+
+<p>Using YTD sales for the calendar year (<strong>YTD Sales C</strong>) to compute the YTD sales for the fiscal year will produce inaccurate result if the report is based on a fiscal year that does not correspond to the calendar year that is the fiscal year starts on a different date other than January 1. An example of such inaccurate result is shown below.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_4.jpg" />
+<br /></p>
+
+<p>We can see from the above matrix that since the fiscal year has a different starting date (July 1) from that of the calendar year (January 1), this produce inaccurate results. To produce the right values for the fiscal YTD total if the fiscal year that does not correspond to the calendar year then the DATESYTD function requires an additional argument to identify the last day of the fiscal year. Since the fiscal year end on June 30 (“6-30”) I will now create a YTD sales measure for the fiscal year called <strong>YTD Sales F</strong> by the code below</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YTD Sales F = CALCULATE(Sales[Sales Amt], DATESYTD('Date'[Date],"6-30") )
+
+</code></pre></div></div>
+
+<p>Using a matrix visual will produce the result below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_5.jpg" />
+<br /></p>
+
+<p>The YTD calculation can be simplified by using DAX <strong>TOTALYTD</strong> function which is given by</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TOTALYTD(&lt;expression&gt;,&lt;dates&gt;[,&lt;filter&gt;][,&lt;year_end_date&gt;])
+</code></pre></div></div>
+<p>Using <strong>TOTALYTD</strong> to create a YTD measure for the fiscal year named <strong>YTD Fiscal</strong> will be</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YTD Fiscal = TOTALYTD(
+                        Sales[Sales Amt],
+                        'Date'[Date],
+                        "6-30"
+                        )
+</code></pre></div></div>
+
+<p>This will produce the result below
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_6.jpg" />
+<br /></p>
+
+<h3 id="quarter-to-date-total">Quarter-to-date total</h3>
+
+<p>Similar to YTD,  quarter to date (QTD) total aggregates data from the first day of the first month of the quarter
+ to  the last day of the last month of the quarter and can be computed using CALCULATE and DATESQTD functions.
+Let create a measure named <strong>QTD Sales</strong> for the QTD total sales  as follows</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>QTD Sales = CALCULATE(Sales[Sales Amt],DATESQTD('Date'[Date]))
+</code></pre></div></div>
+<p>Using a matrix visual the QTD calculation will produce the result below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_7.jpg" />
+<br /></p>
+
+<p>From the above matrix visual we can see that <strong>QTD Sales</strong> display the QTD total sales of the fourth quarter as the total sales for the year. To remove this inaccurate results from the matrix visual I will write a conditional expression using the IF function together with <strong>ISINSCOPE</strong> to avoid showing a value at the year level. Using these functions the QTD total sales will be as follows</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>QTD Sales = IF( ISINSCOPE('Date'[QUATER]) ,
+                 CALCULATE( Sales[Sales Amt],
+                            DATESQTD('Date'[Date])
+                            )
+                  )
+</code></pre></div></div>
+<p>and will produce the result below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_8.jpg" />
+<br /></p>
+
+<p>The QTD total calculation can also be simplified using TOTALQTD function which is given as</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TOTALQTD(&lt;expression&gt;,&lt;dates&gt;[,&lt;filter&gt;])
+</code></pre></div></div>
+
+<h3 id="month-to-date-total">Month-to-date total</h3>
+<p>The month to date (MTD) aggregates data from the first day to the last day of the month and can be computed as below</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MTD Sales = IF(
+                HASONEFILTER('Date'[Month]),
+                 CALCULATE(  Sales[Sales Amt],
+                             DATESMTD('Date'[Date])
+                            )
+                )
+</code></pre></div></div>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_10.jpg" />
+<br /></p>
+
+<p>The MTD total computation can also be simplified using TOTALMTD function.</p>
+
+<h2 id="comparisons-over-time">Comparisons over time.</h2>
+
+<p>When working with dates,
+One common types of analysis that we usually perform when working with dates is to compare time periods such as comparing sales in the current month or year with the previous month or year which can be useful for making comparisons of trends. Let now explore time intelligence examples under comparison over time.</p>
+
+<h3 id="year-over-year-calculation">Year-Over-Year calculation</h3>
+<p>Year-over-year (YOY) compares a period to the equivalent period in the previous year. It compute the difference between a measure and its value in the previous year. In this post I will calculate the YOY growth as an amount in Sales. To calculate the YOY sales I will first create a measure named <strong>PY Sales</strong> which calculate the sales of the previous year using the <strong>DATEADD</strong> function as follows.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PY Sales = CALCULATE(
+                      Sales[Sales Amt],
+                      DATEADD('Date'[Date],-1,YEAR)
+                      )
+</code></pre></div></div>
+<p>With PY Sales measure computed I will now compute YOY as an amount in Sales  named <strong>YOY Sales</strong> which is the difference between sales in the current year and that of the previous year. The code below only shows values for which both the current and previous sales are available.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_11.jpg" />
+<br /></p>
+
+<p>I will express the YOY Sales as a as a percentage named <strong>YOY Sales %</strong> by dividing YOY Sales by PY Sales.
+Substracting the PY Sales from the  Sales Amount (YTD Sales)  and using the PY Sales as a reference for the percentage difference indicate that a 100 percent corresponds to a value that has doubled in a year and 100+ percent indicate a value which is more than doubled in a year.
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_12.jpg" />
+<br /></p>
+
+<p>Using a matrix visual the PY Sales, YOY Sales and YOY Sales % will produce the result below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_13.jpg" />
+<br /></p>
+
+<h3 id="quarter-over-quarter-calculation">Quarter-Over-Quarter calculation</h3>
+<p>Similar to YOY calculation, Quarter-over-quarter calculation compares the value of each quarter with the value of the quarter before. Under QOQ calculation I will create a measures named <strong>PQ Sales</strong> which computes sales of the previous quarter, <strong>QOQ Sales</strong>  which is the difference between sales in the current (this) quarter QTD Sales and that of the previous quarter (the quarter before the current quarter) PQ Sales and <strong>QOQ Sales %</strong> which expresses QOQ Sales as a percentage of the previous quarter.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_14.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_15.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_16.jpg" />
+<br /></p>
+
+<p>Using a matrix visual the PQ Sales, QOQ Sales and QOQ Sales % will produce the result below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_17.jpg" />
+<br /></p>
+
+<h3 id="month-over-month-calculation">Month-Over-Month calculation</h3>
+<p>A similar approach can be used for the <strong>month-over-month</strong> calculation which compares the value of each month with the value of the month before. Under the MOM calculation I will also create measures named <strong>PM Sales</strong> which computes sales of the previous month, <strong>MOM Sales</strong>  which is the difference between sales in the current month (MTD Sales or Sales Amt) and that of the previous Month PM Sales and <strong>MOM Sales %</strong> which expresses MOM Sales as a percentage of the previous month.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_18.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_19.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_20.jpg" />
+<br /></p>
+
+<p>With these calculation let now compares the sales in each month (MTD Sales) of 2020 with the sales of the month before (PM Sales). Note the 2020 fiscal year start on July 1, 2019.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/time_int_21.jpg" />
+<br /></p>
+</span>
+            </div><a class="u-url" href="/arizeblog/power-bi/2023/05/17/Time-Intelligence.html" hidden></a>
+
+        <!-- </article> -->
+        </div>
+
+
+
+
+
+
+                      <!--<div class="w3-col w3-card w3-white w3-container w3-margin w3-round-xlarge" style="width:15%">-->
+              		<div class="w3-sidebar w3-light-gray w3-card w3-round-xlarge w3-margin-left" style="width:20%;right:0;
+                   margin-top: 25px;">
+              		<div class="w3-container">
+              		<h4><b>Related Posts</b></h4>
+              		</div>
+
+                    <ul class="w3-hoverable ">
+
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2023/05/23/Rankx.html">Introduction to RANKX
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2023/05/17/Time-Intelligence.html">DAX Time intelligence
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2022/10/21/Treatas.html">DAX TREATAS Function
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2022/10/20/Filter.html">DAX FILTER Function
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                              
+
+
+                          </ul>
+
+                      </div>
+
+
+    </div>
+
+
+    </div>
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize-277270134"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize-277270134</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

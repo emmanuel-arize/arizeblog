@@ -3,11 +3,12 @@
 <style>
     #ma {
         margin-right: 150px;
-        background-color: white;
+        /* background-color: white; */
     }
-    
+
     body {
-        font-size: 20px;
+        font-size: 15px;
+        padding: 75px;
     }
 </style><head>
     <meta charset="utf-8">
@@ -33,7 +34,7 @@
 <body class="w3-light-grey"><!-- Sidebar -->
 <div class="w3-top">
 
-    <div class="w3-container w3-bar w3-gray ">
+    <div class="w3-container w3-bar w3-teal ">
         <div style="padding-left: 100px">
 
             <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
@@ -48,14 +49,18 @@
             <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
                 <b>Power BI (DAX) </b>
                 <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
-                    <b>Power Query</b>
+                    <b>Power Query (M)</b>
                 </a>
-                <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
                 <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
 
 
                 <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
 </div>
     </div>
 
@@ -69,18 +74,18 @@
         </a>
 
         <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
-            <b>Power BI (DAX)</b>
+            <b>Power BI (DAX & M)</b>
         </a>
 
         <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
             <b>Power Query</b>
 
-            <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-text-black w3-text-black">
-                <b>VBA</b>
-            </a>
 
             <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
             <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
     </div>
 </div>
 
@@ -94,37 +99,36 @@
         }
     }
 </script>
-<br>
-    <br style="margin-top:10px;">
-    <div id="ma" class="w3-container w3-margin" style="margin-left: 100px;">
+<br style="margin-top:2px;">
+    <div class="w3-container">
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title w3-margin-top"">About</h1>
   </header>
 
   <div class="post-content">
     <p><br style="margin-top:10px" /></p>
-<div class="w3-card w3-border  w3-border-blue w3-round-jumbo">
- <div class="w3-left w3-margin-right" style="width:15%">
-<img class="w3-round-jumbo" src="/arizeblog/assets/images/arize.jpg" />
+<div class="w3-card  w3-border-blue w3-round-jumbo">
 
+ <div class="w3-left w3-margin-right" style="width:10%">
+          <img class="w3-circle" src="/arizeblog/assets/images/arize.jpg" />
 </div>
-<p style="margin-right:60px">
+<p style="margin-right:20px" class="w3-twothird w3-container">
 I am <b style="color:blue;">Arize Emmanuel</b>, a Microsoft Certified Data Scientist, a graduate from the University for Development Studies (UDS, Ghana) with a BSc. degree in Mathematics. I am very passionate about Mathematics, Statistics, Artificial Intelligence, Data Science, Machine Learning and Deep Learning, with the goal towards building systems that will use data to improve business strategies and decisions and the society in general. I am looking for employment opportunity or an opportunity to further my studies (MSc. or PhD) to fully utilize my skills and learn new ideas and I will be very grateful to you if you have an opportunity for me. For any further information please you can contact via email at:
-</p>
-
-<div class="w3-text-blue w3-center">
-<h3 style="color:blue"><a href="mailto:arize.emmanuel@gmail.com"> arize1.emmanuel@gmail.com</a></h3>
 <br />
-</div></div>
+<a href="mailto:arize2.emmanuel@gmail.com"> arize2.emmanuel@gmail.com</a> <b>or </b>
+<a href="mailto:arize.emmanuel@outlook.com"> arize.emmanuel@outlook.com</a>
+</p>
+</div>
 
   </div>
 
 </article>
 
 
-    </div><footer class="site-footer h-card">
+    </div>
+    <!--<footer class="site-footer h-card">
   <data class="u-url" href="/arizeblog/"></data>
 
   <div class="wrapper">
@@ -147,9 +151,11 @@ I am <b style="color:blue;">Arize Emmanuel</b>, a Microsoft Certified Data Scien
   </div>
 
 </footer>
+-->
 </body>
 
 </html>
+<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
 <script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>

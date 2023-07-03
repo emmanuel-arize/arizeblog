@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        /* background-color: white; */
+    }
+
+    body {
+        font-size: 15px;
+        padding: 75px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Introduction to RANKX | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Introduction to RANKX" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking." />
+<meta property="og:description" content="In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction to RANKX" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2023-05-23T00:00:00+00:00","datePublished":"2023-05-23T00:00:00+00:00","description":"In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking.","headline":"Introduction to RANKX","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html"},"url":"http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-container w3-bar w3-teal ">
+        <div style="padding-left: 100px">
+
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query (M)</b>
+                </a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
+</div>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b>
+        </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>
+        </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>
+        </a>
+
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
+
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<br style="margin-top:2px;">
+    <div class="w3-container">
+        <style>
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding:10px; */
+}
+
+</style>
+<div class="w3-row  w3-white">
+
+        <div class=" w3-col w3-container w3-margin w3-round-large" style="width:79%;left:0;">
+
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Introduction to RANKX</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2023-05-23T00:00:00+00:00" itemprop="datePublished">May 23, 2023
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Emmanuel Arize
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking.</p>
+
+<p><strong>RANKX</strong> function is an iterator that is used to show the ranking value of an element according to a specific sort
+order. It returns the ranking of a number in a list of numbers for each row in the table argument. As and iterator it requires at least two parameters, the table that it scans and an expression that is evaluated for each row of the table. It has the syntax below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RANKX(&lt;table&gt;, &lt;expression&gt;[, &lt;value&gt;[, &lt;order&gt;[, &lt;ties&gt;]]])
+</code></pre></div></div>
+
+<p>From the syntax the table and expression parameters are the required parameters. The rest are optional.</p>
+
+<h4 id="table">table</h4>
+<p>The first parameter &lt;table&gt; requires table as input. The table can be a standard table that you imported into Power BI or any DAX expression that returns a table of data over which the expression is evaluated.</p>
+
+<h4 id="expression">expression</h4>
+<p>The expression parameter can be thought of as <strong>“Sort by”</strong> instruction for the RANKX function. It is the expression upon which the ranking is calculated based on it. The expression is evaluated for each row of table, to generate all possible values for ranking. It can be any DAX expression that returns a single scalar value.</p>
+
+<h4 id="value">value</h4>
+<p>(Optional) Any DAX expression that returns a single scalar value whose rank is to be
+found. When the value parameter is omitted, the value of expression at the current row is used
+instead.</p>
+
+<h4 id="order">order</h4>
+<p>The order parameter is an optional parameter that allows you to swap the ranking between ASC (ascending) or DESC (descending). DESC is the default value when the order parameter is omitted.</p>
+
+<h3 id="ties">ties</h3>
+<p>(Optional) An enumeration that defines how to determine ranking when there are ties. This argument can be either Skip (default value) or Dense. When set to Dense, the function doesn’t skip numbers for tied ranks.</p>
+
+<h2 id="practical-examples">Practical Examples</h2>
+<p>In this example I will be using  sales data for a small makeup company as shown below,</p>
+
+<p><br />
+<img class="w3-center w3-card" src="/arizeblog/assets/images/power_bi/rankx_1.jpg" />
+<br /></p>
+
+<p>As member of the data analyst team we have been tasked by the manager to rank the sales representatives (sale reps for short) based on their related sales amount given below, because he wants to know the best performing sale reps in the company.
+<br />
+<img class="w3-center w3-card" src="/arizeblog/assets/images/power_bi/rankx_2.jpg" />
+<br /></p>
+
+<p>To rank sale reps the ranking computation is performed by the code below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_3.jpg" />
+<br /></p>
+
+<p>The use of <strong>ISINSCOPE</strong> is to avoid showing a value at the grand total level.</p>
+
+<p>The <strong>ALL</strong> function ignores any filters that might have been applied and returns all the rows in a table, or all the values in a column. With the ranks computed, when used in a matrix visual will produce the result is given below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_4.jpg" />
+<br /></p>
+
+<p>In the presence of slicers that reduce the number of sale reps visible to the matrix because <strong>ALL</strong> function ignores any filter in the report, the rank of a selected sale rep will be the same as his/her rank in the ranking of all sale reps as shown below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_5.jpg" />
+<br /></p>
+
+<p>Instead of <strong>ALL</strong> we can use <strong>ALLSELECTED</strong>. ALLSELECTED guarantees a better behavior in the presence of
+slicers that reduce the number of sale reps visible to the matrix. It removes context filters from columns and rows in the current query, while retaining all other context filters or explicit filters. The ranking will automatically update depending on the selection in the slicer.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_6.jpg" />
+<br /></p>
+
+<p>Using the code in a matrix visual produce the result below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_7.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_8.jpg" />
+<br /></p>
+
+<p>With the sale reps ranked, the manager has now decided that he wants to know the products to send to the various locations so he has tasked the data analyst team to rank the products in combination with the locations based on their related sales Amount.</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_9.jpg" />
+<br /></p>
+
+<p>The code for the ranking is given below</p>
+
+<p><br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_10.jpg" />
+<br /></p>
+
+<p>When used in a matrix visual will produces the results below
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_11.jpg" />
+<br />
+<br />
+<img class="w3-center w3-brown" src="/arizeblog/assets/images/power_bi/rankx_12.jpg" />
+<br /></p>
+</span>
+            </div><a class="u-url" href="/arizeblog/power-bi/2023/05/23/Rankx.html" hidden></a>
+
+        <!-- </article> -->
+        </div>
+
+
+
+
+
+
+                      <!--<div class="w3-col w3-card w3-white w3-container w3-margin w3-round-xlarge" style="width:15%">-->
+              		<div class="w3-sidebar w3-light-gray w3-card w3-round-xlarge w3-margin-left" style="width:20%;right:0;
+                   margin-top: 25px;">
+              		<div class="w3-container">
+              		<h4><b>Related Posts</b></h4>
+              		</div>
+
+                    <ul class="w3-hoverable ">
+
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2023/05/23/Rankx.html">Introduction to RANKX
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2023/05/17/Time-Intelligence.html">DAX Time intelligence
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2022/10/21/Treatas.html">DAX TREATAS Function
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-bi/2022/10/20/Filter.html">DAX FILTER Function
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                              
+
+
+                          </ul>
+
+                      </div>
+
+
+    </div>
+
+
+    </div>
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize-277270134"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize-277270134</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

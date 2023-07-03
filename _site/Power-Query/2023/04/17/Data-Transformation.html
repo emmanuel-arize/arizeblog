@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        /* background-color: white; */
+    }
+
+    body {
+        font-size: 15px;
+        padding: 75px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Data Transformation using Power Query (M) | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Data Transformation using Power Query (M)" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The number one issue facing data analyst when building robust and stable solutions has been accessing, cleansing and transforming the data but with the integration of Power Query into all the data analysis and business intelligence tools from Microsoft such as Excel, Power BI and Analysis Services, data accessing, cleansing and transformation has been made easy because Power Query is designed to be an easy to use data accessing, transformation and manipulation tool. In this post I will be illustrating how to clean and transform data using power query but instead of using the Power Query GUI I will be using the Advanced editor to write the M code. Before the cleansing and transformation I’ll assume you have been given a project to complete and as analyst you’ve define a clear measurable and quantifiable goal for the project, your audience have been identified and any other requirements are also met. You now have the required data for the project but you’ve seen that the data is in state not suitable for the analysis so you’ve decided to condition or transform the data to suit your analysis. Transforming the data to suit your analysis is a critical step in the data analysis process as it helps to ensure that the data is in a format that is suitable for analysis and modeling, and that it is free of errors and inconsistencies. A failure to transform the data to suit your analysis will result in producing faulty output as there is the popular saying among the data analyst community which state “garbage in, garbage out” which simply means “incorrect or poor input will produce faulty output”." />
+<meta property="og:description" content="The number one issue facing data analyst when building robust and stable solutions has been accessing, cleansing and transforming the data but with the integration of Power Query into all the data analysis and business intelligence tools from Microsoft such as Excel, Power BI and Analysis Services, data accessing, cleansing and transformation has been made easy because Power Query is designed to be an easy to use data accessing, transformation and manipulation tool. In this post I will be illustrating how to clean and transform data using power query but instead of using the Power Query GUI I will be using the Advanced editor to write the M code. Before the cleansing and transformation I’ll assume you have been given a project to complete and as analyst you’ve define a clear measurable and quantifiable goal for the project, your audience have been identified and any other requirements are also met. You now have the required data for the project but you’ve seen that the data is in state not suitable for the analysis so you’ve decided to condition or transform the data to suit your analysis. Transforming the data to suit your analysis is a critical step in the data analysis process as it helps to ensure that the data is in a format that is suitable for analysis and modeling, and that it is free of errors and inconsistencies. A failure to transform the data to suit your analysis will result in producing faulty output as there is the popular saying among the data analyst community which state “garbage in, garbage out” which simply means “incorrect or poor input will produce faulty output”." />
+<link rel="canonical" href="http://localhost:4000/arizeblog/power-query/2023/04/17/Data-Transformation.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/power-query/2023/04/17/Data-Transformation.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-04-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data Transformation using Power Query (M)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2023-04-17T00:00:00+00:00","datePublished":"2023-04-17T00:00:00+00:00","description":"The number one issue facing data analyst when building robust and stable solutions has been accessing, cleansing and transforming the data but with the integration of Power Query into all the data analysis and business intelligence tools from Microsoft such as Excel, Power BI and Analysis Services, data accessing, cleansing and transformation has been made easy because Power Query is designed to be an easy to use data accessing, transformation and manipulation tool. In this post I will be illustrating how to clean and transform data using power query but instead of using the Power Query GUI I will be using the Advanced editor to write the M code. Before the cleansing and transformation I’ll assume you have been given a project to complete and as analyst you’ve define a clear measurable and quantifiable goal for the project, your audience have been identified and any other requirements are also met. You now have the required data for the project but you’ve seen that the data is in state not suitable for the analysis so you’ve decided to condition or transform the data to suit your analysis. Transforming the data to suit your analysis is a critical step in the data analysis process as it helps to ensure that the data is in a format that is suitable for analysis and modeling, and that it is free of errors and inconsistencies. A failure to transform the data to suit your analysis will result in producing faulty output as there is the popular saying among the data analyst community which state “garbage in, garbage out” which simply means “incorrect or poor input will produce faulty output”.","headline":"Data Transformation using Power Query (M)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/power-query/2023/04/17/Data-Transformation.html"},"url":"http://localhost:4000/arizeblog/power-query/2023/04/17/Data-Transformation.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-container w3-bar w3-teal ">
+        <div style="padding-left: 100px">
+
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query (M)</b>
+                </a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
+</div>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b>
+        </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>
+        </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>
+        </a>
+
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
+
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<br style="margin-top:2px;">
+    <div class="w3-container">
+        <style>
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+
+<div class="w3-row  w3-white">
+
+        <div class=" w3-col w3-container w3-margin w3-round-large" style="width:79%;left:0;">
+
+
+            <header class="post-header">
+                <h2 class="post-title p-name" itemprop="name headline">Data Transformation using Power Query (M)</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2023-04-17T00:00:00+00:00" itemprop="datePublished">Apr 17, 2023
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Emmanuel Arize
+
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>The number one issue facing data analyst when building robust and stable solutions has been accessing,
+cleansing and transforming the data but with the integration of Power Query into all the data analysis and business intelligence tools from Microsoft such as Excel, Power BI and Analysis Services, data accessing, cleansing and transformation has been made easy because Power Query is designed to be an easy to use data accessing, transformation and manipulation tool. In this post I will be illustrating how to clean and transform data using power query but instead of using the Power Query GUI I will be using the Advanced editor to write the M code. Before the cleansing and transformation I’ll assume you have been given a project to complete and as analyst you’ve define a clear measurable and quantifiable goal for the project, your audience have been identified and any other requirements are also met. You now have the required data for the project but you’ve seen that the data is in state not suitable for the analysis so you’ve decided to condition or transform the data to suit your analysis. Transforming the data to suit your analysis is a critical step in the data analysis process as it helps to ensure that the data is in a format that is suitable for analysis and modeling, and that it is free of errors and inconsistencies. A failure to transform the data to suit your analysis will result in producing faulty output as there is the popular saying among the data analyst community which state “garbage in, garbage out” which simply means “incorrect or poor input will produce faulty output”.</p>
+
+<h3 id="what-is-data-transformation">What is Data Transformation?</h3>
+
+<p>Data transformation is the process of converting, cleansing, and structuring data into a usable format that can be used for analysis and modeling. The goal of data transformation is to prepare the data so that it can be used to extract useful insights and knowledge. Data transformation include data cleaning, data integration, normalization, scaling, reduction, discretization, aggregation and many more.</p>
+
+<h3 id="sample-data">Sample Data</h3>
+
+<p>To work through the examples in this post, you need to download the data used in  this post from <a href="https://github.com/emmanuel-arize/Power-Query/blob/main/data/Life-Expectancy-At-Birth.xls" target="_blank">Life-Expectancy-At-Birth.xls</a> and load it into power query as shown below</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_1.jpg" />
+<br /></p>
+
+<h2 id="data-transformation">Data Transformation</h2>
+
+<p>From the data above we can see that power query was not able to determine correctly the column headers of the data loaded. Looking at the data we can see that the actual column headers for the data is Row 1 but because power query could not determine it correctly, it labels the column headers as column1, column2 and in that order.</p>
+
+<h3 id="promote-headers-operation">Promote Headers Operation</h3>
+
+<p>Sometimes the actual column headers of the table is the first row as seen above but because power query could not determine it correctly it labels the column headers incorrectly and this need to be corrected. With the promote headers operation, it promotes the first row of values as the new column headers. There are a number of places where we can select the promote headers operation (<strong>Use First Row as Headers</strong> )</p>
+
+<p>Click on the Home tab then in the Transform group</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/append_5.jpg" />
+<br /></p>
+
+<p>Or On the Transform tab, in the Table group.</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/append_6.jpg" />
+<br /></p>
+
+<p>After clicking on Use First Row as Headers, the first row in the query is used as the column headers of the query but instead of clicking it I will write the M code using the Advanced Editor which can be located on the Home tab of the query editor. To open the Advanced Editor Click on the home tab then Advanced Editor as below</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/append_6_1.jpg" />
+<br /></p>
+
+<p>When the Advanced Editor is clicked it will opened an editor similar to one below
+<br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/append_6_2.jpg" />
+<br /></p>
+
+<p>Using this editor I will use the M table function <strong>Table.PromoteHeaders</strong>  to write a code named <strong>FirstRowAsHeaders</strong> promote the first row as Headers</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/append_6_3.jpg" />
+<br /></p>
+
+<p>and we get the table below</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_2.jpg" />
+<br /></p>
+
+<h3 id="remove-columns">Remove columns</h3>
+
+<p>Remove columns is an operations that help you define what columns your table needs to remove. From the data the columns named Indicator Name and Indicator Code contain data not relevant to our analysis so we need to remove them. To remove these columns select the columns to remove, in our case the column Indicator Name and Indicator Code as below</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_3.jpg" />
+<br /></p>
+
+<p>then <strong>right click</strong> and select <strong>Remove Columns</strong> to remove the selected columns. Remove Columns can also be found on the <strong>Home tab</strong> in the <strong>Manage Columns group</strong>.</p>
+
+<p>Instead of using the approach described above, let use the M table function <strong>Table.RemoveColumns</strong> to write the code named <strong>RemoveUnwantedColumns</strong> to remove the unwanted columns.</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_3_1.jpg" />
+<br /></p>
+
+<p>With the unwanted columns removed we now have the table shown below</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_3_2.jpg" />
+<br /></p>
+
+<h3 id="renaming-columns">Renaming Columns</h3>
+<p>To rename a column heading you can double click on the column heading start typing the new name but since we are writing the code, let use the <strong>Table.RenameColumns</strong> function to write the code named <strong>ColumnRenamed</strong> to rename the column Country Name to Country.</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_3_3.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_3_4.jpg" />
+<br /></p>
+
+<h3 id="unpivot-columns">Unpivot columns</h3>
+
+<p>given a table like the one above, where the rows of the country and the date columns create a matrix of values, it’s difficult to analyze the data in a scalable way. In such cases we might want to unpivot or flatten the data, to put it in a matrix format where all similar values are in one column. To unpivot the table to have country, country code ,year and life Expectancy at birth as columns select the country and country code columns as below, then right click on the selected columns and select <strong>Unpivot Other Columns</strong>.</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8.jpg" />
+<br /></p>
+
+<p>Instead of unpivoting using the approach described above, let use the m <strong>Table.UnpivotOtherColumns</strong> to write a code named <strong>UnpivotOtherColumns</strong> to unpivot other columns.</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_1.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_2.jpg" />
+<br /></p>
+
+<h3 id="transform-column-date-type">Transform Column Date Type</h3>
+<p>When using data for analysis you have to make sure the data type of the various columns are correct.</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_21.jpg" />
+<br /></p>
+
+<p>For instance we know that the Life Expectancy at birth (Life_Expentancy_At_Birth) column is a numerical column when we look at the data type of Life_Expentancy_At_Birth above, it is given as a text which is not correct so we need to change it to a numerical data type. Using the <strong>Table.TransformColumnTypes</strong> function the code below named <strong>ChangeDataType</strong> change the Life_Expentancy_At_Birth data type from text to a numerical data type</p>
+
+<p><br />
+ <img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_3.jpg" />
+ <br /></p>
+
+<p><br />
+ <img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_31.jpg" />
+ <br /></p>
+
+<h3 id="sorting">Sorting</h3>
+
+<p>Let sort the data in ascending order based on the Year column. The sorting is given by the code below named <strong>SortYear</strong> using the <strong>Table.Sort</strong> function</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_4.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_8_41.jpg" />
+<br /></p>
+
+<h3 id="filtering-the-data">Filtering the Data</h3>
+
+<p>From the data some countries such as <strong>Andorra, American Samoa</strong> etc, contain null values throughout, so we need to filter out such rows from the data. Since these nulls values are under the Life_Expectancy_At_Birth column, let filter the rows containing null under the Life_Expectancy_At_Birth column using <strong>Table.RemoveMatchingRows</strong> function to remove rows containing null</p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_5_1.jpg" />
+<br /></p>
+
+<p><br />
+<img class="w3-card" src="/arizeblog/assets/images/power_query/trans_5_2.jpg" />
+<br /></p>
+</span>
+            </div><a class="u-url" href="/arizeblog/power-query/2023/04/17/Data-Transformation.html" hidden></a>
+
+        <!-- </article> -->
+        </div>
+
+                <!--<div class="w3-col w3-card w3-white w3-container w3-margin w3-round-xlarge" style="width:15%">-->
+      <div class="w3-sidebar w3-light-gray w3-card w3-round-xlarge w3-margin-left" style="width:20%;right:0;
+                   margin-top: 25px;">
+              <div class="w3-container">
+              		<h4><b>Related Posts</b></h4>
+              </div>
+
+                    <ul class="w3-hoverable ">
+
+                               
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-query/2023/05/02/Group-By.html">Group By Transformation
+                              </li>
+                              
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-query/2023/04/17/Data-Transformation.html">Data Transformation using Power Query (M)
+                              </li>
+                              
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/power-query/2023/02/20/Append-Query.html">Shape and Append Queries
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                              
+
+
+                      </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+    </div>
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize-277270134"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize-277270134</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+</body>
+
+</html>
+<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>
