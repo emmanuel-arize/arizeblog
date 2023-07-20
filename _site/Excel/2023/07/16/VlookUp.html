@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=" en ">
+<style>
+    #ma {
+        margin-right: 150px;
+        /* background-color: white; */
+    }
+
+    body {
+        font-size: 15px;
+        padding: 75px;
+    }
+</style><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Excel LOOKUP Functions | ARIZE-BLOG</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="Excel LOOKUP Functions" />
+<meta name="author" content="Emmanuel Arize" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this blog post I will be illustrating how to use Excel Lookup function. Lookup functions are used to find information in a range of data such as" />
+<meta property="og:description" content="In this blog post I will be illustrating how to use Excel Lookup function. Lookup functions are used to find information in a range of data such as" />
+<link rel="canonical" href="http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp.html" />
+<meta property="og:url" content="http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp.html" />
+<meta property="og:site_name" content="ARIZE-BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Excel LOOKUP Functions" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emmanuel Arize"},"dateModified":"2023-07-16T00:00:00+00:00","datePublished":"2023-07-16T00:00:00+00:00","description":"In this blog post I will be illustrating how to use Excel Lookup function. Lookup functions are used to find information in a range of data such as","headline":"Excel LOOKUP Functions","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp.html"},"url":"http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/arizeblog/assets/main.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
+    <link rel="stylesheet" href="/arizeblog/%20/assets/css/bootstrap.min.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/arizeblog/feed.xml" title="ARIZE-BLOG" /></head>
+<body class="w3-light-grey"><!-- Sidebar -->
+<div class="w3-top">
+
+    <div class="w3-container w3-bar w3-teal ">
+        <div style="padding-left: 100px">
+
+            <a href="/arizeblog/" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Home</b></a>
+
+            <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with Python </b>
+            </a>
+
+            <a href=" /arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>ML. with R </b>
+            </a>
+            <a href="/arizeblog/Power-BI" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                <b>Power BI (DAX) </b>
+                <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+                    <b>Power Query (M)</b>
+                </a>
+                <!-- <a href="/arizeblog/VBA" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>VBA</b></a> -->
+                <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b> Excel</b></a>
+
+
+                <a href="/arizeblog/about" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>About</b></a>
+                  <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                onclick="myFunction()">&#9776;</a>
+</div>
+    </div>
+
+    <div id="demo" class="w3-bar-block w3-gray w3-hide w3-hide-large w3-hide-medium">
+        <a href="/arizeblog/machine-learning-python" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning Python</b>
+        </a>
+
+        <a href="/arizeblog/machine-learning-R" class="w3-bar-item w3-button w3-text-black">
+            <b>Machine Learning R</b>
+        </a>
+
+        <a href=" /arizeblog/Power-BI" class="w3-bar-item w3-button w3-text-black">
+            <b>Power BI (DAX & M)</b>
+        </a>
+
+        <a href="/arizeblog/Power-Query" class="w3-bar-item w3-button w3-hide-small w3-text-black">
+            <b>Power Query</b>
+
+
+            <a href="/arizeblog/Excel" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Excel</b> </a>
+            <a href="/arizeblogg/about" class="w3-bar-item w3-button w3-text-black"><b>About </b></a>
+            <a href="/arizeblog/Portfolio" class="w3-bar-item w3-button w3-hide-small w3-text-black"><b>Portfolio</b></a>
+
+
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+<br style="margin-top:2px;">
+    <div class="w3-container">
+        <div class="w3-row  w3-white">
+
+        <div class=" w3-col w3-container w3-margin w3-round-large" style="width:79%;left:0;">
+
+
+            <header class="post-header">
+                <h2  class="post-title p-name" itemprop="name headline">Excel LOOKUP Functions</h2>
+                <p class="post-meta">
+                    <time class="dt-published" datetime="2023-07-16T00:00:00+00:00" itemprop="datePublished">Jul 16, 2023
+                    </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <span class="p-author h-card" itemprop="name">
+                            By Emmanuel Arize
+                        </span>
+                    </span></p>
+            </header>
+
+            <div class="post-content e-content" itemprop="articleBody">
+                <span class="w3-container"> <p>In this blog post I will be illustrating how to use Excel Lookup function. Lookup functions are used to find information in a range of data such as</p>
+
+<ul>
+  <li>Finding a customer name based on the customer ID.</li>
+  <li>Finding a product price based on the  product ID.</li>
+  <li>Can be used to write a formula to compute tax rates based on income.</li>
+  <li>It can also be used to describe the state of a value in a form of conditional statement such as describing an income as being low or high based on a threshold.</li>
+</ul>
+
+<h3 id="what-is-a-lookup-function">What is a Lookup Function?</h3>
+<p>A Lookup function enable you to “look up” values from worksheet ranges. It returns a value from a table (a range of data) by looking up another related value. It simply search for a specific information (e.g Canadian market) in the data and extract some corresponding information (e.g. Revenue from the Canadian market). Microsoft Excel 2016 allows you to perform both vertical lookups by using the VLOOKUP function and horizontal lookups using the HLOOKUP function. The VLOOKUP function always searches for a value starting in the first column of the lookup table and the HLOOKUP function
+searches for a value starting in the first row of the lookup table. In this post I will concentrate on VLOOKUP function since is the most used function between the two functions.</p>
+
+<h3 id="vlookup-syntax">VLOOKUP syntax</h3>
+<p>The function has the following syntax with brackets ([]) indicating optional arguments.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+</code></pre></div></div>
+<p>and the function arguments are as follows:</p>
+
+<p><strong>1. lookup_value</strong>: is the value, cell reference you want to search for  or look up in the first column of the lookup table. This is what you want to look up or find, so when the formula reads the Lookup value, it search for this value within the table (table_array) and return the result that matches it.</p>
+
+<p><strong>2. table_array</strong>:  is the range that contains the entire lookup table.</p>
+
+<p><strong>3. col_index_num</strong>: The column number in table_array from which the matching value must be returned. The input is the number of the column, counted from the left, 1 returns the value in the first column in table_array, 2 returns the value in the second column in table_array, and so on.</p>
+
+<p><strong>4. range_lookup</strong>: A logical value that indicates whether VLOOKUP is to find an approximate match (TRUE/1) or exact match (FALSE/0). If omitted, an approximate match is returned. If the range_lookup argument is TRUE or omitted, the first column of the lookup table must be in ascending order. If FALSE, VLOOKUP will search for an exact match and if it can’t find an exact match, the function returns #N/A</p>
+
+<h3 id="finding-an-approximate-match-using-the-vlookup-function">Finding an Approximate Match using the vlookup function.</h3>
+<p>Under the approximate match example I will be computing tax rates based on income. Suppose the government has decided to
+introduce new tax rate of which workers will taxed based on the amount of salary they received at the end of each month.
+Let also assume that the tax rate and their respective salary range is given by the table below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_01.jpg" /></p>
+
+<p>To use the lookup function to compute the tax rate, the numbers in the first column of the table range must be
+sorted in ascending order so that each row in the table represents the low end of the amount range as shown below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_2.jpg" /></p>
+
+<h4 id="computing-the-tax-rate">Computing the tax rate</h4>
+<ul>
+  <li>First select the table range <strong>D14:E18</strong> and named it as <strong>Tax_lookup_table</strong> as shown below.</li>
+</ul>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_3.jpg" /></p>
+
+<p><strong>Note:</strong> The Name box (red rectangular box) is located directly above the label for column A. To see the Name
+box, you need to display the Formula bar.</p>
+
+<ul>
+  <li>To compute the tax rate based on the amount of salary an employee received select cell <strong>I14</strong> and enter
+    <pre><code class="language-(excel)">  =VLOOKUP( I13, Tax_lookup_table, 2 ,TRUE)
+
+</code></pre>
+  </li>
+</ul>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_4.jpg" /></p>
+
+<p><strong>Note:</strong> that because the column index in the formula is 2 (we want to return the tax rate), the answer always comes from the second column of the table range (Tax_lookup_table) which is the tax rate.</p>
+
+<p>Let now check the tax rate for an employee with a salary of $400</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_5.jpg" /></p>
+
+<p>Let also check the tax rate for an employee with a salary of $16000</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_6.jpg" /></p>
+
+<p>We can see from the two preceding examples that formula is working as expected.</p>
+
+<h3 id="finding-an-exact-match">Finding an Exact Match</h3>
+<p>Under the exact match example I will be computing the price of food item based on the selected food item. Suppose you have food store with several food items and their related prices shown below. As the storekeeper you’ve noticed that the first thing customers usually asked for is the price of the item they want to purchase and because of this you’ve decided to use excel vlookup function to compute the various price of the items so that whenever they ask for the price of the item, you just enter the food item and the vlookup function will give you the item related price.</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_07.jpg" /></p>
+
+<ul>
+  <li>
+    <p>First select the table range <strong>B4:C8</strong> and named it as <strong>ItemPrice_lookup_table</strong> as shown below.</p>
+  </li>
+  <li>
+    <p>To make things easier I am going to create a drop-down list for the food items</p>
+
+    <p>1. First select cell <b>G3</b> then click on the <b>Data tab</b>.
+<p> 2. In the <b>Data Tools</b> group select the <b>Data validation icon</b> as shown below</p>   
+
+<img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_8.jpg" />
+
+<p>3. After clicking on the data validation arrow you will get dialog box similar to the one below</p>
+
+<img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_9.jpg" />
+
+<p>4. Under the Allow dialog box select list</p>
+
+<p>5. Under source select the range of data that you intend to use as drop-down list. In our case the food items which consist of the range <b>=$B$4:$B$8</b> as shown below</p>
+
+
+  <img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_10.jpg" />
+
+<p>6. click <b>OK</b>.</p>
+
+This will create a drop-down list containing the food items
+
+  <img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_11.jpg" />
+
+With the drop-down list created let now compute the price based on the selected food item.
+
+- To compute the price based on the selected item select cell <b>G4</b> and enter
+
+</p>
+  </li>
+</ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=VLOOKUP(G3,ItemPrice_lookup_table,2,FALSE)
+</code></pre></div></div>
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_12.jpg" /></p>
+
+<p>When a food item is selected it related price is given as shown below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_13.jpg" /></p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_14.jpg" /></p>
+
+<h4 id="in-this-third-example-i-will-use-the-vlookup-function-to-describe-the-status-of-an-employee-income-based-on-the-table-below">In this third example I will use the vlookup function to describe the status of an employee income based on the table below.</h4>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_15.jpg" /></p>
+
+<p>and the description is based on the following income ranges.</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_151.jpg" /></p>
+
+<p>To describe the status using vlookup function in cell <strong>D3</strong> enter</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=VLOOKUP( C3,   {-1000000,"debt" ; 0,"low Income"; 500,"Medium Income"; 1000,"High Income"; 2000,"Higher Income" } , 2 , TRUE)
+</code></pre></div></div>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_16.jpg" /></p>
+
+<p>It will produce the result below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_17.jpg" /></p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_18.jpg" /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>In this post we look at lookup functions specifically vlookup function since the most used function and saw how these functions can make our job easier in situations such as finding the price of a given item given the id.</p>
+</span>
+            </div><a class="u-url" href="/arizeblog/excel/2023/07/16/VlookUp.html" hidden></a>
+
+        <!-- </article> -->
+        </div>
+
+                <!--<div class="w3-col w3-card w3-white w3-container w3-margin w3-round-xlarge" style="width:15%">-->
+      <div class="w3-sidebar w3-light-gray w3-card w3-round-xlarge w3-margin-left" style="width:20%;right:0;
+                   margin-top: 25px;">
+              <div class="w3-container">
+              		<h4><b>Related Posts</b></h4>
+              </div>
+
+                    <ul class="w3-hoverable ">
+
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/excel/2023/07/16/VlookUp.html">Excel LOOKUP Functions
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/excel/2022/10/22/bullet-graph.html">Excel Bullet Chart
+                              </li>
+                              
+                               
+                               
+                               
+                              <li class="w3-padding-16">
+                                  <a href="/arizeblog/excel/2022/10/20/IF-Statement.html">Excel IF Function
+                              </li>
+                              
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                              
+
+
+                      </ul>
+
+        </div>
+
+
+    </div>
+
+
+    </div>
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/arizeblog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ARIZE-BLOG</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Emmanuel Arize</li><li><a class="u-email" href="mailto:arize2.emmanuel@gmail.com">arize2.emmanuel@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/emmanuel-arize"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">emmanuel-arize</span></a></li><li><a href="https://www.linkedin.com/in/emmanuel-arize-277270134"><svg class="svg-icon"><use xlink:href="/arizeblog/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">emmanuel-arize-277270134</span></a></li></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+-->
+</body>
+
+</html>
+<!-- <link rel="stylesheet" href="/arizeblog/assets/css/my.css"> -->
+<link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
+<link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
+<script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/w3.js"></script>
+<script id="MathJax-script" async src="/arizeblog/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/tex-svg.js">
+</script>

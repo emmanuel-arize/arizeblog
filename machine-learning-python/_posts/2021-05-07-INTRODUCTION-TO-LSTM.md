@@ -3,26 +3,22 @@ layout: python-post
 title: Introduction to LSTMs
 category: machine-learning-python
 author: Arize Emmanuel
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 72
 ---
-
-
-
----
-In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.
+In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the conventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.
 
 > Note: In order to understand this post, you must have basic knowledge of recurrent neural networks and Keras. You can refer to <a href='https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html' target="_blank">  recurrent neural network</a> to understand these concepts:
 
 
-Modeling sequential data using coventional <a href='https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html' target="_blank">  recurrent neural network</a>, sometimes encounter sequences in which the gap between the relevant information and the point where it's needed is very large, with these kind of huge gaps, RNNs are unable connectinformation to where it's needed. During the backpropagation phase of RNNs, in which error signals (gradients) are backpropagated through time, the recurrent hidden layers (weight matrix associated with the layers) are subject to repeated multiplications. These multiplications are determined by the number of timesteps (length of the sequence), and this might result in numerical instability for lengthy sequence. For lengthy sequence, small weights tend to lead to a situation known as <b>vanishing gradients</b> where error signals propagating backwards get so small that learning either becomes very slow or stops working altogether (error signals fowing backwards in time tend to vanish). Conversely larger weights tend to lead to a situation where error signals are so large that they can cause learning to diverge, a situation known as <b>exploding gradients</b>.
+Modeling sequential data using conventional <a href='https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html' target="_blank">  recurrent neural network</a>, sometimes encounter sequences in which the gap between the relevant information and the point where it's needed is very large, with these kind of huge gaps, RNNs are unable connect information to where it's needed. During the backpropagation phase of RNNs, in which error signals (gradients) are backpropagated through time, the recurrent hidden layers (weight matrix associated with the layers) are subject to repeated multiplications. These multiplications are determined by the number of timesteps (length of the sequence), and this might result in numerical instability for lengthy sequence. For lengthy sequence, small weights tend to lead to a situation known as <b>vanishing gradients</b> where error signals propagating backwards get so small that learning either becomes very slow or stops working altogether (error signals flowing backwards in time tend to vanish). Conversely larger weights tend to lead to a situation where error signals are so large that they can cause learning to diverge, a situation known as <b>exploding gradients</b>.
 
 
 To read more on exploding and vanishing gradients have a look at this papers
 <br/>
 <a href='https://arxiv.org/pdf/1211.5063v1.pdf' target="_blank">Understanding the exploding gradient problem</a><br/>
-<a href='https://www.semanticscholar.org/paper/Learning-long-term-dependencies-with-gradient-is-Bengio-Simard/d0be39ee052d246ae99c082a565aba25b811be2d' target="_blank">Learning long-term dependencies with gradient descent is difficult</a><br/> 
+<a href='https://www.semanticscholar.org/paper/Learning-long-term-dependencies-with-gradient-is-Bengio-Simard/d0be39ee052d246ae99c082a565aba25b811be2d' target="_blank">Learning long-term dependencies with gradient descent is difficult</a><br/>
 
 <a href='https://www.bioinf.jku.at/publications/older/2304.pdf' target="_blank">THE VANISHING GRADIENT PROBLEM DURING LEARNING RECURRENT NEURAL NETS AND PROBLEM SOLUTIONS</a><br/>
 
@@ -32,7 +28,7 @@ The vanishing and exploding gradients problem associated with conventional RNNs 
 
 # Long Short-Term Memory NETWORKS (LSTMs)
 
-LSTM are design to remember information for long periods of time and this is acheived through the use of a <b>memory cell state denoted by $$C_{t}$$ </b> which is controled by the gating mechanism. At each time step, the controllable gating mechanisms decide which parts of the inputs will be written to the memory cell state, and which parts of memory cell state will be overwritten (forgotten), regulating information flowing in and out of the memory cell state and this make LSTMs divide the context management problem into two sub-problems: removing information no longer needed from the context and adding information likely to be needed for later decision making to the context. <a href='#lstm'>Figure 1</a>  is a A schematic diagram of LSTMs.
+LSTM are design to remember information for long periods of time and this is achieved through the use of a <b>memory cell state denoted by $$C_{t}$$ </b> which is controlled by the gating mechanism. At each time step, the controllable gating mechanisms decide which parts of the inputs will be written to the memory cell state, and which parts of memory cell state will be overwritten (forgotten), regulating information flowing in and out of the memory cell state and this make LSTMs divide the context management problem into two sub-problems: removing information no longer needed from the context and adding information likely to be needed for later decision making to the context. <a href='#lstm'>Figure 1</a>  is a A schematic diagram of LSTMs.
 
 
 
@@ -43,13 +39,13 @@ LSTM are design to remember information for long periods of time and this is ach
 
 
 From <a href='#lstm'>Figure 1,</a> the first step of the LSTM model is to decide  how to
- to reset the content of the memory cell and this is controlled by the <b>forget gate </b> denoted as $$f_t$$ and defined as 
+ to reset the content of the memory cell and this is controlled by the <b>forget gate </b> denoted as $$f_t$$ and defined as
 
 $$f_{t}=\sigma(x_{t}U^{f} +h_{t-1}W^{f} )$$
 
-where $$W^{f}$$ denotes the hidden to hidden weights with  the superscript $$f$$ as a symbol indicating the forget gate, $$U^{f}$$ denoting input to hidden weights. The forget gate computes the weighted sum of the previous hidden state $$h_{t−1}$$ and the current input $$x_{t}$$ of time step t (time steps correspond to word positions in a sentence) then passes it through a sigmoid activation function which output a vector with values between 0 and 1.  ***The forgate gate is then multiplied by the previous memory cell $$C_{t-1}$$ to decide how much of the previous memory cell content to retain when computing the current memory cell state $$C_{t}$$. With a forgate gate value of 0, content of the previous memory cell will be completely discarded and with a value of 1, content of the previous memory cell will be  used when computing the current memory cell***. 
-Let defined this multiplcation as
- 
+where $$W^{f}$$ denotes the hidden to hidden weights with  the superscript $$f$$ as a symbol indicating the forget gate, $$U^{f}$$ denoting input to hidden weights. The forget gate computes the weighted sum of the previous hidden state $$h_{t−1}$$ and the current input $$x_{t}$$ of time step t (time steps correspond to word positions in a sentence) then passes it through a sigmoid activation function which output a vector with values between 0 and 1.  ***The forget gate is then multiplied by the previous memory cell $$C_{t-1}$$ to decide how much of the previous memory cell content to retain when computing the current memory cell state $$C_{t}$$. With a forget gate value of 0, content of the previous memory cell will be completely discarded and with a value of 1, content of the previous memory cell will be  used when computing the current memory cell***.
+Let defined this multiplication as
+
 $$k_{t}=C_{t-1} \odot f_{t}$$
 
 
@@ -122,9 +118,9 @@ test_data=K.preprocessing.text_dataset_from_directory(directory='./data/stackove
     Found 8000 files belonging to 4 classes.
     Using 2000 files for validation.
     Found 8000 files belonging to 4 classes.
-    
 
-From the above result, there are 8000 examples of which 75% representing 6000 is used as the training set and 25% (2000) as a validation set. The data has a label categorize into 4 classes 
+
+From the above result, there are 8000 examples of which 75% representing 6000 is used as the training set and 25% (2000) as a validation set. The data has a label categorize into 4 classes
 
 
 ```python
@@ -136,7 +132,7 @@ for i,label in enumerate(train_data.class_names):
     index 1 corresponds to  java
     index 2 corresponds to  javascript
     index 3 corresponds to  python
-    
+
 
 
 ```python
@@ -148,9 +144,9 @@ for x,y in train_data.take(1):
 ```
 
     b'"blank boolean expression for a string in do-while loop public class studentgrades {..    string studentid;.    integer numericgrade;..    scanner input = new scanner(system.in);..public void loadstudentgrades(){.    do{.        system.out.println(""please enter a student id, or enter \'end\' to exit: "");.        studentid = input.next();.        system.out.println(""please enter numeric grade for the id above: "");.        numericgrade = input.nextint();.        map.put(studentid, numericgrade);.        }.    while (studentid !string.equals(""end"")); //this is throwing an error. how is it possible to get this to work?.    }.}...i\'m working on this class and am finding it difficult to get the while part of my do-while loop to work the way i was expecting it to. i want to say while studentid is not equal to ""end"" to go through the loop."\n'
-    
+
      1 -- csharp
-    
+
 
 
 ```python
@@ -165,7 +161,7 @@ def process_data(data):
     lower_data=tf.strings.lower(data)
     lower_data=tf.strings.strip(lower_data)
     return tf.strings.regex_replace(lower_data,"<b />",' ')
-   
+
 sequence_length = 100
 vocab_size = 1000
 
@@ -190,7 +186,7 @@ class LSTM(K.models.Model):
         self.flat=K.layers.Flatten()
         self.dropout=K.layers.Dropout(0.3)
         self.dense=K.layers.Dense(4,activation='softmax')
-    
+
     def call(self,x):
         x=self.input_encoder(x)
         x=self.embed(x)
@@ -198,7 +194,7 @@ class LSTM(K.models.Model):
         h=self.dropout(self.flat(h))
         output=self.dense(h)
         return output
-        
+
 ```
 
 
@@ -256,7 +252,7 @@ lstm_model.fit(train_data,batch_size=batch_size,validation_data=val_data,epochs=
     49/49 [==============================] - 9s 176ms/step - loss: 0.7129 - acc: 0.7033 - val_loss: 0.9438 - val_acc: 0.6395
     Epoch 20/20
     49/49 [==============================] - 9s 185ms/step - loss: 0.7122 - acc: 0.7035 - val_loss: 1.0339 - val_acc: 0.6300
-    
+
 
 
 
@@ -273,7 +269,7 @@ lstm_model.evaluate(test_data)
 ```
 
     65/65 [==============================] - 13s 172ms/step - loss: 1.0457 - acc: 0.6405
-    
+
 
 
 
@@ -338,7 +334,7 @@ pred(result)
     javascript
     java
     python
-    
+
 
 Reference
 

@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { mar
 main { display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */ }
 
 /** Images */
-img { max-width: 100%; vertical-align: middle; }
+img { max-width: 100%; vertical-align: middle; display: block; margin-left: auto; margin-right: auto; }
 
 /** Figures */
 figure > img { display: block; }
@@ -120,7 +120,7 @@ table td { border: 1px solid #e8e8e8; }
 
 .page-heading { font-size: 32px; }
 
-.post-list-heading { font-size: 28px; }
+.post-list-heading { font-size: 28px; padding: 20px; }
 
 .post-list { margin-left: 0; list-style: none; }
 
@@ -131,7 +131,7 @@ table td { border: 1px solid #e8e8e8; }
 .post-link { display: block; font-size: 24px; }
 
 /** Posts */
-.post-header { margin-bottom: 30px; }
+.post-header { margin-bottom: 30px; padding-top: 20px; }
 
 .post-title { font-size: 42px; letter-spacing: -1px; line-height: 1; }
 

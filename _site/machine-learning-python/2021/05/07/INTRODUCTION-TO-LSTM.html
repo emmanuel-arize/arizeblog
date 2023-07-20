@@ -19,8 +19,8 @@
 <meta property="og:title" content="Introduction to LSTMs" />
 <meta name="author" content="Arize Emmanuel" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras." />
-<meta property="og:description" content="In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras." />
+<meta name="description" content="In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the conventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras." />
+<meta property="og:description" content="In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the conventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras." />
 <link rel="canonical" href="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" />
 <meta property="og:url" content="http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html" />
 <meta property="og:site_name" content="ARIZE-BLOG" />
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Introduction to LSTMs" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arize Emmanuel"},"dateModified":"2021-05-07T00:00:00+00:00","datePublished":"2021-05-07T00:00:00+00:00","description":"In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.","headline":"Introduction to LSTMs","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"},"url":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Arize Emmanuel"},"dateModified":"2021-05-07T00:00:00+00:00","datePublished":"2021-05-07T00:00:00+00:00","description":"In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when model temporal sequences and their long-range dependencies than the conventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.","headline":"Introduction to LSTMs","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"},"url":"http://localhost:4000/arizeblog/machine-learning-python/2021/05/07/INTRODUCTION-TO-LSTM.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/arizeblog/assets/main.css">
     <link rel="stylesheet" href="/arizeblog/%20/assets/css/w3.css">
@@ -104,14 +104,7 @@
 </script>
 <br style="margin-top:2px;">
     <div class="w3-container">
-        <style>
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
-<div class="w3-row  w3-white">
+        <div class="w3-row  w3-white">
 
         <div class=" w3-col w3-container w3-margin w3-round-large" style="width:79%;left:0;">
 
@@ -128,14 +121,13 @@ img {
             </header>
 
             <div class="post-content e-content" itemprop="articleBody">
-                <span class="w3-container"> <hr />
-<p>In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the coventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.</p>
+                <span class="w3-container"> <p>In this post, I will explain the internal mechanisms that allow LSTM networks to perform better when  model temporal sequences and their long-range dependencies than the conventional RNNs, We will then use it in real life problem by training LSTM as a multi-class classifier to predict the tag of a programming question on Stack Overflow using Tensorflow/Keras.</p>
 
 <blockquote>
   <p>Note: In order to understand this post, you must have basic knowledge of recurrent neural networks and Keras. You can refer to <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a> to understand these concepts:</p>
 </blockquote>
 
-<p>Modeling sequential data using coventional <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a>, sometimes encounter sequences in which the gap between the relevant information and the point where it’s needed is very large, with these kind of huge gaps, RNNs are unable connectinformation to where it’s needed. During the backpropagation phase of RNNs, in which error signals (gradients) are backpropagated through time, the recurrent hidden layers (weight matrix associated with the layers) are subject to repeated multiplications. These multiplications are determined by the number of timesteps (length of the sequence), and this might result in numerical instability for lengthy sequence. For lengthy sequence, small weights tend to lead to a situation known as <b>vanishing gradients</b> where error signals propagating backwards get so small that learning either becomes very slow or stops working altogether (error signals fowing backwards in time tend to vanish). Conversely larger weights tend to lead to a situation where error signals are so large that they can cause learning to diverge, a situation known as <b>exploding gradients</b>.</p>
+<p>Modeling sequential data using conventional <a href="https://emmanuel-arize.github.io/datascience-blog/deeplearning/deep-learning/2021/05/06/RNN.html" target="_blank">  recurrent neural network</a>, sometimes encounter sequences in which the gap between the relevant information and the point where it’s needed is very large, with these kind of huge gaps, RNNs are unable connect information to where it’s needed. During the backpropagation phase of RNNs, in which error signals (gradients) are backpropagated through time, the recurrent hidden layers (weight matrix associated with the layers) are subject to repeated multiplications. These multiplications are determined by the number of timesteps (length of the sequence), and this might result in numerical instability for lengthy sequence. For lengthy sequence, small weights tend to lead to a situation known as <b>vanishing gradients</b> where error signals propagating backwards get so small that learning either becomes very slow or stops working altogether (error signals flowing backwards in time tend to vanish). Conversely larger weights tend to lead to a situation where error signals are so large that they can cause learning to diverge, a situation known as <b>exploding gradients</b>.</p>
 
 <p>To read more on exploding and vanishing gradients have a look at this papers
 <br />
@@ -148,7 +140,7 @@ img {
 
 <h1 id="long-short-term-memory-networks-lstms">Long Short-Term Memory NETWORKS (LSTMs)</h1>
 
-<p>LSTM are design to remember information for long periods of time and this is acheived through the use of a <b>memory cell state denoted by \(C_{t}\) </b> which is controled by the gating mechanism. At each time step, the controllable gating mechanisms decide which parts of the inputs will be written to the memory cell state, and which parts of memory cell state will be overwritten (forgotten), regulating information flowing in and out of the memory cell state and this make LSTMs divide the context management problem into two sub-problems: removing information no longer needed from the context and adding information likely to be needed for later decision making to the context. <a href="#lstm">Figure 1</a>  is a A schematic diagram of LSTMs.</p>
+<p>LSTM are design to remember information for long periods of time and this is achieved through the use of a <b>memory cell state denoted by \(C_{t}\) </b> which is controlled by the gating mechanism. At each time step, the controllable gating mechanisms decide which parts of the inputs will be written to the memory cell state, and which parts of memory cell state will be overwritten (forgotten), regulating information flowing in and out of the memory cell state and this make LSTMs divide the context management problem into two sub-problems: removing information no longer needed from the context and adding information likely to be needed for later decision making to the context. <a href="#lstm">Figure 1</a>  is a A schematic diagram of LSTMs.</p>
 
 <p><img img="" id="lstm" class="w3-center" src="/arizeblog/assets/images/deep/keras/LSTM.png" /><span id="Fig">Figure 1</span>
 <a href="https://www.researchgate.net/figure/Structure-of-the-LSTM-cell-and-equations-that-describe-the-gates-of-an-LSTM-cell_fig5_329362532" target="_blank">source <a></a></a></p>
@@ -158,8 +150,8 @@ img {
 
 \[f_{t}=\sigma(x_{t}U^{f} +h_{t-1}W^{f} )\]
 
-<p>where \(W^{f}\) denotes the hidden to hidden weights with  the superscript \(f\) as a symbol indicating the forget gate, \(U^{f}\) denoting input to hidden weights. The forget gate computes the weighted sum of the previous hidden state \(h_{t−1}\) and the current input \(x_{t}\) of time step t (time steps correspond to word positions in a sentence) then passes it through a sigmoid activation function which output a vector with values between 0 and 1.  <strong><em>The forgate gate is then multiplied by the previous memory cell \(C_{t-1}\) to decide how much of the previous memory cell content to retain when computing the current memory cell state \(C_{t}\). With a forgate gate value of 0, content of the previous memory cell will be completely discarded and with a value of 1, content of the previous memory cell will be  used when computing the current memory cell</em></strong>. 
-Let defined this multiplcation as</p>
+<p>where \(W^{f}\) denotes the hidden to hidden weights with  the superscript \(f\) as a symbol indicating the forget gate, \(U^{f}\) denoting input to hidden weights. The forget gate computes the weighted sum of the previous hidden state \(h_{t−1}\) and the current input \(x_{t}\) of time step t (time steps correspond to word positions in a sentence) then passes it through a sigmoid activation function which output a vector with values between 0 and 1.  <strong><em>The forget gate is then multiplied by the previous memory cell \(C_{t-1}\) to decide how much of the previous memory cell content to retain when computing the current memory cell state \(C_{t}\). With a forget gate value of 0, content of the previous memory cell will be completely discarded and with a value of 1, content of the previous memory cell will be  used when computing the current memory cell</em></strong>.
+Let defined this multiplication as</p>
 
 \[k_{t}=C_{t-1} \odot f_{t}\]
 
@@ -259,7 +251,7 @@ index 3 corresponds to  python
     <span class="n">lower_data</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">lower</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">lower_data</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="n">lower_data</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">strings</span><span class="p">.</span><span class="n">regex_replace</span><span class="p">(</span><span class="n">lower_data</span><span class="p">,</span><span class="s">"&lt;b /&gt;"</span><span class="p">,</span><span class="s">' '</span><span class="p">)</span>
-   
+
 <span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">vocab_size</span> <span class="o">=</span> <span class="mi">1000</span>
 
@@ -280,7 +272,7 @@ index 3 corresponds to  python
         <span class="bp">self</span><span class="p">.</span><span class="n">flat</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">()</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="o">=</span><span class="n">K</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
         <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">input_encoder</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">embed</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -288,7 +280,7 @@ index 3 corresponds to  python
         <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">flat</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
         <span class="n">output</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output</span>
-        
+
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lstm_model</span><span class="o">=</span><span class="n">LSTM</span><span class="p">(</span><span class="n">input_encoder</span><span class="o">=</span><span class="n">encoder</span><span class="p">)</span>
@@ -474,6 +466,7 @@ Neural Network Methods for Natural Language Processing Synthesis Lectures on Hum
                                
                                
                                
+                               
                               <li class="w3-padding-16">
                                   <a href="/arizeblog/machine-learning-python/2023/04/15/Customers-Segment.html">Introduction to Customer Segmentation
                               </li>
@@ -555,7 +548,7 @@ Neural Network Methods for Natural Language Processing Synthesis Lectures on Hum
 </body>
 
 </html>
-<link rel="stylesheet" href="/arizeblog/assets/css/my.css">
+<!-- <link rel="stylesheet" href="/arizeblog/assets/css/my.css"> -->
 <link rel="stylesheet" href="/arizeblog/assets/css/w3.css">
 <link rel="stylesheet" href="/arizeblog/assets/css/bootstrap.min.css">
 <script id="MathJax-script" async src="/arizeblog/assets/js/tex-mml-chtml.js"></script>

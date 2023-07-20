@@ -186,6 +186,7 @@
 
 .post-list-heading {
   @include relative-font-size(1.75);
+  padding:20px;
 }
 
 .post-list {
@@ -214,6 +215,7 @@
  */
 .post-header {
   margin-bottom: $spacing-unit;
+  padding-top:20px;
 }
 
 .post-title {

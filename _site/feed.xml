@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-07-03T07:46:12+00:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Introduction to RANKX</title><link href="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html" rel="alternate" type="text/html" title="Introduction to RANKX" /><published>2023-05-23T00:00:00+00:00</published><updated>2023-05-23T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html"><![CDATA[<p>In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/arizeblog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/arizeblog/" rel="alternate" type="text/html" /><updated>2023-07-17T07:57:52+00:00</updated><id>http://localhost:4000/arizeblog/feed.xml</id><title type="html">ARIZE-BLOG</title><subtitle></subtitle><author><name>Emmanuel Arize</name></author><entry><title type="html">Excel LOOKUP Functions</title><link href="http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp.html" rel="alternate" type="text/html" title="Excel LOOKUP Functions" /><published>2023-07-16T00:00:00+00:00</published><updated>2023-07-16T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2023/07/16/VlookUp.html"><![CDATA[<p>In this blog post I will be illustrating how to use Excel Lookup function. Lookup functions are used to find information in a range of data such as</p>
+
+<ul>
+  <li>Finding a customer name based on the customer ID.</li>
+  <li>Finding a product price based on the  product ID.</li>
+  <li>Can be used to write a formula to compute tax rates based on income.</li>
+  <li>It can also be used to describe the state of a value in a form of conditional statement such as describing an income as being low or high based on a threshold.</li>
+</ul>
+
+<h3 id="what-is-a-lookup-function">What is a Lookup Function?</h3>
+<p>A Lookup function enable you to “look up” values from worksheet ranges. It returns a value from a table (a range of data) by looking up another related value. It simply search for a specific information (e.g Canadian market) in the data and extract some corresponding information (e.g. Revenue from the Canadian market). Microsoft Excel 2016 allows you to perform both vertical lookups by using the VLOOKUP function and horizontal lookups using the HLOOKUP function. The VLOOKUP function always searches for a value starting in the first column of the lookup table and the HLOOKUP function
+searches for a value starting in the first row of the lookup table. In this post I will concentrate on VLOOKUP function since is the most used function between the two functions.</p>
+
+<h3 id="vlookup-syntax">VLOOKUP syntax</h3>
+<p>The function has the following syntax with brackets ([]) indicating optional arguments.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+</code></pre></div></div>
+<p>and the function arguments are as follows:</p>
+
+<p><strong>1. lookup_value</strong>: is the value, cell reference you want to search for  or look up in the first column of the lookup table. This is what you want to look up or find, so when the formula reads the Lookup value, it search for this value within the table (table_array) and return the result that matches it.</p>
+
+<p><strong>2. table_array</strong>:  is the range that contains the entire lookup table.</p>
+
+<p><strong>3. col_index_num</strong>: The column number in table_array from which the matching value must be returned. The input is the number of the column, counted from the left, 1 returns the value in the first column in table_array, 2 returns the value in the second column in table_array, and so on.</p>
+
+<p><strong>4. range_lookup</strong>: A logical value that indicates whether VLOOKUP is to find an approximate match (TRUE/1) or exact match (FALSE/0). If omitted, an approximate match is returned. If the range_lookup argument is TRUE or omitted, the first column of the lookup table must be in ascending order. If FALSE, VLOOKUP will search for an exact match and if it can’t find an exact match, the function returns #N/A</p>
+
+<h3 id="finding-an-approximate-match-using-the-vlookup-function">Finding an Approximate Match using the vlookup function.</h3>
+<p>Under the approximate match example I will be computing tax rates based on income. Suppose the government has decided to
+introduce new tax rate of which workers will taxed based on the amount of salary they received at the end of each month.
+Let also assume that the tax rate and their respective salary range is given by the table below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_01.jpg" /></p>
+
+<p>To use the lookup function to compute the tax rate, the numbers in the first column of the table range must be
+sorted in ascending order so that each row in the table represents the low end of the amount range as shown below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_2.jpg" /></p>
+
+<h4 id="computing-the-tax-rate">Computing the tax rate</h4>
+<ul>
+  <li>First select the table range <strong>D14:E18</strong> and named it as <strong>Tax_lookup_table</strong> as shown below.</li>
+</ul>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_3.jpg" /></p>
+
+<p><strong>Note:</strong> The Name box (red rectangular box) is located directly above the label for column A. To see the Name
+box, you need to display the Formula bar.</p>
+
+<ul>
+  <li>To compute the tax rate based on the amount of salary an employee received select cell <strong>I14</strong> and enter
+    <pre><code class="language-(excel)">  =VLOOKUP( I13, Tax_lookup_table, 2 ,TRUE)
+
+</code></pre>
+  </li>
+</ul>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_4.jpg" /></p>
+
+<p><strong>Note:</strong> that because the column index in the formula is 2 (we want to return the tax rate), the answer always comes from the second column of the table range (Tax_lookup_table) which is the tax rate.</p>
+
+<p>Let now check the tax rate for an employee with a salary of $400</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_5.jpg" /></p>
+
+<p>Let also check the tax rate for an employee with a salary of $16000</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_6.jpg" /></p>
+
+<p>We can see from the two preceding examples that formula is working as expected.</p>
+
+<h3 id="finding-an-exact-match">Finding an Exact Match</h3>
+<p>Under the exact match example I will be computing the price of food item based on the selected food item. Suppose you have food store with several food items and their related prices shown below. As the storekeeper you’ve noticed that the first thing customers usually asked for is the price of the item they want to purchase and because of this you’ve decided to use excel vlookup function to compute the various price of the items so that whenever they ask for the price of the item, you just enter the food item and the vlookup function will give you the item related price.</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_07.jpg" /></p>
+
+<ul>
+  <li>
+    <p>First select the table range <strong>B4:C8</strong> and named it as <strong>ItemPrice_lookup_table</strong> as shown below.</p>
+  </li>
+  <li>
+    <p>To make things easier I am going to create a drop-down list for the food items</p>
+
+    <p>1. First select cell <b>G3</b> then click on the <b>Data tab</b>.
+<p> 2. In the <b>Data Tools</b> group select the <b>Data validation icon</b> as shown below</p>   
+
+<img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_8.jpg" />
+
+<p>3. After clicking on the data validation arrow you will get dialog box similar to the one below</p>
+
+<img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_9.jpg" />
+
+<p>4. Under the Allow dialog box select list</p>
+
+<p>5. Under source select the range of data that you intend to use as drop-down list. In our case the food items which consist of the range <b>=$B$4:$B$8</b> as shown below</p>
+
+
+  <img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_10.jpg" />
+
+<p>6. click <b>OK</b>.</p>
+
+This will create a drop-down list containing the food items
+
+  <img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_11.jpg" />
+
+With the drop-down list created let now compute the price based on the selected food item.
+
+- To compute the price based on the selected item select cell <b>G4</b> and enter
+
+</p>
+  </li>
+</ul>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=VLOOKUP(G3,ItemPrice_lookup_table,2,FALSE)
+</code></pre></div></div>
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_12.jpg" /></p>
+
+<p>When a food item is selected it related price is given as shown below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_13.jpg" /></p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_14.jpg" /></p>
+
+<h4 id="in-this-third-example-i-will-use-the-vlookup-function-to-describe-the-status-of-an-employee-income-based-on-the-table-below">In this third example I will use the vlookup function to describe the status of an employee income based on the table below.</h4>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_15.jpg" /></p>
+
+<p>and the description is based on the following income ranges.</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_151.jpg" /></p>
+
+<p>To describe the status using vlookup function in cell <strong>D3</strong> enter</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=VLOOKUP( C3,   {-1000000,"debt" ; 0,"low Income"; 500,"Medium Income"; 1000,"High Income"; 2000,"Higher Income" } , 2 , TRUE)
+</code></pre></div></div>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_16.jpg" /></p>
+
+<p>It will produce the result below</p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_17.jpg" /></p>
+
+<p><img class="w3-card" src="/arizeblog/assets/images/Excel/lookup_18.jpg" /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>In this post we look at lookup functions specifically vlookup function since the most used function and saw how these functions can make our job easier in situations such as finding the price of a given item given the id.</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Excel" /><summary type="html"><![CDATA[In this blog post I will be illustrating how to use Excel Lookup function. Lookup functions are used to find information in a range of data such as]]></summary></entry><entry><title type="html">Introduction to RANKX</title><link href="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html" rel="alternate" type="text/html" title="Introduction to RANKX" /><published>2023-05-23T00:00:00+00:00</published><updated>2023-05-23T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2023/05/23/Rankx.html"><![CDATA[<p>In this post I will be detailing how to use DAX RANKX function. Ranking is one of the most commonly used calculations in Power BI reports. In Many reports products, countries and many more are usually ranked based on certain measures such as their revenue volumes to determine their ranking positions and to get a better view of the products and countries from which the company is getting more revenue or sales from and RANKX is a DAX function that can used for ranking.</p>
 
 <p><strong>RANKX</strong> function is an iterator that is used to show the ranking value of an element according to a specific sort
 order. It returns the ranking of a number in a list of numbers for each row in the table argument. As and iterator it requires at least two parameters, the table that it scans and an expression that is evaluated for each row of the table. It has the syntax below,</p>
@@ -1504,47 +1649,7 @@ involved. What if the relationship doesn’t exist, is there a way to create vir
 
 <h3 id="conclusion">Conclusion</h3>
 
-<p>In this post we’ve seen that the TREATAS function is an important function which can be used to simplify filtering expressions and also used to create a virtual relationship between two tables.</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this blog post, I’ll dive into the DAX TREATAS function by first showing how to create a virtual relationship between two tables using TREATAS and then move on to show how we can simplify a filtering expression using the TREATAS function.]]></summary></entry><entry><title type="html">DAX FILTER Function</title><link href="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html" rel="alternate" type="text/html" title="DAX FILTER Function" /><published>2022-10-20T00:00:00+00:00</published><updated>2022-10-20T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter</id><content type="html" xml:base="http://localhost:4000/arizeblog/power-bi/2022/10/20/Filter.html"><![CDATA[<p>This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table  reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.</p>
-
-<p>The syntax of FILTER is given as:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FILTER ( &lt;table&gt;, &lt;condition&gt; )
-</code></pre></div></div>
-<p>Using this syntax FILTER receives a table and a logical condition as parameters. In order to return a result, it iterates the table evaluating the condition on a row-by-row basis and returns all rows satisfying the condition.</p>
-
-<p>Let now create a measure <strong>Canada Sales</strong> that finds the amount of sales from Canada</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada Sales = CALCULATE(
-                        Sales[Sales Amt],
-                        FILTER(
-                                Customer,
-                                Customer[Country-Region]="Canada"
-                              )
-                      )
-
-</code></pre></div></div>
-<p>Result from the <strong>Canada Sales</strong> measure shows only sales where Customers are from or in Canada
-<br />
-<img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/filter1.jpg" />
-<br /></p>
-
-<p>Let create another measure <strong>Canada USA Sales</strong> that filter the table to return sales where a customer is either from Canada or United States,</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada USA Sales = CALCULATE(
-                            Sales[Sales Amt],
-                            FILTER(
-                                    Customer,
-                                    Customer[Country-Region]="Canada" || Customer[Country-Region]="United States"
-                                    )
-                            )
-</code></pre></div></div>
-
-<p>Result from the <strong>Canada USA Sales</strong> measure shows only sales where Customers are from either Canada OR United States
-<br />
-<img class="w3-card w3-brown" src="/arizeblog/assets/images/power_bi/filter2.jpg" />
-<br /></p>
-
-<h3 id="conclusion">Conclusion</h3>
-<p>The filter function is a simple Power BI function that allows you to iterate table on a row-by-row basis and returns all rows satisfying the condition specified.</p>]]></content><author><name>Arize Emmanuel</name></author><category term="Power-BI" /><summary type="html"><![CDATA[This tutorial illustrate how to filter a table using the FILTER function in DAX. Whether you are a data scientist, a marketing or sales person, filtering data is one of the most common ways you analyze data. The FILTER function is often used to filter rows of a table reducing the size of the table. When table is filtered, the resulting data is a subset of table and this presents an opportunity to prepare for future analysis.]]></summary></entry><entry><title type="html">Excel IF Function</title><link href="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Excel IF Function" /><published>2022-10-20T00:00:00+00:00</published><updated>2022-10-20T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
+<p>In this post we’ve seen that the TREATAS function is an important function which can be used to simplify filtering expressions and also used to create a virtual relationship between two tables.</p>]]></content><author><name>Emmanuel Arize</name></author><category term="Power-BI" /><summary type="html"><![CDATA[In this blog post, I’ll dive into the DAX TREATAS function by first showing how to create a virtual relationship between two tables using TREATAS and then move on to show how we can simplify a filtering expression using the TREATAS function.]]></summary></entry><entry><title type="html">Excel IF Function</title><link href="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html" rel="alternate" type="text/html" title="Excel IF Function" /><published>2022-10-20T00:00:00+00:00</published><updated>2022-10-20T00:00:00+00:00</updated><id>http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement</id><content type="html" xml:base="http://localhost:4000/arizeblog/excel/2022/10/20/IF-Statement.html"><![CDATA[<p>In this tutorial I will be illustrating how to use EXCEL IF function. The IF function is one of the most used functions in Excel which returns values based on a <strong>true</strong> or <strong>false condition</strong>.The condition here is referred to as logical_test and the function has the following syntax.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=IF(logical_test, [value_if_true], [value_if_false])
 </code></pre></div></div>
