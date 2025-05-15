@@ -1,7 +1,6 @@
 ---
 layout: python-post
 title:  "Cross-Validation (ML-python)"
-date:   2021-01-14 02:02:23 +0000
 category: machine-learning-python
 author: Arize Emmanuel
 ---
